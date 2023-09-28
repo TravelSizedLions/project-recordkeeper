@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b1y3xdx3sh1x2"]
 
-[ext_resource type="PackedScene" uid="uid://dsikxkesnwusy" path="res://game-objects/player/player.tscn" id="1_18x6u"]
+[ext_resource type="PackedScene" uid="uid://dsikxkesnwusy" path="res://game_objects/player/player.tscn" id="1_18x6u"]
 [ext_resource type="Texture2D" uid="uid://13w7j573hcyh" path="res://art/environment/ship_foreground_bw.png" id="3_w41ef"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5opmi"]

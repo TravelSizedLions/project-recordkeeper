@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crcupfgaalg2o"
-path="res://.godot/imported/jerrod_fall.png-adeb6890ab7e855e2466a74985c6c4b0.ctex"
+uid="uid://b4lvdovr1qmwo"
+path="res://.godot/imported/jerrod_rise.png-00785ac1ff23f9140671393a8e5dd986.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game-objects/player/jerrod_fall.png"
-dest_files=["res://.godot/imported/jerrod_fall.png-adeb6890ab7e855e2466a74985c6c4b0.ctex"]
+source_file="res://game_objects/player/jerrod_rise.png"
+dest_files=["res://.godot/imported/jerrod_rise.png-00785ac1ff23f9140671393a8e5dd986.ctex"]
 
 [params]
 

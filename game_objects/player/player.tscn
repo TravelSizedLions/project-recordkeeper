@@ -1,14 +1,14 @@
 [gd_scene load_steps=39 format=3 uid="uid://dsikxkesnwusy"]
 
-[ext_resource type="Script" path="res://scripts/fsm/fsm.gd" id="1_u4ria"]
-[ext_resource type="Texture2D" uid="uid://crcupfgaalg2o" path="res://game-objects/player/jerrod_fall.png" id="2_8n1h8"]
-[ext_resource type="Script" path="res://scripts/fsm/player-states/player-idle.gd" id="2_56u22"]
-[ext_resource type="Script" path="res://scripts/player/player.gd" id="3_1tdcx"]
-[ext_resource type="Texture2D" uid="uid://d2jdk0k7yii46" path="res://game-objects/player/jerrod_idle.png" id="3_csgq7"]
-[ext_resource type="Texture2D" uid="uid://83xeplc4hdkk" path="res://game-objects/player/jerrod_run.png" id="3_nq3ev"]
-[ext_resource type="Texture2D" uid="uid://bfhuemywvth17" path="res://game-objects/player/jerrod_jump.png" id="4_qaalg"]
-[ext_resource type="Texture2D" uid="uid://bgaxrwiakm0n2" path="res://game-objects/player/jerrod_land.png" id="5_jaoww"]
-[ext_resource type="Texture2D" uid="uid://b4lvdovr1qmwo" path="res://game-objects/player/jerrod_rise.png" id="6_naa2i"]
+[ext_resource type="Script" path="res://0_scripts/player/player.gd" id="1_wg28e"]
+[ext_resource type="Texture2D" uid="uid://crcupfgaalg2o" path="res://game_objects/player/jerrod_fall.png" id="2_8n1h8"]
+[ext_resource type="Texture2D" uid="uid://d2jdk0k7yii46" path="res://game_objects/player/jerrod_idle.png" id="3_csgq7"]
+[ext_resource type="Texture2D" uid="uid://83xeplc4hdkk" path="res://game_objects/player/jerrod_run.png" id="3_nq3ev"]
+[ext_resource type="Texture2D" uid="uid://bfhuemywvth17" path="res://game_objects/player/jerrod_jump.png" id="4_qaalg"]
+[ext_resource type="Texture2D" uid="uid://bgaxrwiakm0n2" path="res://game_objects/player/jerrod_land.png" id="5_jaoww"]
+[ext_resource type="Texture2D" uid="uid://b4lvdovr1qmwo" path="res://game_objects/player/jerrod_rise.png" id="6_naa2i"]
+[ext_resource type="Script" path="res://0_scripts/fsm/fsm.gd" id="8_xn58y"]
+[ext_resource type="Script" path="res://0_scripts/fsm/player_states/player_idle_state.gd" id="9_68c6j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w23o4"]
 atlas = ExtResource("2_8n1h8")
@@ -152,7 +152,7 @@ animations = [{
 "speed": 24.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 3.0,
 "texture": SubResource("AtlasTexture_ykbp4")
 }, {
 "duration": 1.0,
@@ -174,16 +174,16 @@ animations = [{
 "speed": 24.0
 }, {
 "frames": [{
-"duration": 3.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_ofgt8")
 }, {
-"duration": 3.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_ytxfv")
 }, {
-"duration": 3.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_alehl")
 }, {
-"duration": 3.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_jtskv")
 }],
 "loop": false,
@@ -236,25 +236,22 @@ animations = [{
 radius = 6.0
 height = 32.0
 
-[node name="character_body_2d" type="CharacterBody2D" node_paths=PackedStringArray("animator")]
-script = ExtResource("3_1tdcx")
+[node name="character_body_2d" type="CharacterBody2D" node_paths=PackedStringArray("animator") groups=["player"]]
+script = ExtResource("1_wg28e")
 animator = NodePath("animated_sprite_2d")
 
 [node name="animated_sprite_2d" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -10)
 sprite_frames = SubResource("SpriteFrames_cakj3")
-animation = &"land"
+animation = &"rising"
 autoplay = "idle"
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_7e8aw")
 
-[node name="state_machine" type="Node2D" parent="." node_paths=PackedStringArray("start_state")]
-script = ExtResource("1_u4ria")
-start_state = NodePath("player_idle")
+[node name="state_machine" type="Node2D" parent="."]
+script = ExtResource("8_xn58y")
+start_state = ExtResource("9_68c6j")
 
-[node name="player_idle" type="Node2D" parent="state_machine"]
-script = ExtResource("2_56u22")
-
-[connection signal="animation_finished" from="animated_sprite_2d" to="." method="on_animation_finished"]
+[connection signal="animation_finished" from="animated_sprite_2d" to="state_machine" method="on_animation_finished"]
