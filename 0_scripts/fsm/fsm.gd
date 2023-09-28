@@ -6,8 +6,11 @@ class_name FSM
 var states: Dictionary = {}
 var current_state: State = null;
 
-func _ready():
-	current_state = add_state_node(start_state)
+func _enter_tree():
+	if start_state:
+		current_state = add_state_node(start_state)
+	else:
+		push_error('no start state found for FSM "%s" on "%s"' % [self, owner])
 
 func _process(delta):
 	current_state.process(delta)
@@ -15,11 +18,11 @@ func _process(delta):
 func _physics_process(delta):
 	current_state.physics_process(delta)
 
-func on_state_transition(state_script):
-	var next_state = states.get(get_state_key(state_script))
+func on_state_transition(target_state):
+	var next_state = states.get(get_state_key(target_state))
 
 	if not next_state:
-		next_state = add_state_node(state_script)
+		next_state = add_state_node(target_state)
 
 	current_state.exit()
 	current_state = next_state
