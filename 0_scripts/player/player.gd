@@ -10,22 +10,13 @@ class_name Player
 ## Initial jump speed (in .1 pixel/second^2 units)
 @export var jump_force = -400.0
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _process(_delta):
-	update_direction()
+	CharUtils.update_facing(self)
 
 func _physics_process(delta):
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	CharUtils.apply_gravity(self, delta)
 	move_and_slide()
-
-func update_direction():
-	if velocity.x > 0:
-		animator.flip_h = false
-	elif velocity.x < 0:
-		animator.flip_h = true
 
 func pressed_move():
 	return bool(__get_movement_axis())
