@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dsikxkesnwusy"]
+[gd_scene load_steps=40 format=3 uid="uid://dsikxkesnwusy"]
 
 [ext_resource type="Script" path="res://0_scripts/player/player.gd" id="1_wg28e"]
 [ext_resource type="Texture2D" uid="uid://crcupfgaalg2o" path="res://game_objects/player/jerrod_fall.png" id="2_8n1h8"]
@@ -252,5 +252,8 @@ shape = SubResource("CapsuleShape2D_7e8aw")
 [node name="state_machine" type="Node2D" parent="."]
 script = ExtResource("8_xn58y")
 start_state = ExtResource("9_vnk6s")
+
+[node name="player_movement" type="Node2D" parent="." groups=["movement"]]
+script = ExtResource("10_wykbm")
 
 [connection signal="animation_finished" from="animated_sprite_2d" to="state_machine" method="on_animation_finished"]
