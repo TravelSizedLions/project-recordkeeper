@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dsikxkesnwusy"]
+[gd_scene load_steps=39 format=3 uid="uid://dsikxkesnwusy"]
 
 [ext_resource type="Script" path="res://0_scripts/player/player.gd" id="1_wg28e"]
 [ext_resource type="Texture2D" uid="uid://crcupfgaalg2o" path="res://game_objects/player/jerrod_fall.png" id="2_8n1h8"]
