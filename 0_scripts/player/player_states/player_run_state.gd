@@ -9,6 +9,8 @@ func __on_physics_process(_delta: float):
 		transitioner.emit(PlayerIdleState)
 	elif player.pressed_jump():
 		transitioner.emit(PlayerStartJumpState)
+	elif player.is_falling():
+		transitioner.emit(PlayerFallingState)
 
 func __on_enter():
 	player.animator.play('run')
