@@ -34,6 +34,9 @@ func add_state_node(script: GDScript):
 	node.set_script(script)
 	node.set_name(key)
 	node.transitioner.connect(on_state_transition)
+
+	# makes it so that the owner is available @onready
+	node.connect('tree_entered', (func(): node.set_owner(owner)))
 	add_child(node)
 	states[key] = node
 	return node

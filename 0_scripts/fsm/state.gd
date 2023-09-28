@@ -3,8 +3,11 @@ class_name State
 
 signal transitioner
 
+func _enter_tree():
+	print('FSM(%s): %s entered tree' % [owner, name])
+
 func _ready():
-	print('FSM: adding %s' % [name])
+	print('FSM(%s): new %s' % [owner, name])
 	__on_ready()
 
 func process(delta):
@@ -25,6 +28,9 @@ func finished_animation():
 	__on_animation_finished()
 
 func __on_ready():
+	pass
+
+func __on_enter_tree():
 	pass
 
 func __on_process(_delta: float):
