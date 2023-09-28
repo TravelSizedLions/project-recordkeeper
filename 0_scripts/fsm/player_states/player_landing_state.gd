@@ -1,16 +1,17 @@
 extends State
-class_name PlayerIdleState
+class_name PlayerLandingState
 
 @onready var player: Player = get_tree().get_first_node_in_group('player')
 
 func __on_physics_process(_delta: float):
-	if player.pressed_move():
+	player.handle_run()
+	if player.is_moving():
 		transitioner.emit(PlayerRunState)
 	elif player.pressed_jump():
 		transitioner.emit(PlayerStartJumpState)
-	elif player.is_falling():
-		transitioner.emit(PlayerFallingState)
 
 func __on_enter():
-	player.animator.play('idle')
+	player.animator.play('land')
 
+func __on_animation_finished():
+	transitioner.emit(PlayerIdleState)

@@ -15,6 +15,9 @@ class_name Player
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func _process(_delta):
+	update_direction()
+
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -25,3 +28,28 @@ func update_direction():
 		animator.flip_h = false
 	elif velocity.x < 0:
 		animator.flip_h = true
+
+func pressed_move():
+	return bool(__get_movement_axis())
+
+func pressed_jump():
+	return Input.is_action_just_pressed('jump')
+	
+func handle_run():
+	var direction = __get_movement_axis()
+	if direction:
+		velocity.x = direction * speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+	
+func is_moving():
+	return velocity.x != 0
+	
+func is_falling():
+	return velocity.y > 0
+	
+func is_rising():
+	return velocity.y < 0
+
+func __get_movement_axis():
+	return Input.get_axis('left', 'right')
