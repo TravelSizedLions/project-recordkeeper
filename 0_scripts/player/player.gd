@@ -1,10 +1,16 @@
 extends CharacterBody2D
 class_name Player
 
+@export_group('Movement Settings')
+## How fast the player moves (in .1 pixel/second units)
 @export var speed = 300.0
+
+## Initial jump speed (in .1 pixel/second^2 units)
 @export var jump_force = -400.0
+
+@export_group('Components')
+## The player's animated sprite component.
 @export var animator: AnimatedSprite2D = null
-@export var body: CharacterBody2D = null
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
