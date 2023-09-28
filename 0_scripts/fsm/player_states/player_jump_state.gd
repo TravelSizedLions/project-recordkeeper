@@ -12,9 +12,6 @@ func __on_physics_process(_delta: float):
 
 func __on_enter():
 	player.animator.play('jump_start')
-	
-func __on_exit():
-	pass
 
 func __on_animation_finished():
 	if player.animator.animation == 'jump_start':
