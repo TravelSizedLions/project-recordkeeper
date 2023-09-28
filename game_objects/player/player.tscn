@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dsikxkesnwusy"]
+[gd_scene load_steps=39 format=3 uid="uid://dsikxkesnwusy"]
 
 [ext_resource type="Script" path="res://0_scripts/player/player.gd" id="1_wg28e"]
 [ext_resource type="Texture2D" uid="uid://crcupfgaalg2o" path="res://game_objects/player/jerrod_fall.png" id="2_8n1h8"]
@@ -8,8 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bgaxrwiakm0n2" path="res://game_objects/player/jerrod_land.png" id="5_jaoww"]
 [ext_resource type="Texture2D" uid="uid://b4lvdovr1qmwo" path="res://game_objects/player/jerrod_rise.png" id="6_naa2i"]
 [ext_resource type="Script" path="res://0_scripts/fsm/fsm.gd" id="8_xn58y"]
-[ext_resource type="Script" path="res://0_scripts/fsm/player_states/player_idle_state.gd" id="9_68c6j"]
-[ext_resource type="Script" path="res://0_scripts/player/player_movement.gd" id="10_wykbm"]
+[ext_resource type="Script" path="res://0_scripts/player/player_states/player_idle_state.gd" id="9_vnk6s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w23o4"]
 atlas = ExtResource("2_8n1h8")
@@ -133,19 +132,19 @@ animations = [{
 "speed": 24.0
 }, {
 "frames": [{
-"duration": 3.0,
+"duration": 4.0,
 "texture": SubResource("AtlasTexture_ncbqv")
 }, {
-"duration": 3.0,
+"duration": 4.0,
 "texture": SubResource("AtlasTexture_7q8vb")
 }, {
-"duration": 3.0,
+"duration": 4.0,
 "texture": SubResource("AtlasTexture_41p1w")
 }, {
-"duration": 3.0,
+"duration": 4.0,
 "texture": SubResource("AtlasTexture_erqw7")
 }, {
-"duration": 3.0,
+"duration": 4.0,
 "texture": SubResource("AtlasTexture_mj4xl")
 }],
 "loop": true,
@@ -153,7 +152,7 @@ animations = [{
 "speed": 24.0
 }, {
 "frames": [{
-"duration": 3.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_ykbp4")
 }, {
 "duration": 1.0,
@@ -237,14 +236,13 @@ animations = [{
 radius = 6.0
 height = 32.0
 
-[node name="character_body_2d" type="CharacterBody2D" node_paths=PackedStringArray("animator") groups=["player"]]
+[node name="character_body_2d" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_wg28e")
-animator = NodePath("animated_sprite_2d")
 
 [node name="animated_sprite_2d" type="AnimatedSprite2D" parent="."]
 position = Vector2(4, -10)
 sprite_frames = SubResource("SpriteFrames_cakj3")
-animation = &"rising"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="."]
@@ -253,9 +251,6 @@ shape = SubResource("CapsuleShape2D_7e8aw")
 
 [node name="state_machine" type="Node2D" parent="."]
 script = ExtResource("8_xn58y")
-start_state = ExtResource("9_68c6j")
-
-[node name="player_movement" type="Node2D" parent="." groups=["movement"]]
-script = ExtResource("10_wykbm")
+start_state = ExtResource("9_vnk6s")
 
 [connection signal="animation_finished" from="animated_sprite_2d" to="state_machine" method="on_animation_finished"]
