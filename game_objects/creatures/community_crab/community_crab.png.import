@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgaxrwiakm0n2"
-path="res://.godot/imported/jerrod_land.png-d8f8e976bdf0ca802ff0c7c8b2178012.ctex"
+uid="uid://d14wmllw3vh7w"
+path="res://.godot/imported/community_crab.png-e20d3e3ba7c7ab27c8634eea59dce027.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game-objects/player/jerrod_land.png"
-dest_files=["res://.godot/imported/jerrod_land.png-d8f8e976bdf0ca802ff0c7c8b2178012.ctex"]
+source_file="res://game_objects/creatures/community_crab/community_crab.png"
+dest_files=["res://.godot/imported/community_crab.png-e20d3e3ba7c7ab27c8634eea59dce027.ctex"]
 
 [params]
 

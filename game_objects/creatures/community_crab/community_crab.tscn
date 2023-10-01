@@ -1,0 +1,97 @@
+[gd_scene load_steps=16 format=3 uid="uid://c58etkl8y5kup"]
+
+[ext_resource type="Script" path="res://0_scripts/creatures/community_crab/community_crab.gd" id="1_corwl"]
+[ext_resource type="Texture2D" uid="uid://d14wmllw3vh7w" path="res://game_objects/creatures/community_crab/community_crab.png" id="1_g3j8e"]
+[ext_resource type="Texture2D" uid="uid://bb7ocxnocncmn" path="res://game_objects/creatures/community_crab/community_crab_moving.png" id="2_kuimb"]
+[ext_resource type="Script" path="res://0_scripts/fsm/fsm.gd" id="3_we8py"]
+[ext_resource type="Script" path="res://0_scripts/creatures/community_crab/states/community_crab_idle_state.gd" id="4_4p8hi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuw82"]
+atlas = ExtResource("2_kuimb")
+region = Rect2(0, 0, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exobs"]
+atlas = ExtResource("2_kuimb")
+region = Rect2(112, 0, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iltwg"]
+atlas = ExtResource("2_kuimb")
+region = Rect2(224, 0, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exbqy"]
+atlas = ExtResource("2_kuimb")
+region = Rect2(336, 0, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kk5s"]
+atlas = ExtResource("1_g3j8e")
+region = Rect2(0, 0, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k5m4"]
+atlas = ExtResource("1_g3j8e")
+region = Rect2(112, 0, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52otp"]
+atlas = ExtResource("1_g3j8e")
+region = Rect2(224, 0, 112, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbkm6"]
+atlas = ExtResource("1_g3j8e")
+region = Rect2(336, 0, 112, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k0qjr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuw82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exobs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iltwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exbqy")
+}],
+"loop": true,
+"name": &"follow",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kk5s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7k5m4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52otp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbkm6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2uiql"]
+size = Vector2(71, 84)
+
+[node name="community_crab" type="CharacterBody2D"]
+script = ExtResource("1_corwl")
+min_follow_dist = 0
+max_follow_dist = 100
+
+[node name="animated_sprite_2d" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_k0qjr")
+animation = &"follow"
+autoplay = "idle"
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, 5)
+shape = SubResource("RectangleShape2D_2uiql")
+
+[node name="state_machine" type="Node2D" parent="."]
+script = ExtResource("3_we8py")
+start_state = ExtResource("4_4p8hi")

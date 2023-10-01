@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://83xeplc4hdkk"
-path="res://.godot/imported/jerrod_run.png-d960c9489451f6cfb2e3d33ab7bcc4a1.ctex"
+path="res://.godot/imported/jerrod_run.png-bc46ffa8076870ca973170f7bd44e705.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game-objects/player/jerrod_run.png"
-dest_files=["res://.godot/imported/jerrod_run.png-d960c9489451f6cfb2e3d33ab7bcc4a1.ctex"]
+source_file="res://game_objects/player/jerrod_run.png"
+dest_files=["res://.godot/imported/jerrod_run.png-bc46ffa8076870ca973170f7bd44e705.ctex"]
 
 [params]
 
