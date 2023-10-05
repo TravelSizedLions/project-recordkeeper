@@ -1,5 +1,5 @@
 extends State
-class_name PlayerStartJumpState
+class_name JaredStartJumpState
 
 @onready var player: Player = get_tree().get_first_node_in_group('player')
 
@@ -10,5 +10,5 @@ func __on_enter():
 	player.animator.play('jump_start')
 
 func __on_animation_finished():
-	player.velocity.y = player.jump_force
-	transitioner.emit(PlayerRisingState)
+	player.velocity.y = player.settings.jump_force
+	transitioner.emit(JaredRisingState)

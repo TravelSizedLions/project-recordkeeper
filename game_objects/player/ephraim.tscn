@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://5fm2u8gdec7o"]
+
+[ext_resource type="Script" path="res://0_scripts/player/player.gd" id="1_vl16k"]
+[ext_resource type="SpriteFrames" uid="uid://tblams6ab8gl" path="res://game_objects/player/ephraim.sprite_frames.tres" id="2_46yic"]
+[ext_resource type="Script" path="res://0_scripts/fsm/fsm.gd" id="8_7jpj1"]
+[ext_resource type="Script" path="res://0_scripts/player/player_states/ephraim/ephraim_idle_state.gd" id="9_414nh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7e8aw"]
+radius = 6.0
+height = 32.0
+
+[node name="ephraim" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_vl16k")
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_7e8aw")
+
+[node name="animated_sprite_2d" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, -10)
+sprite_frames = ExtResource("2_46yic")
+animation = &"falling"
+
+[node name="state_machine" type="Node2D" parent="."]
+script = ExtResource("8_7jpj1")
+start_state = ExtResource("9_414nh")
+
+[connection signal="animation_finished" from="animated_sprite_2d" to="state_machine" method="on_animation_finished"]

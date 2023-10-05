@@ -10,3 +10,27 @@ static func get_child(node: Node, type):
 			return result
 
 	return null
+
+static func create(script: GDScript, parent: Node2D = null, owner: Node2D = null, name: String = ""):
+	var node = Node2D.new()
+	node.set_script(script)
+	return __create(node, parent, owner, (name if name else StringUtils.file_name(script.get_path())))
+
+static func create_native(nativeClass, parent: Node2D = null, owner: Node2D = null, name: String = ""):
+	return __create(
+		nativeClass.new(),
+		parent,
+		owner,
+		name if name else ('%s' % [nativeClass])
+	)
+
+static func __create(node: Node2D,  parent: Node2D = null, owner: Node2D = null, name: String = ""):
+	node.set_name(name)
+
+	if owner:
+		node.connect('tree_entered', (func(): node.set_owner(owner)))
+	
+	if parent:
+		parent.add_child(node)
+
+	return node
