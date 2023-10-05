@@ -16,7 +16,10 @@ enum Character {Jared, Ephraim}
 var settings
 
 func _ready():
-	__set_up_player(jared_settings)
+	if starting_character == Character.Jared:
+		__set_up_player(jared_settings)
+	else:
+		__set_up_player(ephraim_settings)
 
 func _process(_delta):
 	CharUtils.update_facing(self)

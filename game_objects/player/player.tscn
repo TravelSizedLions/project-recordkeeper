@@ -38,7 +38,7 @@ centered = false
 offset = Vector2(0, -2)
 script = ExtResource("7_ryjvn")
 
-[node name="emission_point" type="Node2D" parent="shooter"]
+[node name="emitter" type="Node2D" parent="shooter"]
 position = Vector2(16, 0)
 
 [node name="player_movement" type="Node2D" parent="." groups=["movement"]]
