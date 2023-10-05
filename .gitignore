@@ -2,7 +2,7 @@
 # working documents
 *.psd
 *.fla
-*.asesprite
+*.aseprite
 *.ase
 
 # Godot 4+ specific ignores
