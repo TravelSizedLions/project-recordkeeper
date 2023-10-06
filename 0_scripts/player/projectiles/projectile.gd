@@ -5,10 +5,21 @@ class_name Projectile
 
 @onready var __timer: float = settings.max_lifetime_seconds
 
+signal on_hit
+
 func _physics_process(delta):
 	__timer -= delta
 	if __timer < 0:
 		queue_free()
 
-func set_initial_velocity(direction: Vector2, speed: float):
+func set_initial_velocity(_direction: Vector2, _speed: float):
 	pass
+
+func register_behavior(behavior: ProjectileOnHitBehavior):
+	on_hit.connect(behavior.on_hit, CONNECT_DEFERRED)
+
+func on_body_entered(body):
+	on_hit.emit(body)
+
+func on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
+	on_hit.emit(body)

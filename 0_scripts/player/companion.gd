@@ -4,10 +4,6 @@ class_name Companion
 @export var settings: CompanionSettings
 @onready var player = get_tree().get_first_node_in_group('player')
 
-func _ready():
-	get_parent().remove_child(self)
-	get_tree().get_root().add_child(self)
-
 func _physics_process(_delta):
 	var player_pos = player.global_position
 	var comp_pos = global_position

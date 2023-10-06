@@ -1,13 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckohyum7ndxpx"]
+[gd_scene load_steps=7 format=3 uid="uid://ckohyum7ndxpx"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_f6eac"]
+[ext_resource type="Script" path="res://0_scripts/player/projectiles/ballistic_projectile.gd" id="1_1kqjc"]
+[ext_resource type="Texture2D" uid="uid://dvf2nfmd0x2l7" path="res://game_objects/projectiles/glowfly/glowfly_projectile.png" id="1_v6rvf"]
+[ext_resource type="Script" path="res://0_scripts/player/projectiles/projectile_behaviors/freeze_on_hit_behavior.gd" id="2_picac"]
+[ext_resource type="Script" path="res://0_scripts/player/projectiles/projectile_behaviors/float_away_on_hit_behavior.gd" id="3_qhwm5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_juu7o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_v6rvf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
-[node name="fighter_fly" type="RigidBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_f6eac"]
+radius = 8.0
 
-[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_f6eac")
+[node name="glowfly_projectile" type="RigidBody2D"]
+z_index = 1
+script = ExtResource("1_1kqjc")
+
+[node name="freeze_projectile" type="Node2D" parent="."]
+script = ExtResource("2_picac")
+
+[node name="float_away_on_contact" type="Node2D" parent="."]
+script = ExtResource("3_qhwm5")
 
 [node name="animated_sprite_2d" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_juu7o")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_f6eac")

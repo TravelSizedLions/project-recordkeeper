@@ -6,7 +6,7 @@ extends Node
 func _ready():
 	__track_player()
 	
-func _process(delta):
+func _process(_delta):
 	if not player:
 		player = get_tree().get_first_node_in_group('player')
 		__track_player()
