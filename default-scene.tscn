@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1y3xdx3sh1x2"]
+[gd_scene load_steps=8 format=3 uid="uid://b1y3xdx3sh1x2"]
 
 [ext_resource type="Texture2D" uid="uid://13w7j573hcyh" path="res://shared_art/environment/ship_foreground_bw.png" id="1_qhh7c"]
 [ext_resource type="Script" path="res://0_scripts/camera/follow_player.gd" id="2_fejqm"]
 [ext_resource type="PackedScene" uid="uid://c58etkl8y5kup" path="res://game_objects/creatures/community_crab/community_crab.tscn" id="3_s1rf3"]
 [ext_resource type="PackedScene" uid="uid://dsikxkesnwusy" path="res://game_objects/player/player.tscn" id="4_8e0l1"]
+[ext_resource type="PackedScene" uid="uid://sbbs1jakqhju" path="res://game_objects/player/blizz.tscn" id="5_nmqjf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5opmi"]
 texture = ExtResource("1_qhh7c")
@@ -359,7 +360,6 @@ layer_0/tile_data = PackedInt32Array(1966079, 65536, 1, 2031615, 65536, 1, 20971
 
 [node name="camera_2d" type="Camera2D" parent="."]
 offset = Vector2(10, 0)
-zoom = Vector2(2, 2)
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 16.0
@@ -377,3 +377,7 @@ min_follow_dist = 75
 max_follow_dist = 500
 
 [node name="player" parent="." instance=ExtResource("4_8e0l1")]
+
+[node name="blizz" parent="." instance=ExtResource("5_nmqjf")]
+modulate = Color(1, 1, 1, 0.501961)
+z_index = -1

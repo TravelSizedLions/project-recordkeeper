@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ProjectileSettings" load_steps=2 format=3 uid="uid://o3mqk1ikkpfh"]
+
+[ext_resource type="Script" path="res://0_scripts/player/projectiles/projectile_settings.gd" id="1_7gbop"]
+
+[resource]
+script = ExtResource("1_7gbop")
+max_lifetime_seconds = 1.5

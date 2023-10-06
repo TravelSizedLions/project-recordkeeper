@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PlayerSettings" load_steps=5 format=3 uid="uid://dnbjb7k87ln6t"]
+
+[ext_resource type="PackedScene" uid="uid://hjst3dqaq8q2" path="res://game_objects/projectiles/arrow/arrow.tscn" id="1_pqjk4"]
+[ext_resource type="Script" path="res://0_scripts/player/player_settings.gd" id="2_720rq"]
+[ext_resource type="SpriteFrames" uid="uid://tblams6ab8gl" path="res://game_objects/player/ephraim.sprite_frames.tres" id="3_wbh7d"]
+[ext_resource type="Script" path="res://0_scripts/player/player_states/ephraim/ephraim_idle_state.gd" id="4_kxao0"]
+
+[resource]
+script = ExtResource("2_720rq")
+speed = 300.0
+jump_force = -410.0
+projectile = ExtResource("1_pqjk4")
+projectile_speed = 500
+fire_rate = 0.25
+sprites = ExtResource("3_wbh7d")
+start_state = ExtResource("4_kxao0")

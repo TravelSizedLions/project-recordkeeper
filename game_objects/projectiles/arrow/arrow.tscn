@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://hjst3dqaq8q2"]
+
+[ext_resource type="Script" path="res://0_scripts/player/projectiles/ballistic_projectile.gd" id="1_a0su3"]
+[ext_resource type="Texture2D" uid="uid://j0nxh3c76fkc" path="res://game_objects/projectiles/arrow/arrow.png" id="2_gdcc1"]
+[ext_resource type="Resource" uid="uid://o3mqk1ikkpfh" path="res://settings/projectiles.settings.tres" id="2_qf8hj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwe1b"]
+size = Vector2(8, 2)
+
+[node name="arrow" type="RigidBody2D"]
+mass = 10.0
+center_of_mass_mode = 1
+continuous_cd = 2
+max_contacts_reported = 100
+contact_monitor = true
+script = ExtResource("1_a0su3")
+settings = ExtResource("2_qf8hj")
+
+[node name="sprite_2d" type="Sprite2D" parent="."]
+z_index = 1
+texture = ExtResource("2_gdcc1")
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_iwe1b")
+
+[connection signal="body_entered" from="." to="." method="on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="on_body_shape_entered"]

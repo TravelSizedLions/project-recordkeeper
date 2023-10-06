@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j0nxh3c76fkc"
-path="res://.godot/imported/arrow.png-8eeecb7e8ff4cb4d995ff4ef17af0a1d.ctex"
+uid="uid://dvf2nfmd0x2l7"
+path="res://.godot/imported/glowfly_projectile.png-85a4f996e65612a8aaa64872cf336f64.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game_objects/arrow/arrow.png"
-dest_files=["res://.godot/imported/arrow.png-8eeecb7e8ff4cb4d995ff4ef17af0a1d.ctex"]
+source_file="res://game_objects/projectiles/glowfly/glowfly_projectile.png"
+dest_files=["res://.godot/imported/glowfly_projectile.png-85a4f996e65612a8aaa64872cf336f64.ctex"]
 
 [params]
 

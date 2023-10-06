@@ -6,10 +6,14 @@ extends Node2D
 var timer = 0
 
 func _physics_process(delta):
+	__update_rotation()
 	timer -= delta
 	if player.is_firing():
 		if timer <= 0:
 			__fire()
+
+func __update_rotation():
+	rotation = player.get_firing_direction().angle()
 
 func __fire():
 	timer = player.settings.fire_rate
@@ -20,3 +24,4 @@ func __fire():
 	var projectile: Projectile = player.settings.projectile.instantiate()
 	projectile.position = emitter.global_position
 	projectile.set_initial_velocity(direction, speed)
+	get_tree().get_root().add_child(projectile)

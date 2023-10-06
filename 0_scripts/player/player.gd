@@ -68,15 +68,13 @@ func is_firing():
 		return Input.is_action_pressed('mouse_fire')
 
 func get_firing_direction():
-	var direction: Vector2
 	if __using_controller():
-		direction = Input.get_vector('aim_left','aim_right','aim_up','aim_down')
+		return Input.get_vector('aim_left','aim_right','aim_up','aim_down').normalized()
 	else:
-		direction = get_viewport().get_mouse_position() - position
-	return direction.normalized()
-	
+		return (get_tree().current_scene.get_global_mouse_position() - global_position).normalized()
+
 func __using_controller():
-	return Input.get_connected_joypads().is_empty()
+	return Input.get_connected_joypads().size() > 0
 
 func __get_movement_axis():
 	return Input.get_axis('left', 'right')

@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://0_scripts/player/player.gd" id="1_5e45p"]
 [ext_resource type="SpriteFrames" uid="uid://cd1w6xcyvk2xv" path="res://game_objects/player/jared.sprite_frames.tres" id="2_50vnq"]
-[ext_resource type="Resource" uid="uid://bm6j80xnity8b" path="res://game_objects/player/jared.settings.tres" id="2_l1e4w"]
-[ext_resource type="Resource" uid="uid://dnbjb7k87ln6t" path="res://game_objects/player/ephraim.settings.tres" id="3_3koki"]
+[ext_resource type="Resource" uid="uid://bm6j80xnity8b" path="res://settings/jared.settings.tres" id="2_m85vd"]
 [ext_resource type="Script" path="res://0_scripts/fsm/fsm.gd" id="3_l0od8"]
+[ext_resource type="Resource" uid="uid://dnbjb7k87ln6t" path="res://settings/ephraim.settings.tres" id="3_mx0id"]
 [ext_resource type="Script" path="res://0_scripts/player/player_states/jared/jared_idle_state.gd" id="4_jhcgf"]
 [ext_resource type="Texture2D" uid="uid://watnixp8ywyj" path="res://game_objects/player/shooter_TEMP.png" id="7_l4blp"]
 [ext_resource type="Script" path="res://0_scripts/player/shooter.gd" id="7_ryjvn"]
@@ -15,8 +15,8 @@ height = 32.0
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_5e45p")
-jared_settings = ExtResource("2_l1e4w")
-ephraim_settings = ExtResource("3_3koki")
+jared_settings = ExtResource("2_m85vd")
+ephraim_settings = ExtResource("3_mx0id")
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
@@ -33,6 +33,7 @@ script = ExtResource("3_l0od8")
 start_state = ExtResource("4_jhcgf")
 
 [node name="shooter" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1)
 texture = ExtResource("7_l4blp")
 centered = false
 offset = Vector2(0, -2)
