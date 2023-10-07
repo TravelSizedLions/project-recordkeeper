@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c58etkl8y5kup" path="res://game_objects/creatures/community_crab/community_crab.tscn" id="3_s1rf3"]
 [ext_resource type="PackedScene" uid="uid://dsikxkesnwusy" path="res://game_objects/player/player.tscn" id="4_8e0l1"]
 [ext_resource type="PackedScene" uid="uid://sbbs1jakqhju" path="res://game_objects/player/blizz.tscn" id="5_nmqjf"]
-[ext_resource type="PackedScene" uid="uid://b30vuoowyqtls" path="res://game_objects/player_hud.tscn" id="6_6tlbe"]
+[ext_resource type="PackedScene" uid="uid://b30vuoowyqtls" path="res://game_objects/ui/player_hud.tscn" id="6_6tlbe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5opmi"]
 texture = ExtResource("1_qhh7c")

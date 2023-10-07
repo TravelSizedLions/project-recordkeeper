@@ -28,13 +28,12 @@ signal ephraim_max_health_update
 signal jared_current_health_update
 signal ephraim_current_health_update
 
+# signal for when the player switches between Jared and Ephraim
+signal characters_swapped
+
 func _ready():
 	__set_up_health()
-
-	if starting_character == Character.Jared:
-		__set_up_player(jared_settings)
-	else:
-		__set_up_player(ephraim_settings)
+	__swap_to_jared() if starting_character == Character.Jared else __swap_to_ephraim()
 
 func _process(_delta):
 	CharUtils.update_facing(self)
@@ -69,11 +68,8 @@ func is_rising():
 	return velocity.y < 0
 
 func swap_player(): 
-	if settings == jared_settings:
-		__set_up_player(ephraim_settings)
-	else:
-		__set_up_player(jared_settings)
-
+	__swap_to_jared() if settings == ephraim_settings else __swap_to_ephraim()
+		
 func is_firing():
 	if __using_controller():
 		var axis: Vector2 = Input.get_vector('aim_left','aim_right','aim_up','aim_down')
@@ -128,3 +124,11 @@ func update_ephraim_max_health(v: float):
 func update_ephraim_current_health(v: float):
 	_ephraim_current_health = v
 	ephraim_current_health_update.emit(v)
+
+func __swap_to_ephraim():
+	__set_up_player(ephraim_settings)
+	characters_swapped.emit(Character.Ephraim)
+
+func __swap_to_jared():
+	__set_up_player(jared_settings)
+	characters_swapped.emit(Character.Jared)
