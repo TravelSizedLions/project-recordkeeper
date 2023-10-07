@@ -382,3 +382,39 @@ starting_character = 1
 [node name="blizz" parent="." instance=ExtResource("5_nmqjf")]
 modulate = Color(1, 1, 1, 0.501961)
 z_index = -1
+
+[node name="hud" type="CanvasLayer" parent="."]
+
+[node name="panel_container" type="PanelContainer" parent="hud"]
+offset_right = 270.0
+offset_bottom = 78.0
+
+[node name="margin_container" type="MarginContainer" parent="hud/panel_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="grid_container" type="GridContainer" parent="hud/panel_container/margin_container"]
+layout_mode = 2
+columns = 2
+
+[node name="active_char" type="Label" parent="hud/panel_container/margin_container/grid_container"]
+layout_mode = 2
+text = "active"
+
+[node name="active_health" type="ProgressBar" parent="hud/panel_container/margin_container/grid_container"]
+custom_minimum_size = Vector2(200, 10)
+layout_mode = 2
+
+[node name="regenerating_char" type="Label" parent="hud/panel_container/margin_container/grid_container"]
+layout_mode = 2
+text = "regen"
+
+[node name="margin_container" type="MarginContainer" parent="hud/panel_container/margin_container/grid_container"]
+layout_mode = 2
+theme_override_constants/margin_right = 80
+
+[node name="regenerating_health" type="ProgressBar" parent="hud/panel_container/margin_container/grid_container/margin_container"]
+layout_mode = 2

@@ -8,7 +8,7 @@
 [resource]
 script = ExtResource("1_iupyy")
 max_health = 10.0
-regen_speed = 0.2
+regen_speed = 0.25
 speed = 300.0
 jump_force = -350.0
 projectile = ExtResource("1_lx4hl")
