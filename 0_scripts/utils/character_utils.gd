@@ -7,7 +7,7 @@ static func apply_gravity(body: CharacterBody2D, delta: float):
 		body.velocity.y += gravity * delta
 
 static func update_facing(body):
-	var animator = NodeUtils.get_child(body, AnimatedSprite2D)
+	var animator = N.get_child(body, AnimatedSprite2D)
 	if not animator:
 		push_warning('no animator found in CharacterBody "%s"' % [body])
 		return

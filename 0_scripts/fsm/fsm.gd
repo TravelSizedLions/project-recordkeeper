@@ -34,7 +34,7 @@ func get_state_key(script: GDScript):
 	return StringUtils.file_name(script.get_path())
 	
 func add_state_node(script: GDScript):
-	var node = NodeUtils.create(script, self, owner)
+	var node = N.create(script, self, owner)
 	node.transitioner.connect(on_state_transition)
 	states[node.name] = node
 	return node

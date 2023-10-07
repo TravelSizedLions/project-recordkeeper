@@ -1,4 +1,4 @@
-class_name NodeUtils
+class_name N
 
 static func get_ancestor(node: Node, type, name: String = ""):
 	if not node:
@@ -34,7 +34,7 @@ static func get_child(node: Node, type, name: String = ""):
 			return node
   
 	for child in node.get_children():
-		var result = NodeUtils.get_child(child, type, name)
+		var result = N.get_child(child, type, name)
 		if result:
 			return result
 
@@ -50,7 +50,7 @@ static func get_all_children(node: Node, type):
 		result.append(node)
 
 	for child in node.get_children():
-		result += NodeUtils.get_all_children(child, type)
+		result += N.get_all_children(child, type)
 
 	return result
 

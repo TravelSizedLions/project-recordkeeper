@@ -8,7 +8,7 @@ func before_each():
 	add_child_autofree(fsm)
 
 func test_adds_start_state():
-	var state = NodeUtils.get_child(fsm, TestStateA)
+	var state = N.get_child(fsm, TestStateA)
 	assert_eq(fsm.current_state, state)
 	assert_true(state != null)
 	assert_true(is_instance_of(state, TestStateA))

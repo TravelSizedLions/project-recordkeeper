@@ -13,7 +13,7 @@ func _process(_delta):
 
 
 func __track_player():
-	var remote_transform: RemoteTransform2D = NodeUtils.create_native(
+	var remote_transform: RemoteTransform2D = N.create_native(
 		RemoteTransform2D,
 		player,
 		player
