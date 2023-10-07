@@ -11,6 +11,7 @@ class_name PlayerHUD
 
 func _ready():
 	player.characters_swapped.connect(__on_characters_swapped)
+	__on_characters_swapped(player.get_active_character())
 
 func __on_characters_swapped(to_character: Player.Character):
 	jared_info.get_parent().remove_child(jared_info)
@@ -22,5 +23,4 @@ func __on_characters_swapped(to_character: Player.Character):
 	else:
 		active_character_slot.add_child(ephraim_info)
 		inactive_character_slot.add_child(jared_info)
-	
-		
+

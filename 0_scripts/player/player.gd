@@ -132,3 +132,6 @@ func __swap_to_ephraim():
 func __swap_to_jared():
 	__set_up_player(jared_settings)
 	characters_swapped.emit(Character.Jared)
+
+func get_active_character() -> Character:
+	return Character.Jared if settings == jared_settings else Character.Ephraim
