@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_7gbop")
-max_lifetime_seconds = 3.0
+max_lifetime_seconds = 300.0

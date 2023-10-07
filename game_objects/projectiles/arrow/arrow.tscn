@@ -12,8 +12,6 @@ size = Vector2(8, 2)
 mass = 10.0
 center_of_mass_mode = 1
 continuous_cd = 2
-max_contacts_reported = 100
-contact_monitor = true
 script = ExtResource("1_a0su3")
 settings = ExtResource("2_qf8hj")
 

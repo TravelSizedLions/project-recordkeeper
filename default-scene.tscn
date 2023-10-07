@@ -377,6 +377,7 @@ min_follow_dist = 75
 max_follow_dist = 500
 
 [node name="player" parent="." instance=ExtResource("4_8e0l1")]
+starting_character = 1
 
 [node name="blizz" parent="." instance=ExtResource("5_nmqjf")]
 modulate = Color(1, 1, 1, 0.501961)

@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Enemy
 class_name CommunityCrab
 
 @onready var player = get_tree().get_first_node_in_group('player')
@@ -9,13 +9,17 @@ class_name CommunityCrab
 @export var max_follow_dist = 500
 
 func _process(_delta):
-	CharUtils.update_facing(self)
+	if _enabled:
+		CharUtils.update_facing(self)
 
 func _physics_process(delta):
 	CharUtils.apply_gravity(self, delta)
 	move_and_slide()
 
 func should_follow_player():
+	if not _enabled:
+		return false
+
 	var dist = abs(position.x - player.position.x)
 	return dist > min_follow_dist and dist < max_follow_dist
 

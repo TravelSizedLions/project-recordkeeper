@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://c58etkl8y5kup"]
+[gd_scene load_steps=17 format=3 uid="uid://c58etkl8y5kup"]
 
 [ext_resource type="Script" path="res://0_scripts/creatures/community_crab/community_crab.gd" id="1_corwl"]
 [ext_resource type="Texture2D" uid="uid://d14wmllw3vh7w" path="res://game_objects/creatures/community_crab/community_crab.png" id="1_g3j8e"]
 [ext_resource type="Texture2D" uid="uid://bb7ocxnocncmn" path="res://game_objects/creatures/community_crab/community_crab_moving.png" id="2_kuimb"]
 [ext_resource type="Script" path="res://0_scripts/fsm/fsm.gd" id="3_we8py"]
 [ext_resource type="Script" path="res://0_scripts/creatures/community_crab/states/community_crab_idle_state.gd" id="4_4p8hi"]
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/can_float_away.gd" id="6_60vqb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tuw82"]
 atlas = ExtResource("2_kuimb")
@@ -95,3 +96,6 @@ shape = SubResource("RectangleShape2D_2uiql")
 [node name="state_machine" type="Node2D" parent="."]
 script = ExtResource("3_we8py")
 start_state = ExtResource("4_4p8hi")
+
+[node name="can_float_away" type="Node2D" parent="."]
+script = ExtResource("6_60vqb")

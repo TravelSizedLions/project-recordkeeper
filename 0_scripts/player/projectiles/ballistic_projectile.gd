@@ -14,3 +14,4 @@ func set_initial_velocity(direction: Vector2, speed: float):
 func _integrate_forces(_state):
 	if not freeze:
 		rotation = linear_velocity.angle()
+

@@ -1,5 +1,5 @@
 extends ProjectileOnHitBehavior
-class_name FreezeOnContact
+class_name FreezeOnHitBehavior
 
 func on_hit(body):
 	freeze_projectile(body)
@@ -14,8 +14,10 @@ func freeze_projectile(body):
 	
 	var parent = self.projectile.get_parent()
 	if parent:
+		var pos = self.projectile.global_position
 		parent.remove_child(self.projectile)
 		body.add_child(self.projectile)
 		body.move_child(self.projectile, 0)
+		self.projectile.global_position = pos
 		set_owner(body)
 

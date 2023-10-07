@@ -11,8 +11,6 @@ radius = 2.0
 [node name="bullet" type="RigidBody2D"]
 gravity_scale = 0.0
 continuous_cd = 2
-max_contacts_reported = 100
-contact_monitor = true
 lock_rotation = true
 script = ExtResource("1_e4d1e")
 settings = ExtResource("2_n4xqg")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckohyum7ndxpx"]
+[gd_scene load_steps=8 format=3 uid="uid://ckohyum7ndxpx"]
 
 [ext_resource type="Script" path="res://0_scripts/player/projectiles/ballistic_projectile.gd" id="1_1kqjc"]
 [ext_resource type="Texture2D" uid="uid://dvf2nfmd0x2l7" path="res://game_objects/projectiles/glowfly/glowfly_projectile.png" id="1_v6rvf"]
+[ext_resource type="Resource" uid="uid://o3mqk1ikkpfh" path="res://settings/projectiles.settings.tres" id="2_ct4a7"]
 [ext_resource type="Script" path="res://0_scripts/player/projectiles/projectile_behaviors/freeze_on_hit_behavior.gd" id="2_picac"]
 [ext_resource type="Script" path="res://0_scripts/player/projectiles/projectile_behaviors/float_away_on_hit_behavior.gd" id="3_qhwm5"]
 
@@ -21,12 +22,14 @@ radius = 8.0
 
 [node name="glowfly_projectile" type="RigidBody2D"]
 z_index = 1
+continuous_cd = 2
 script = ExtResource("1_1kqjc")
+settings = ExtResource("2_ct4a7")
 
 [node name="freeze_projectile" type="Node2D" parent="."]
 script = ExtResource("2_picac")
 
-[node name="float_away_on_contact" type="Node2D" parent="."]
+[node name="float_away_on_hit" type="Node2D" parent="."]
 script = ExtResource("3_qhwm5")
 
 [node name="animated_sprite_2d" type="AnimatedSprite2D" parent="."]
@@ -36,3 +39,6 @@ autoplay = "idle"
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_f6eac")
+
+[connection signal="body_entered" from="." to="." method="on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="on_body_shape_entered"]
