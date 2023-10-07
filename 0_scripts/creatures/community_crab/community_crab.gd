@@ -30,3 +30,11 @@ func move_towards_player(delta):
 	else:
 		velocity.x = follow_speed*delta
 	move_and_slide()
+
+func __on_disabled():
+	for col in NodeUtils.get_all_children(self, CollisionShape2D):
+		col.set_deferred('disabled', true)
+		
+func __on_enabled():
+	for col in NodeUtils.get_all_children(self, CollisionShape2D):
+		col.set_deferred('disabled', false)

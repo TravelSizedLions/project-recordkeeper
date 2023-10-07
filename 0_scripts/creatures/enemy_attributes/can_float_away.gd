@@ -19,6 +19,3 @@ func _physics_process(delta):
 func apply_attribute():
 	floating_away = true
 	enemy.disable()
-	var collider: CollisionShape2D = NodeUtils.get_immediate_child(enemy, CollisionShape2D)
-	if collider:
-		collider.set_deferred('disabled', true)

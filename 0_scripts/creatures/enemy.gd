@@ -5,6 +5,14 @@ class_name Enemy
 
 func disable():
 	_enabled = false
+	__on_disabled()
 
 func enable():
 	_enabled = true
+	__on_enabled()
+
+func __on_disabled():
+	pass
+
+func __on_enabled():
+	pass

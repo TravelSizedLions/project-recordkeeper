@@ -1,5 +1,18 @@
 class_name NodeUtils
 
+static func get_ancestor(node: Node, type, name: String = ""):
+	if not node:
+		return
+
+	if __is_correct_node(node, type, name):
+		return node
+
+	var ancestor = node.get_parent()
+	while ancestor and not __is_correct_node(ancestor, type, name):
+		ancestor = ancestor.get_parent()
+
+	return ancestor
+
 static func get_immediate_child(node: Node, type):
 	if not node: 
 		return null
@@ -13,19 +26,36 @@ static func get_immediate_child(node: Node, type):
 
 	return null
 
-static func get_child(node: Node, type):
+static func get_child(node: Node, type, name: String = ""):
 	if not node:
 		return null
 	
-	if is_instance_of(node, type):
-		return node
+	if __is_correct_node(node, type, name):
+			return node
   
 	for child in node.get_children():
-		var result = NodeUtils.get_child(child, type)
+		var result = NodeUtils.get_child(child, type, name)
 		if result:
 			return result
 
 	return null
+
+static func get_all_children(node: Node, type):
+	if not node:
+		return []
+	
+	var result = []
+
+	if __is_correct_node(node, type):
+		result.append(node)
+
+	for child in node.get_children():
+		result += NodeUtils.get_all_children(child, type)
+
+	return result
+
+static func __is_correct_node(node: Node, type, name: String = ""):
+	return is_instance_of(node, type) and (not name or node.name == name)
 
 static func create(script: GDScript, parent: Node2D = null, owner: Node2D = null, name: String = ""):
 	var node = Node2D.new()
