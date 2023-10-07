@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://b30vuoowyqtls"]
+
+[ext_resource type="Script" path="res://0_scripts/ui/player_hud.gd" id="1_fhqru"]
+[ext_resource type="Script" path="res://0_scripts/ui/jared_health_bar.gd" id="2_ghfee"]
+[ext_resource type="Script" path="res://0_scripts/ui/ephraim_health_bar.gd" id="3_4tpqb"]
+
+[node name="player_hud" type="CanvasLayer" node_paths=PackedStringArray("jared_health", "ephraim_health") groups=["player_hud"]]
+script = ExtResource("1_fhqru")
+jared_health = NodePath("panel_container/margin_container/grid_container/jared_health")
+ephraim_health = NodePath("panel_container/margin_container/grid_container/margin_container/ephraim_health")
+
+[node name="panel_container" type="PanelContainer" parent="."]
+offset_right = 270.0
+offset_bottom = 78.0
+
+[node name="margin_container" type="MarginContainer" parent="panel_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="grid_container" type="GridContainer" parent="panel_container/margin_container"]
+layout_mode = 2
+columns = 2
+
+[node name="jared_label" type="Label" parent="panel_container/margin_container/grid_container"]
+layout_mode = 2
+text = "Jared"
+
+[node name="jared_health" type="ProgressBar" parent="panel_container/margin_container/grid_container"]
+custom_minimum_size = Vector2(200, 10)
+layout_mode = 2
+size_flags_vertical = 1
+script = ExtResource("2_ghfee")
+
+[node name="ephraim_label" type="Label" parent="panel_container/margin_container/grid_container"]
+layout_mode = 2
+text = "Ephraim"
+
+[node name="margin_container" type="MarginContainer" parent="panel_container/margin_container/grid_container"]
+layout_mode = 2
+theme_override_constants/margin_right = 80
+
+[node name="ephraim_health" type="ProgressBar" parent="panel_container/margin_container/grid_container/margin_container"]
+layout_mode = 2
+size_flags_vertical = 1
+script = ExtResource("3_4tpqb")

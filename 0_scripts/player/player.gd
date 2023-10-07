@@ -13,9 +13,24 @@ enum Character {Jared, Ephraim}
 
 @onready var fsm = $state_machine
 
-var settings
+var settings: PlayerSettings
+
+var _jared_current_health: float
+var _jared_max_health: float
+
+var _ephraim_current_health: float
+var _ephraim_max_health: float
+
+# Health update signals
+signal jared_max_health_update
+signal ephraim_max_health_update
+
+signal jared_current_health_update
+signal ephraim_current_health_update
 
 func _ready():
+	__set_up_health()
+
 	if starting_character == Character.Jared:
 		__set_up_player(jared_settings)
 	else:
@@ -83,3 +98,33 @@ func __set_up_player(next_settings: PlayerSettings):
 	settings = next_settings
 	animator.sprite_frames = settings.sprites
 	fsm.on_state_transition(settings.start_state)
+
+func __set_up_health():
+	print('setting up health')
+	var jared_hbar: JaredHealthBar = N.find(JaredHealthBar)
+	if jared_hbar:
+		jared_hbar.connect_to_player(self)
+		update_jared_max_health(jared_settings.max_health)
+		update_jared_current_health(jared_settings.max_health)
+
+	var ephraim_hbar: EphraimHealthBar = N.find(EphraimHealthBar)
+	if ephraim_hbar:
+		ephraim_hbar.connect_to_player(self)
+		update_ephraim_max_health(ephraim_settings.max_health)
+		update_ephraim_current_health(ephraim_settings.max_health)
+
+func update_jared_max_health(v: float):
+	_jared_max_health = v
+	jared_max_health_update.emit(v)
+
+func update_jared_current_health(v: float):
+	_jared_current_health = v
+	jared_current_health_update.emit(v)
+
+func update_ephraim_max_health(v: float):
+	_ephraim_max_health = v
+	ephraim_max_health_update.emit(v)
+
+func update_ephraim_current_health(v: float):
+	_ephraim_current_health = v
+	ephraim_current_health_update.emit(v)

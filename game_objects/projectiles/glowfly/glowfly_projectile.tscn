@@ -27,13 +27,13 @@ continuous_cd = 2
 script = ExtResource("1_1kqjc")
 settings = ExtResource("2_ct4a7")
 
-[node name="destroy_self_on_hit_player_behavior" type="Node2D" parent="."]
+[node name="destroys_self_on_hit_player" type="Node2D" parent="."]
 script = ExtResource("3_s0ios")
 
-[node name="freeze_projectile" type="Node2D" parent="."]
+[node name="freezes_projectile_on_hit" type="Node2D" parent="."]
 script = ExtResource("2_picac")
 
-[node name="float_away_on_hit" type="Node2D" parent="."]
+[node name="floats_away_enemies_on_hit" type="Node2D" parent="."]
 script = ExtResource("3_qhwm5")
 
 [node name="animated_sprite_2d" type="AnimatedSprite2D" parent="."]

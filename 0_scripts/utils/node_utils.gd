@@ -1,5 +1,8 @@
 class_name N
 
+static func find(type, name: String = ""):
+	return N.get_child(TreeAccess.root, type, name)
+
 static func get_ancestor(node: Node, type, name: String = ""):
 	if not node:
 		return
@@ -31,7 +34,7 @@ static func get_child(node: Node, type, name: String = ""):
 		return null
 	
 	if __is_correct_node(node, type, name):
-			return node
+		return node
   
 	for child in node.get_children():
 		var result = N.get_child(child, type, name)
