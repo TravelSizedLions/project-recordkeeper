@@ -3,15 +3,17 @@ class_name Player
 
 enum Character {Jared, Ephraim}
 
-@onready var animator = $animated_sprite_2d
-
+## Which character to start as on game start.
 @export var starting_character: Character
 
+## Jared's specific player character settings for things like movment, health, etc.
 @export var jared_settings: PlayerSettings
 
+## Ephraim's specific player character settings for things like movment, health, etc.
 @export var ephraim_settings: PlayerSettings
 
 @onready var fsm = $state_machine
+@onready var animator = $animated_sprite_2d
 
 var settings: PlayerSettings
 
