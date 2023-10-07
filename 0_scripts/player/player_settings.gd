@@ -1,6 +1,13 @@
 extends Resource
 class_name PlayerSettings
 
+@export_group('Health Settings')
+## The maximum health of this player character
+@export var max_health: float = 10
+
+## How fast this player character regenerates health
+@export var regen_speed: float = 0.2
+
 @export_group('Movement Settings')
 ## How fast the player moves (in .1 pixel/second units)
 @export var speed = 300.0
