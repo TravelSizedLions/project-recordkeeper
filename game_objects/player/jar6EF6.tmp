@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://dsikxkesnwusy"]
+
+[ext_resource type="Script" path="res://0_scripts/player/player.gd" id="1_wg28e"]
+[ext_resource type="Resource" uid="uid://bm6j80xnity8b" path="res://game_objects/player/jared.settings.tres" id="2_s7s6r"]
+[ext_resource type="SpriteFrames" uid="uid://cd1w6xcyvk2xv" path="res://game_objects/player/jared_animations.tres" id="3_g6h6r"]
+[ext_resource type="Script" path="res://0_scripts/fsm/fsm.gd" id="8_xn58y"]
+[ext_resource type="Script" path="res://0_scripts/player/player_states/jared/jared_idle_state.gd" id="9_nfmdr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7e8aw"]
+radius = 6.0
+height = 32.0
+
+[node name="jared" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_wg28e")
+settings = ExtResource("2_s7s6r")
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_7e8aw")
+
+[node name="animated_sprite_2d" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, -10)
+sprite_frames = ExtResource("3_g6h6r")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="state_machine" type="Node2D" parent="."]
+script = ExtResource("8_xn58y")
+start_state = ExtResource("9_nfmdr")
+
+[connection signal="animation_finished" from="animated_sprite_2d" to="state_machine" method="on_animation_finished"]

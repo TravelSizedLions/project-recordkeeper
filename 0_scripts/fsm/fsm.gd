@@ -18,8 +18,10 @@ func _process(delta):
 func _physics_process(delta):
 	current_state.physics_process(delta)
 
-func on_state_transition(target_state):
-	var next_state = states.get(get_state_key(target_state))
+func on_state_transition(target_state: GDScript):
+	var next_state = states.get(
+		StringUtils.file_name(target_state.get_path())
+	)
 
 	if not next_state:
 		next_state = add_state_node(target_state)
@@ -32,17 +34,11 @@ func get_state_key(script: GDScript):
 	return StringUtils.file_name(script.get_path())
 	
 func add_state_node(script: GDScript):
-	var key = get_state_key(script)
-	var node = Node2D.new()
-	node.set_script(script)
-	node.set_name(key)
+	var node = N.create(script, self, owner)
 	node.transitioner.connect(on_state_transition)
-
-	# makes it so that the owner is available @onready
-	node.connect('tree_entered', (func(): node.set_owner(owner)))
-	add_child(node)
-	states[key] = node
+	states[node.name] = node
 	return node
 
 func on_animation_finished():
+	print('animation finished!')
 	current_state.finished_animation()

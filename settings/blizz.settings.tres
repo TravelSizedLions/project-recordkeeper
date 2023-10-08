@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CompanionSettings" load_steps=2 format=3 uid="uid://cbhk828iupohk"]
+
+[ext_resource type="Script" path="res://0_scripts/player/companion_settings.gd" id="1_1fmd7"]
+
+[resource]
+script = ExtResource("1_1fmd7")
+band_strength = 0.035
+tail_distance = 25.0

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5eg8gc3f4yjh"]
+
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/has_dangerous_part.gd" id="1_vxeac"]
+
+[node name="has_dangerous_part" type="Area2D"]
+script = ExtResource("1_vxeac")
+
+[connection signal="body_shape_entered" from="." to="." method="on_body_shape_entered"]

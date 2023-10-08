@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://b7fg48jdpvkn3"]
+
+[ext_resource type="Texture2D" uid="uid://d1jrxovudjqgd" path="res://game_objects/player/blizz_inactive.png" id="1_brd2r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dmpu"]
+atlas = ExtResource("1_brd2r")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dmpu")
+}],
+"loop": true,
+"name": &"inactive",
+"speed": 5.0
+}]

@@ -1,0 +1,102 @@
+[gd_scene load_steps=17 format=3 uid="uid://bgtf77g65ktfx"]
+
+[ext_resource type="Script" path="res://0_scripts/creatures/isolith/isolith.gd" id="1_vy7on"]
+[ext_resource type="Texture2D" uid="uid://d3p5rrqtyw684" path="res://game_objects/creatures/wall_crawler/isolith-move.png" id="2_wmm5a"]
+[ext_resource type="PackedScene" uid="uid://b5eg8gc3f4yjh" path="res://game_objects/creatures/has_dangerous_part.tscn" id="3_vsy7o"]
+[ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar.tscn" id="4_j4dpo"]
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/has_gravity.gd" id="5_11duk"]
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/can_float_away.gd" id="6_xgiqr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ks5cj"]
+atlas = ExtResource("2_wmm5a")
+region = Rect2(0, 0, 128, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5h5ig"]
+atlas = ExtResource("2_wmm5a")
+region = Rect2(128, 0, 128, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4h7s4"]
+atlas = ExtResource("2_wmm5a")
+region = Rect2(256, 0, 128, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7nf0v"]
+atlas = ExtResource("2_wmm5a")
+region = Rect2(384, 0, 128, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dllt7"]
+atlas = ExtResource("2_wmm5a")
+region = Rect2(512, 0, 128, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqn48"]
+atlas = ExtResource("2_wmm5a")
+region = Rect2(640, 0, 128, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lk1g1"]
+atlas = ExtResource("2_wmm5a")
+region = Rect2(768, 0, 128, 272)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sl43y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ks5cj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5h5ig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4h7s4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7nf0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dllt7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqn48")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lk1g1")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c62yb"]
+size = Vector2(59, 250)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_751ih"]
+height = 92.0
+
+[node name="wall_crawler" type="CharacterBody2D"]
+position = Vector2(937, 0)
+script = ExtResource("1_vy7on")
+
+[node name="animated_sprite_2d" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sl43y")
+animation = &"moving"
+autoplay = "moving"
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 10)
+shape = SubResource("RectangleShape2D_c62yb")
+
+[node name="enemy_health_bar" parent="." instance=ExtResource("4_j4dpo")]
+title = "Wall Crawler"
+max_health = 100.0
+
+[node name="has_dangerous_part" parent="." instance=ExtResource("3_vsy7o")]
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="has_dangerous_part"]
+position = Vector2(0, 125)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_751ih")
+debug_color = Color(0.960784, 0, 0.513726, 0.419608)
+
+[node name="has_gravity" type="Node" parent="."]
+script = ExtResource("5_11duk")
+
+[node name="can_float_away" type="Node" parent="."]
+script = ExtResource("6_xgiqr")

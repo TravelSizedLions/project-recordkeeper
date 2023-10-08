@@ -1,0 +1,74 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://tblams6ab8gl"]
+
+[ext_resource type="Texture2D" uid="uid://bxuiiri000amp" path="res://game_objects/player/ephraim_plain.png" id="1_484pb"]
+[ext_resource type="Texture2D" uid="uid://bgaxrwiakm0n2" path="res://game_objects/player/jerrod_land.png" id="2_yciqt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5peet"]
+atlas = ExtResource("2_yciqt")
+region = Rect2(0, 0, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osic4"]
+atlas = ExtResource("2_yciqt")
+region = Rect2(56, 0, 56, 56)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_484pb")
+}],
+"loop": false,
+"name": &"falling",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_484pb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_484pb")
+}],
+"loop": false,
+"name": &"jump_start",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_484pb")
+}],
+"loop": false,
+"name": &"land",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_484pb")
+}],
+"loop": false,
+"name": &"rising",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_484pb")
+}],
+"loop": true,
+"name": &"run",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5peet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osic4")
+}],
+"loop": true,
+"name": &"swap",
+"speed": 5.0
+}]

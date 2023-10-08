@@ -5,6 +5,7 @@ signal transitioner
 
 func _enter_tree():
 	print('FSM(%s): %s entered tree' % [owner, name])
+	__on_enter_tree()
 
 func _ready():
 	print('FSM(%s): new %s' % [owner, name])

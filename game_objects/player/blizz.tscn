@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://sbbs1jakqhju"]
+
+[ext_resource type="SpriteFrames" uid="uid://b7fg48jdpvkn3" path="res://game_objects/player/blizz.sprite_frames.tres" id="1_ynwvq"]
+[ext_resource type="Script" path="res://0_scripts/player/companion.gd" id="2_wb47w"]
+[ext_resource type="Resource" uid="uid://cbhk828iupohk" path="res://settings/blizz.settings.tres" id="3_dh8lx"]
+
+[node name="blizz" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("1_ynwvq")
+animation = &"inactive"
+script = ExtResource("2_wb47w")
+settings = ExtResource("3_dh8lx")
