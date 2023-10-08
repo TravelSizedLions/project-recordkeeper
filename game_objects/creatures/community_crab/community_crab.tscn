@@ -99,3 +99,4 @@ start_state = ExtResource("4_4p8hi")
 
 [node name="can_float_away" type="Node2D" parent="."]
 script = ExtResource("6_60vqb")
+floating_away = null

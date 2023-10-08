@@ -25,9 +25,7 @@ func register_behavior(behavior: ProjectileOnHitBehavior):
 		on_hit.connect(behavior.on_hit, CONNECT_DEFERRED)
 
 func on_body_entered(body):
-	print('body_entered')
 	on_hit.emit(body)
 
 func on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_index):
-	print('body_shape_entered')
 	on_hit.emit(body)

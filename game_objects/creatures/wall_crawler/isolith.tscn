@@ -1,0 +1,140 @@
+[gd_scene load_steps=19 format=3 uid="uid://bd3wqix0nl46f"]
+
+[ext_resource type="Script" path="res://0_scripts/creatures/isolith/isolith.gd" id="1_3mu2w"]
+[ext_resource type="Texture2D" uid="uid://d3p5rrqtyw684" path="res://game_objects/creatures/wall_crawler/isolith-move.png" id="1_n0jv7"]
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/has_gravity.gd" id="2_p6l8f"]
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/can_float_away.gd" id="3_x55ko"]
+[ext_resource type="PackedScene" uid="uid://b5eg8gc3f4yjh" path="res://game_objects/creatures/has_dangerous_part.tscn" id="5_0foir"]
+[ext_resource type="Theme" uid="uid://dyp70yiyby0fk" path="res://game_objects/ui/enemy_health_bar.tres" id="6_n7fdo"]
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/has_enemy_health_bar.gd" id="7_2mkef"]
+[ext_resource type="Script" path="res://0_scripts/ui/enemy_health_bar.gd" id="8_8m8y3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iko8"]
+atlas = ExtResource("1_n0jv7")
+region = Rect2(0, 0, 128, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tlae"]
+atlas = ExtResource("1_n0jv7")
+region = Rect2(128, 0, 128, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cphk"]
+atlas = ExtResource("1_n0jv7")
+region = Rect2(256, 0, 128, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_61jm2"]
+atlas = ExtResource("1_n0jv7")
+region = Rect2(384, 0, 128, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_337sy"]
+atlas = ExtResource("1_n0jv7")
+region = Rect2(512, 0, 128, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0ajo"]
+atlas = ExtResource("1_n0jv7")
+region = Rect2(640, 0, 128, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_piaii"]
+atlas = ExtResource("1_n0jv7")
+region = Rect2(768, 0, 128, 272)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bam4r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0iko8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tlae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cphk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61jm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_337sy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0ajo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_piaii")
+}],
+"loop": true,
+"name": &"move",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_boa2x"]
+size = Vector2(60, 252)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o8yhg"]
+height = 84.0
+
+[node name="isolith" type="CharacterBody2D"]
+position = Vector2(683, 22)
+script = ExtResource("1_3mu2w")
+
+[node name="animated_sprite_2d" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bam4r")
+animation = &"move"
+autoplay = "move"
+frame_progress = 0.601183
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_boa2x")
+
+[node name="has_gravity" type="Node2D" parent="."]
+script = ExtResource("2_p6l8f")
+
+[node name="can_float_away" type="Node2D" parent="."]
+script = ExtResource("3_x55ko")
+
+[node name="has_dangerous_part" parent="." instance=ExtResource("5_0foir")]
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="has_dangerous_part"]
+position = Vector2(-3, 125)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_o8yhg")
+
+[node name="has_healthbar" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -55.0
+offset_top = -158.0
+offset_right = 49.0
+offset_bottom = -150.0
+theme = ExtResource("6_n7fdo")
+script = ExtResource("7_2mkef")
+title = "Isolith"
+max_health = 50.0
+
+[node name="v_box_container" type="VBoxContainer" parent="has_healthbar"]
+layout_mode = 2
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 102.0
+offset_bottom = 31.0
+
+[node name="label" type="Label" parent="has_healthbar/v_box_container"]
+layout_mode = 2
+text = "isolith"
+horizontal_alignment = 1
+
+[node name="panel_container" type="PanelContainer" parent="has_healthbar/v_box_container"]
+layout_mode = 2
+
+[node name="margin_container" type="MarginContainer" parent="has_healthbar/v_box_container/panel_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="health_bar" type="ProgressBar" parent="has_healthbar/v_box_container/panel_container/margin_container"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+show_percentage = false
+script = ExtResource("8_8m8y3")

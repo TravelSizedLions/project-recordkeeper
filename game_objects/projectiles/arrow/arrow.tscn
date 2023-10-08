@@ -1,16 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://hjst3dqaq8q2"]
+[gd_scene load_steps=8 format=3 uid="uid://hjst3dqaq8q2"]
 
 [ext_resource type="Script" path="res://0_scripts/player/projectiles/ballistic_projectile.gd" id="1_a0su3"]
 [ext_resource type="Texture2D" uid="uid://j0nxh3c76fkc" path="res://game_objects/projectiles/arrow/arrow.png" id="2_gdcc1"]
 [ext_resource type="Resource" uid="uid://o3mqk1ikkpfh" path="res://settings/projectiles.settings.tres" id="2_qf8hj"]
 [ext_resource type="Script" path="res://0_scripts/player/projectiles/projectile_behaviors/freeze_on_hit_behavior.gd" id="3_qmv7e"]
 [ext_resource type="Script" path="res://0_scripts/player/projectiles/projectile_behaviors/destroy_self_on_hit_player_behavior.gd" id="5_8xq6g"]
+[ext_resource type="Script" path="res://0_scripts/player/projectiles/projectile_behaviors/causes_damage_on_hit_behavior.gd" id="6_jveqb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iwe1b"]
 size = Vector2(8, 2)
 
 [node name="arrow" type="RigidBody2D"]
-mass = 10.0
 center_of_mass_mode = 1
 continuous_cd = 2
 script = ExtResource("1_a0su3")
@@ -28,6 +28,10 @@ shape = SubResource("RectangleShape2D_iwe1b")
 
 [node name="destroy_self_on_hit_player_behavior" type="Node2D" parent="."]
 script = ExtResource("5_8xq6g")
+
+[node name="causes_damage_on_hit_behavior" type="Node2D" parent="."]
+script = ExtResource("6_jveqb")
+damage = 3.0
 
 [connection signal="body_entered" from="." to="." method="on_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="on_body_shape_entered"]

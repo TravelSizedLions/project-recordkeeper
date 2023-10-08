@@ -17,6 +17,8 @@ height = 32.0
 script = ExtResource("1_5e45p")
 jared_settings = ExtResource("2_m85vd")
 ephraim_settings = ExtResource("3_mx0id")
+invincibility_time = 2.0
+flicker_frequency = 6.0
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

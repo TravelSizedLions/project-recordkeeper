@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bo11n7gr2gegu"]
+[gd_scene load_steps=7 format=3 uid="uid://bo11n7gr2gegu"]
 
 [ext_resource type="Script" path="res://0_scripts/player/projectiles/kinematic_projectile.gd" id="1_e4d1e"]
 [ext_resource type="Texture2D" uid="uid://bw163j7k324t0" path="res://game_objects/projectiles/bullet/bullet.png" id="2_5s0v2"]
 [ext_resource type="Resource" uid="uid://o3mqk1ikkpfh" path="res://settings/projectiles.settings.tres" id="2_n4xqg"]
 [ext_resource type="Script" path="res://0_scripts/player/projectiles/projectile_behaviors/destroy_on_hit_behavior.gd" id="3_ik6jg"]
+[ext_resource type="Script" path="res://0_scripts/player/projectiles/projectile_behaviors/causes_damage_on_hit_behavior.gd" id="5_nqyva"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lg6ob"]
 radius = 2.0
@@ -15,14 +16,17 @@ lock_rotation = true
 script = ExtResource("1_e4d1e")
 settings = ExtResource("2_n4xqg")
 
-[node name="destroy_on_contact" type="Node2D" parent="."]
-script = ExtResource("3_ik6jg")
-
 [node name="collision_shape_2d" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_lg6ob")
 
 [node name="sprite_2d" type="Sprite2D" parent="."]
 texture = ExtResource("2_5s0v2")
+
+[node name="destroy_on_contact" type="Node2D" parent="."]
+script = ExtResource("3_ik6jg")
+
+[node name="causes_damage_on_hit_behavior" type="Node2D" parent="."]
+script = ExtResource("5_nqyva")
 
 [connection signal="body_entered" from="." to="." method="on_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="on_body_shape_entered"]

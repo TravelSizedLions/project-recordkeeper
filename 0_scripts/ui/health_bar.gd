@@ -5,14 +5,15 @@ func _ready():
 	show_percentage = false
 	rounded = true
 
-func connect_to_player(player: Player):
-	__on_connect_to_player(player)
+func connect_to_entity(entity):
+	__on_connect_to_entity(entity)
 
-func __on_connect_to_player(_player: Player):
+func __on_connect_to_entity(_entity):
 	pass
 
 func _update_health(v: float):
 	value = v
 
 func _update_max_health(v: float):
+	print('updating max health: ', v)
 	max_value = v
