@@ -44,7 +44,4 @@ script = ExtResource("7_ryjvn")
 [node name="emitter" type="Node2D" parent="shooter"]
 position = Vector2(16, 0)
 
-[node name="player_movement" type="Node2D" parent="." groups=["movement"]]
-script = ExtResource("10_wykbm")
-
 [connection signal="animation_finished" from="animated_sprite_2d" to="state_machine" method="on_animation_finished"]
