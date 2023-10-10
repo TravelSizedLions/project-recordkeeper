@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b30vuoowyqtls"]
+[gd_scene load_steps=7 format=3 uid="uid://b30vuoowyqtls"]
 
 [ext_resource type="Script" path="res://0_scripts/ui/player_hud.gd" id="1_fhqru"]
 [ext_resource type="Script" path="res://0_scripts/ui/jared_health_bar.gd" id="2_ghfee"]
 [ext_resource type="Script" path="res://0_scripts/ui/ephraim_health_bar.gd" id="3_4tpqb"]
 [ext_resource type="Theme" uid="uid://b7ukmn5qshx0q" path="res://game_objects/ui/inactive_character_slot.tres" id="3_f78di"]
 [ext_resource type="Texture2D" uid="uid://dvf2nfmd0x2l7" path="res://game_objects/projectiles/glowfly/glowfly_projectile.png" id="5_le3u6"]
+[ext_resource type="Script" path="res://0_scripts/ui/ammo_tracker.gd" id="6_0i213"]
 
 [node name="player_hud" type="CanvasLayer" node_paths=PackedStringArray("active_character_slot", "inactive_character_slot", "jared_info", "ephraim_info") groups=["player_hud"]]
 script = ExtResource("1_fhqru")
@@ -79,7 +80,7 @@ grow_vertical = 0
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
+theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 5
 
 [node name="h_box_container" type="HBoxContainer" parent="ammunition_tracker/margin_container"]
@@ -91,6 +92,7 @@ size_flags_horizontal = 6
 texture = ExtResource("5_le3u6")
 stretch_mode = 3
 
-[node name="label" type="Label" parent="ammunition_tracker/margin_container/h_box_container"]
+[node name="tracker" type="Label" parent="ammunition_tracker/margin_container/h_box_container"]
 layout_mode = 2
 text = "5/5"
+script = ExtResource("6_0i213")
