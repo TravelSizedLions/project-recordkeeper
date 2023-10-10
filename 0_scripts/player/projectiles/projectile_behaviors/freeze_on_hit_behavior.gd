@@ -16,8 +16,9 @@ func freeze_projectile(body):
 	if parent:
 		var pos = self.projectile.global_position
 		parent.remove_child(self.projectile)
-		body.add_child(self.projectile)
-		body.move_child(self.projectile, 0)
-		self.projectile.global_position = pos
-		set_owner(body)
+		if not body.is_ancestor_of(projectile) and not projectile.is_ancestor_of(body):
+			body.add_child(self.projectile)
+			body.move_child(self.projectile, 0)
+			self.projectile.global_position = pos
+			set_owner(body)
 

@@ -20,7 +20,7 @@ func set_initial_velocity(_direction: Vector2, _speed: float):
 	pass
 
 func register_behavior(behavior: ProjectileOnHitBehavior):
-	print('registering ', behavior)
+	# print('registering ', behavior)
 	if not on_hit.is_connected(behavior.on_hit):
 		on_hit.connect(behavior.on_hit, CONNECT_DEFERRED)
 

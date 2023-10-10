@@ -3,6 +3,9 @@ class_name Player
 
 enum Character {Jared, Ephraim}
 
+static func retrieve():
+	return TreeAccess.tree.get_first_node_in_group('player')
+
 ## Which character to start as on game start.
 @export var starting_character: Character
 
@@ -88,6 +91,18 @@ func pressed_jump():
 
 func pressed_swap():
 	return Input.is_action_just_pressed('swap')
+
+func pressed_special():
+	return can_use_special() && Input.is_action_just_pressed('special')
+
+func released_special():
+	return can_use_special() && Input.is_action_just_released('special')
+
+func holding_special():
+	return can_use_special() && Input.is_action_pressed('special')
+
+func can_use_special():
+	return get_active_character() == Character.Ephraim
 	
 func handle_run():
 	var direction = __get_movement_axis()
@@ -106,7 +121,8 @@ func is_rising():
 	return velocity.y < 0
 
 func swap_player(): 
-	__swap_to_jared() if settings == ephraim_settings else __swap_to_ephraim()
+	if not holding_special():
+		__swap_to_jared() if settings == ephraim_settings else __swap_to_ephraim()
 		
 func is_firing():
 	if __using_controller():

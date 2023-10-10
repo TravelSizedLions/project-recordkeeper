@@ -21,7 +21,6 @@ func __fire():
 	rotation = direction.angle()
 
 	var speed = player.settings.projectile_speed
-	var projectile: Projectile = player.settings.projectile.instantiate()
+	var projectile: Projectile = N.create_scene(player.settings.projectile)
 	projectile.position = emitter.global_position
 	projectile.set_initial_velocity(direction, speed)
-	get_tree().get_root().add_child(projectile)

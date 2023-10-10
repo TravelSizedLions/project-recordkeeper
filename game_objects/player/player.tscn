@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dsikxkesnwusy"]
+[gd_scene load_steps=14 format=3 uid="uid://dsikxkesnwusy"]
 
 [ext_resource type="Script" path="res://0_scripts/player/player.gd" id="1_5e45p"]
 [ext_resource type="SpriteFrames" uid="uid://cd1w6xcyvk2xv" path="res://game_objects/player/jared.sprite_frames.tres" id="2_50vnq"]
@@ -8,6 +8,10 @@
 [ext_resource type="Script" path="res://0_scripts/player/player_states/jared/jared_idle_state.gd" id="4_jhcgf"]
 [ext_resource type="Texture2D" uid="uid://watnixp8ywyj" path="res://game_objects/player/shooter_TEMP.png" id="7_l4blp"]
 [ext_resource type="Script" path="res://0_scripts/player/shooter.gd" id="7_ryjvn"]
+[ext_resource type="Script" path="res://0_scripts/player/projectiles/charge_launcher.gd" id="9_k30ic"]
+[ext_resource type="PackedScene" uid="uid://ckohyum7ndxpx" path="res://game_objects/projectiles/glowfly/glowfly_projectile.tscn" id="10_ehee7"]
+[ext_resource type="Script" path="res://0_scripts/player/projectiles/arc_drawer.gd" id="11_ikt32"]
+[ext_resource type="PackedScene" uid="uid://b58f47f78x3yy" path="res://game_objects/ui/arcdot.tscn" id="12_0hefj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7e8aw"]
 radius = 6.0
@@ -43,5 +47,13 @@ script = ExtResource("7_ryjvn")
 
 [node name="emitter" type="Node2D" parent="shooter"]
 position = Vector2(16, 0)
+
+[node name="charge_launcher" type="Node2D" parent="."]
+script = ExtResource("9_k30ic")
+projectile = ExtResource("10_ehee7")
+
+[node name="arc_drawer" type="Node2D" parent="charge_launcher"]
+script = ExtResource("11_ikt32")
+arcdot = ExtResource("12_0hefj")
 
 [connection signal="animation_finished" from="animated_sprite_2d" to="state_machine" method="on_animation_finished"]
