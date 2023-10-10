@@ -46,6 +46,8 @@ signal ephraim_max_health_update
 signal jared_current_health_update
 signal ephraim_current_health_update
 
+signal on_player_died
+
 # signal for when the player switches between Jared and Ephraim
 signal characters_swapped
 
@@ -127,10 +129,10 @@ func swap_player():
 func is_firing():
 	if __using_controller():
 		var axis: Vector2 = Input.get_vector('aim_left','aim_right','aim_up','aim_down')
-		return axis != Vector2.ZERO
+		return axis != Vector2.ZERO && !holding_special()
 	else:
 		# using mouse
-		return Input.is_action_pressed('mouse_fire')
+		return Input.is_action_pressed('mouse_fire') && !holding_special()
 
 func is_aiming():
 	if __using_controller():
@@ -204,6 +206,7 @@ func die():
 	stop_invincibility()
 	var area_loader: AreaLoader = get_tree().get_first_node_in_group('area_loader')
 	area_loader.reload()
+	on_player_died.emit()
 
 func take_damage(amount: float):
 	if is_invincible():

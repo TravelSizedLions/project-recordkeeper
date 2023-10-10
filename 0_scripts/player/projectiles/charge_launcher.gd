@@ -30,6 +30,7 @@ func _ready():
 	__connect_to_ui()
 	__reset_to_max()
 	charger.set_max_charge_time(charge_time)
+	player.on_player_died.connect(__reset_to_max)
 
 func _physics_process(delta):
 	if __remaining_amount > 0 && player.pressed_special():
