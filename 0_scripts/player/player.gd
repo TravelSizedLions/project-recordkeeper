@@ -132,6 +132,12 @@ func is_firing():
 		# using mouse
 		return Input.is_action_pressed('mouse_fire')
 
+func is_aiming():
+	if __using_controller():
+		return Input.get_vector('aim_left','aim_right','aim_up','aim_down') != Vector2.ZERO
+	else:
+		return true
+
 func get_firing_direction():
 	if __using_controller():
 		return Input.get_vector('aim_left','aim_right','aim_up','aim_down').normalized()

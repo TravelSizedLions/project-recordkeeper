@@ -50,6 +50,7 @@ position = Vector2(16, 0)
 
 [node name="charge_launcher" type="Node2D" parent="."]
 script = ExtResource("9_k30ic")
+buffer_radius = 25.0
 projectile = ExtResource("10_ehee7")
 
 [node name="arc_drawer" type="Node2D" parent="charge_launcher"]

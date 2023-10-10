@@ -9,14 +9,18 @@ class_name ChargeLauncher
 ## The hardest the player can throw the thing
 @export var max_lob_force: float = 500
 
-## the angle to lob the projectile at in degrees
-@export var lob_angle: float = -33
+@export var charge_time: float = 0.66
 
 ## How far away the projectile starts from the player
 @export var buffer_radius: float = 50
 
 ## What to launch
 @export var projectile: PackedScene
+
+@export var _last_known_direction: Vector2
+
+func _ready():
+	charger.set_max_charge_time(charge_time)
 
 func _physics_process(delta):
 	if player.pressed_special():
@@ -28,16 +32,17 @@ func _physics_process(delta):
 	charger.handle_charge(delta)
 
 	if charger.is_charging():
-		var dir = player.get_firing_direction()
+		if player.is_aiming():
+			_last_known_direction = player.get_firing_direction()
+
 		arcdrawer.predict_arc(
-			global_position + dir*buffer_radius, 
-			dir*max_lob_force*charger.percent_charged()
+			global_position + _last_known_direction*buffer_radius, 
+			_last_known_direction*max_lob_force*charger.percent_charged()
 		)
 
 func fire():
 	var p = N.create_scene(projectile)
-	var dir = player.get_firing_direction()
 	var force = max_lob_force*charger.percent_charged()
-	p.position = global_position + dir*buffer_radius
-	p.set_initial_velocity(dir, force)
+	p.position = global_position + _last_known_direction*buffer_radius
+	p.set_initial_velocity(_last_known_direction, force)
 	arcdrawer.clear_arc()
