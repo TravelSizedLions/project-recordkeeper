@@ -16,7 +16,6 @@ default_area = ExtResource("1_ppbgs")
 [node name="default_area" parent="area_loader" instance=ExtResource("1_ppbgs")]
 
 [node name="camera_2d" type="Camera2D" parent="."]
-offset = Vector2(10, 0)
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 16.0

@@ -53,7 +53,7 @@ func _physics_process(delta):
 func fire():
 	var p = N.create_scene(projectile)
 	var force = max_lob_force*charger.percent_charged()
-	p.position = global_position + _last_known_direction*buffer_radius
+	p.set_initial_position(global_position + _last_known_direction*buffer_radius)
 	p.set_initial_velocity(_last_known_direction, force)
 	arcdrawer.clear_arc()
 	__remaining_amount -= 1

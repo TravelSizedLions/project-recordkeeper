@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends CollisionObject2D
 class_name Enemy
 
 @export var _enabled: bool = true

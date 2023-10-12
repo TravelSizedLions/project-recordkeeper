@@ -7,7 +7,7 @@ var freeze_rotation: float
 func _ready():
 	gravity_scale = 1
 
-func set_initial_velocity(direction: Vector2, speed: float):
+func __on_initial_velocity_set(direction: Vector2, speed: float):
 	apply_central_impulse(direction*speed)
 	rotation = direction.angle()
 
