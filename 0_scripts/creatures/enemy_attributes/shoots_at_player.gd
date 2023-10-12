@@ -22,5 +22,5 @@ func fire():
 	var instance: Projectile = N.create_scene(projectile)
 	instance.from_enemy()
 	var dir: Vector2 = (player.global_position - global_position).normalized()
-	instance.global_position = global_position + dir*spawn_radius
+	instance.set_initial_position(global_position + dir*spawn_radius)
 	instance.set_initial_velocity(dir, speed)

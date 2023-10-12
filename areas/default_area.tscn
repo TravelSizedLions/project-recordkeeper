@@ -27,4 +27,4 @@ scale = Vector2(53.64, 2.4)
 [node name="wall_crawler" parent="." instance=ExtResource("4_djxfx")]
 
 [node name="stinger" parent="." instance=ExtResource("5_qbup7")]
-position = Vector2(592, 223)
+position = Vector2(782, 297)
