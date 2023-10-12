@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsf5do17d1yhy"]
+[gd_scene load_steps=7 format=3 uid="uid://bsf5do17d1yhy"]
 
 [ext_resource type="TileSet" uid="uid://dv5q688tstax2" path="res://areas/test_tiles.tres" id="1_hu3hq"]
 [ext_resource type="PackedScene" uid="uid://c58etkl8y5kup" path="res://game_objects/creatures/community_crab/community_crab.tscn" id="2_ltfnk"]
 [ext_resource type="PackedScene" uid="uid://bj1nienf5yofq" path="res://game_objects/environment/kill_line.tscn" id="3_cqofr"]
 [ext_resource type="PackedScene" uid="uid://bgtf77g65ktfx" path="res://game_objects/creatures/wall_crawler/wall_crawler.tscn" id="4_djxfx"]
 [ext_resource type="PackedScene" uid="uid://b8oq0gad1agkh" path="res://game_objects/creatures/stinger/stinger.tscn" id="5_qbup7"]
+[ext_resource type="PackedScene" uid="uid://bltmhtogqo3dj" path="res://game_objects/creatures/turretle/turret.tscn" id="6_8wujk"]
 
 [node name="default_area" type="Node2D"]
 
@@ -28,3 +29,6 @@ scale = Vector2(53.64, 2.4)
 
 [node name="stinger" parent="." instance=ExtResource("5_qbup7")]
 position = Vector2(782, 297)
+
+[node name="turret" parent="." instance=ExtResource("6_8wujk")]
+position = Vector2(26, 448)
