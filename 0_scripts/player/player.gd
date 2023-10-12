@@ -3,6 +3,9 @@ class_name Player
 
 enum Character {Jared, Ephraim}
 
+static func retrieve():
+	return TreeAccess.tree.get_first_node_in_group('player')
+
 ## Which character to start as on game start.
 @export var starting_character: Character
 
@@ -43,6 +46,8 @@ signal ephraim_max_health_update
 signal jared_current_health_update
 signal ephraim_current_health_update
 
+signal on_player_died
+
 # signal for when the player switches between Jared and Ephraim
 signal characters_swapped
 
@@ -50,6 +55,8 @@ func _ready():
 	__set_up_health()
 	__swap_to_jared() if starting_character == Character.Jared else __swap_to_ephraim()
 	respawn_position = position
+	collision_layer = CollisionLayer.Default
+	collision_mask = CollisionLayer.Default | CollisionLayer.Projectiles | CollisionLayer.Enemies
 
 func _process(delta):
 	CharUtils.update_facing(self)
@@ -88,6 +95,18 @@ func pressed_jump():
 
 func pressed_swap():
 	return Input.is_action_just_pressed('swap')
+
+func pressed_special():
+	return can_use_special() && Input.is_action_just_pressed('special')
+
+func released_special():
+	return can_use_special() && Input.is_action_just_released('special')
+
+func holding_special():
+	return can_use_special() && Input.is_action_pressed('special')
+
+func can_use_special():
+	return get_active_character() == Character.Ephraim
 	
 func handle_run():
 	var direction = __get_movement_axis()
@@ -106,15 +125,22 @@ func is_rising():
 	return velocity.y < 0
 
 func swap_player(): 
-	__swap_to_jared() if settings == ephraim_settings else __swap_to_ephraim()
+	if not holding_special():
+		__swap_to_jared() if settings == ephraim_settings else __swap_to_ephraim()
 		
 func is_firing():
 	if __using_controller():
 		var axis: Vector2 = Input.get_vector('aim_left','aim_right','aim_up','aim_down')
-		return axis != Vector2.ZERO
+		return axis != Vector2.ZERO && !holding_special()
 	else:
 		# using mouse
-		return Input.is_action_pressed('mouse_fire')
+		return Input.is_action_pressed('mouse_fire') && !holding_special()
+
+func is_aiming():
+	if __using_controller():
+		return Input.get_vector('aim_left','aim_right','aim_up','aim_down') != Vector2.ZERO
+	else:
+		return true
 
 func get_firing_direction():
 	if __using_controller():
@@ -182,6 +208,7 @@ func die():
 	stop_invincibility()
 	var area_loader: AreaLoader = get_tree().get_first_node_in_group('area_loader')
 	area_loader.reload()
+	on_player_died.emit()
 
 func take_damage(amount: float):
 	if is_invincible():

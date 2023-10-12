@@ -15,5 +15,4 @@ func _update_health(v: float):
 	value = v
 
 func _update_max_health(v: float):
-	print('updating max health: ', v)
 	max_value = v

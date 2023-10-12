@@ -20,6 +20,7 @@ settings = ExtResource("2_n4xqg")
 shape = SubResource("CircleShape2D_lg6ob")
 
 [node name="sprite_2d" type="Sprite2D" parent="."]
+modulate = Color(1, 0.984314, 0.0705882, 1)
 texture = ExtResource("2_5s0v2")
 
 [node name="destroy_on_contact" type="Node2D" parent="."]
@@ -27,6 +28,8 @@ script = ExtResource("3_ik6jg")
 
 [node name="causes_damage_on_hit_behavior" type="Node2D" parent="."]
 script = ExtResource("5_nqyva")
+damage_player = false
+damage_enemy = true
 
 [connection signal="body_entered" from="." to="." method="on_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="on_body_shape_entered"]

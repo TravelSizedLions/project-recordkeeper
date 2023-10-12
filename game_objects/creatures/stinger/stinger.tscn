@@ -1,0 +1,49 @@
+[gd_scene load_steps=10 format=3 uid="uid://b8oq0gad1agkh"]
+
+[ext_resource type="Texture2D" uid="uid://cab83sn4klvsh" path="res://game_objects/creatures/stinger/temp_square.png" id="1_1uf72"]
+[ext_resource type="Script" path="res://0_scripts/creatures/stinger/stinger.gd" id="1_fld37"]
+[ext_resource type="PackedScene" uid="uid://b5eg8gc3f4yjh" path="res://game_objects/creatures/has_dangerous_part.tscn" id="2_2m3wj"]
+[ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar.tscn" id="2_u5utg"]
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/shoots_at_player.gd" id="3_hkars"]
+[ext_resource type="PackedScene" uid="uid://dr54j2eq8jsw7" path="res://game_objects/projectiles/bullet/enemy_bullet.tscn" id="4_udkw0"]
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/gravitates_towards_player.gd" id="7_duca1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8shrf"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oo34a"]
+size = Vector2(32, 32)
+
+[node name="stinger" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_fld37")
+
+[node name="sprite_2d" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_1uf72")
+
+[node name="enemy_health_bar" parent="." instance=ExtResource("2_u5utg")]
+offset_left = -50.0
+offset_top = -62.0
+offset_right = 54.0
+offset_bottom = -54.0
+title = "Stinger"
+max_health = 10.0
+
+[node name="has_dangerous_part" parent="." instance=ExtResource("2_2m3wj")]
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="has_dangerous_part"]
+shape = SubResource("RectangleShape2D_8shrf")
+debug_color = Color(0.921569, 0.0941176, 0.647059, 0.419608)
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_oo34a")
+
+[node name="shoots_at_player" type="Node2D" parent="."]
+script = ExtResource("3_hkars")
+projectile = ExtResource("4_udkw0")
+
+[node name="gravitates_towards_player" type="Node2D" parent="."]
+script = ExtResource("7_duca1")
+gravitation_speed = 125

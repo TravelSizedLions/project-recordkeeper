@@ -66,20 +66,23 @@ static func create(script: GDScript, parent: Node2D = null, owner: Node2D = null
 	return __create(node, parent, owner, (name if name else StringUtils.file_name(script.get_path())))
 
 static func create_native(nativeClass, parent: Node2D = null, owner: Node2D = null, name: String = ""):
-	return __create(
-		nativeClass.new(),
-		parent,
-		owner,
-		name if name else ('%s' % [nativeClass])
-	)
+	return __create(nativeClass.new(), parent, owner, name if name else ('%s' % [nativeClass]))
 
-static func __create(node: Node2D,  parent: Node2D = null, owner: Node2D = null, name: String = ""):
+static func create_scene(scene: PackedScene, parent: Node = null, owner: Node = null, name: String = ""):
+	return __create(scene.instantiate(), parent, owner, (name if name else StringUtils.file_name(scene.get_path())))
+
+static func __create(node,  parent: Node2D = null, owner: Node2D = null, name: String = ""):
 	node.set_name(name)
-
 	if owner:
 		node.connect('tree_entered', (func(): node.set_owner(owner)))
+	elif parent:
+		node.connect('tree_entered', (func(): node.set_owner(parent)))
+	else:
+		node.connect('tree_entered', (func(): node.set_owner(TreeAccess.root)))
 	
 	if parent:
 		parent.add_child(node)
+	else:
+		TreeAccess.root.add_child(node)
 
 	return node

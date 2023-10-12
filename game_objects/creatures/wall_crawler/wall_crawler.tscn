@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://bgtf77g65ktfx"]
 
-[ext_resource type="Script" path="res://0_scripts/creatures/isolith/isolith.gd" id="1_vy7on"]
+[ext_resource type="Script" path="res://0_scripts/creatures/wall_crawler/wall_crawler.gd" id="1_vy7on"]
 [ext_resource type="Texture2D" uid="uid://d3p5rrqtyw684" path="res://game_objects/creatures/wall_crawler/isolith-move.png" id="2_wmm5a"]
 [ext_resource type="PackedScene" uid="uid://b5eg8gc3f4yjh" path="res://game_objects/creatures/has_dangerous_part.tscn" id="3_vsy7o"]
 [ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar.tscn" id="4_j4dpo"]

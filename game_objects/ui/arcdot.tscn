@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b58f47f78x3yy"]
+
+[ext_resource type="Texture2D" uid="uid://d12mhft1cuiac" path="res://game_objects/ui/arcdot.png" id="1_wi3mo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hqwdl"]
+radius = 2.23607
+
+[node name="arcdot" type="Sprite2D"]
+position = Vector2(519, 331)
+texture = ExtResource("1_wi3mo")
+
+[node name="area_2d" type="Area2D" parent="."]
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="area_2d"]
+shape = SubResource("CircleShape2D_hqwdl")

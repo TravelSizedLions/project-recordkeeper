@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dsikxkesnwusy"]
+[gd_scene load_steps=16 format=3 uid="uid://dsikxkesnwusy"]
 
 [ext_resource type="Script" path="res://0_scripts/player/player.gd" id="1_5e45p"]
 [ext_resource type="SpriteFrames" uid="uid://cd1w6xcyvk2xv" path="res://game_objects/player/jared.sprite_frames.tres" id="2_50vnq"]
@@ -8,10 +8,19 @@
 [ext_resource type="Script" path="res://0_scripts/player/player_states/jared/jared_idle_state.gd" id="4_jhcgf"]
 [ext_resource type="Texture2D" uid="uid://watnixp8ywyj" path="res://game_objects/player/shooter_TEMP.png" id="7_l4blp"]
 [ext_resource type="Script" path="res://0_scripts/player/shooter.gd" id="7_ryjvn"]
+[ext_resource type="Script" path="res://0_scripts/player/projectiles/charge_launcher.gd" id="9_k30ic"]
+[ext_resource type="PackedScene" uid="uid://ckohyum7ndxpx" path="res://game_objects/projectiles/glowfly/glowfly_projectile.tscn" id="10_ehee7"]
+[ext_resource type="Script" path="res://0_scripts/player/projectiles/arc_drawer.gd" id="11_ikt32"]
+[ext_resource type="PackedScene" uid="uid://b58f47f78x3yy" path="res://game_objects/ui/arcdot.tscn" id="12_0hefj"]
+[ext_resource type="Script" path="res://0_scripts/player/bullet_boundary.gd" id="13_5qfwo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7e8aw"]
 radius = 6.0
 height = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2mij"]
+radius = 400.0
+height = 1200.0
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_5e45p")
@@ -44,4 +53,28 @@ script = ExtResource("7_ryjvn")
 [node name="emitter" type="Node2D" parent="shooter"]
 position = Vector2(16, 0)
 
+[node name="charge_launcher" type="Node2D" parent="."]
+script = ExtResource("9_k30ic")
+buffer_radius = 25.0
+projectile = ExtResource("10_ehee7")
+
+[node name="arc_drawer" type="Node2D" parent="charge_launcher"]
+script = ExtResource("11_ikt32")
+arcdot = ExtResource("12_0hefj")
+
+[node name="bullet_boundary" type="Area2D" parent="."]
+position = Vector2(-1, 12)
+collision_layer = 2147483648
+collision_mask = 10
+monitorable = false
+script = ExtResource("13_5qfwo")
+
+[node name="bullet_boundary" type="CollisionShape2D" parent="bullet_boundary"]
+position = Vector2(1, -11)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_t2mij")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
 [connection signal="animation_finished" from="animated_sprite_2d" to="state_machine" method="on_animation_finished"]
+[connection signal="body_exited" from="bullet_boundary" to="bullet_boundary" method="on_body_exited"]
+[connection signal="body_shape_exited" from="bullet_boundary" to="bullet_boundary" method="on_body_shape_exited"]
