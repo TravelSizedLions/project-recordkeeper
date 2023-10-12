@@ -32,7 +32,7 @@ func on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_inde
 
 func from_player():
 	collision_layer = CollisionLayer.Projectiles
-	collision_mask = CollisionLayer.Default | CollisionLayer.EnemyProjectiles | CollisionLayer.Enemies
+	collision_mask = CollisionLayer.Default | CollisionLayer.EnemyProjectiles | CollisionLayer.Enemies | CollisionLayer.FloatingEnemies
 
 func from_enemy():
 	collision_layer = CollisionLayer.EnemyProjectiles

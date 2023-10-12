@@ -8,8 +8,10 @@ class_name CausesDamageOnHitBehavior
 var caused_damage_already: bool = false
 
 func on_hit(body):
+	print("here!", body)
 	var health_attr: HasEnemyHealthBar = N.get_child(body, HasEnemyHealthBar)
 	if health_attr and not caused_damage_already:
+		print("hit enemy!", body)
 		health_attr.take_damage(damage)
 		caused_damage_already = true
 	

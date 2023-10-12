@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/has_dangerous_part.gd" id="1_vxeac"]
 
 [node name="has_dangerous_part" type="Area2D"]
+collision_layer = 4
 script = ExtResource("1_vxeac")
 
 [connection signal="body_shape_entered" from="." to="." method="on_body_shape_entered"]

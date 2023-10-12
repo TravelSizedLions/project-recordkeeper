@@ -10,6 +10,7 @@ position = Vector2(519, 331)
 texture = ExtResource("1_wi3mo")
 
 [node name="area_2d" type="Area2D" parent="."]
+collision_mask = 29
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="area_2d"]
 shape = SubResource("CircleShape2D_hqwdl")

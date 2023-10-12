@@ -3,6 +3,7 @@ class_name CommunityCrab
 
 @onready var player = get_tree().get_first_node_in_group('player')
 @onready var animator = $animated_sprite_2d
+@onready var charbody = N.get_child(self, CharacterBody2D)
 
 @export var follow_speed = 10
 @export var min_follow_dist = 100
@@ -11,10 +12,6 @@ class_name CommunityCrab
 func _process(_delta):
 	if _enabled:
 		CharUtils.update_facing(self)
-
-func _physics_process(delta):
-	CharUtils.apply_gravity(self, delta)
-	move_and_slide()
 
 func should_follow_player():
 	if not _enabled:
@@ -26,10 +23,10 @@ func should_follow_player():
 func move_towards_player(delta):
 	var dir = position.direction_to(player.position).x
 	if dir < 0:
-		velocity.x = - follow_speed*delta
+		charbody.velocity.x = - follow_speed*delta
 	else:
-		velocity.x = follow_speed*delta
-	move_and_slide()
+		charbody.velocity.x = follow_speed*delta
+	charbody.move_and_slide()
 
 func __on_disabled():
 	for col in N.get_all_children(self, CollisionShape2D):

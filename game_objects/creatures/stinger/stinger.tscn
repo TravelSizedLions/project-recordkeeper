@@ -15,7 +15,7 @@ size = Vector2(32, 32)
 size = Vector2(32, 32)
 
 [node name="stinger" type="CharacterBody2D"]
-collision_layer = 4
+collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_fld37")
 
@@ -46,4 +46,5 @@ projectile = ExtResource("4_udkw0")
 
 [node name="gravitates_towards_player" type="Node2D" parent="."]
 script = ExtResource("7_duca1")
-gravitation_speed = 125
+gravitation_speed = 200
+max_speed = 300
