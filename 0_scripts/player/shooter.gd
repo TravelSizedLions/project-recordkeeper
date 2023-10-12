@@ -22,5 +22,6 @@ func __fire():
 
 	var speed = player.settings.projectile_speed
 	var projectile: Projectile = N.create_scene(player.settings.projectile)
+	projectile.from_player()
 	projectile.position = emitter.global_position
 	projectile.set_initial_velocity(direction, speed)

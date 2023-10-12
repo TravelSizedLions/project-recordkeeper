@@ -23,7 +23,7 @@ offset_bottom = 31.0
 
 [node name="label" type="Label" parent="v_box_container"]
 layout_mode = 2
-text = "isolith"
+text = "<enemy name>"
 horizontal_alignment = 1
 
 [node name="panel_container" type="PanelContainer" parent="v_box_container"]

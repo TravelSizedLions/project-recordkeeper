@@ -105,7 +105,8 @@ special={
 
 2d_physics/layer_1="default"
 2d_physics/layer_2="projectiles"
-2d_physics/layer_3="special projectiles"
+2d_physics/layer_3="enemies"
+2d_physics/layer_4="enemy_projectiles"
 
 [physics]
 

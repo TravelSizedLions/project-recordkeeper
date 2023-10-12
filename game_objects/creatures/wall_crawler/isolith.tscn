@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://bd3wqix0nl46f"]
 
-[ext_resource type="Script" path="res://0_scripts/creatures/isolith/isolith.gd" id="1_3mu2w"]
+[ext_resource type="Script" path="res://0_scripts/creatures/wall_crawler/wall_crawler.gd" id="1_3mu2w"]
 [ext_resource type="Texture2D" uid="uid://d3p5rrqtyw684" path="res://game_objects/creatures/wall_crawler/isolith-move.png" id="1_n0jv7"]
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/has_gravity.gd" id="2_p6l8f"]
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/can_float_away.gd" id="3_x55ko"]
@@ -8,6 +8,7 @@
 [ext_resource type="Theme" uid="uid://dyp70yiyby0fk" path="res://game_objects/ui/enemy_health_bar.tres" id="6_n7fdo"]
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/has_enemy_health_bar.gd" id="7_2mkef"]
 [ext_resource type="Script" path="res://0_scripts/ui/enemy_health_bar.gd" id="8_8m8y3"]
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0iko8"]
 atlas = ExtResource("1_n0jv7")

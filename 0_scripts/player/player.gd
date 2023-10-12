@@ -55,6 +55,8 @@ func _ready():
 	__set_up_health()
 	__swap_to_jared() if starting_character == Character.Jared else __swap_to_ephraim()
 	respawn_position = position
+	collision_layer = CollisionLayer.Default
+	collision_mask = CollisionLayer.Default | CollisionLayer.Projectiles | CollisionLayer.Enemies
 
 func _process(delta):
 	CharUtils.update_facing(self)
