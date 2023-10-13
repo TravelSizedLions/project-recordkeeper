@@ -64,32 +64,32 @@ func _ready():
 	collision_layer = CollisionLayer.Default
 	collision_mask = CollisionLayer.Default | CollisionLayer.Projectiles | CollisionLayer.Enemies
 
-func _process(delta):
+func _process(frameDelta):
 	CharUtils.update_facing(self)
-	process_flicker(delta)
+	process_flicker(frameDelta)
 
-func _physics_process(delta):
-	CharUtils.apply_gravity(self, delta)
-	process_invincibility(delta)
-	process_health_regen(delta)
+func _physics_process(fixedDelta):
+	CharUtils.apply_gravity(self, fixedDelta)
+	process_invincibility(fixedDelta)
+	process_health_regen(fixedDelta)
 	move_and_slide()
 
-func process_health_regen(delta):
+func process_health_regen(fixedDelta):
 	if get_active_character() == Character.Jared:
-		update_ephraim_current_health(_ephraim_current_health + ephraim_settings.regen_speed*delta)
+		update_ephraim_current_health(_ephraim_current_health + ephraim_settings.regen_speed*fixedDelta)
 	else:
-		update_jared_current_health(_jared_current_health + jared_settings.regen_speed*delta)
+		update_jared_current_health(_jared_current_health + jared_settings.regen_speed*fixedDelta)
 
-func process_flicker(delta):
+func process_flicker(frameDelta):
 	if is_invincible():
-		__flicker_timer -= delta
+		__flicker_timer -= frameDelta
 		if __flicker_timer < 0:
 			__flicker_timer = 1/(2*flicker_frequency)
 			toggle_sprite()
 
-func process_invincibility(delta):
+func process_invincibility(fixedDelta):
 	if is_invincible():
-		__invincible_timer -= delta
+		__invincible_timer -= fixedDelta
 		if not is_invincible():
 			show_sprite()
 	
@@ -217,7 +217,6 @@ func die():
 	on_player_died.emit()
 
 func handle_fall():
-	push_error("handling fall")
 	stop_invincibility()
 	var died = take_damage(fall_damage)
 	if not died:
