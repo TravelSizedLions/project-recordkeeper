@@ -12,7 +12,7 @@ func connect_to_entity(entity):
 	var health_root: EnemyHealthBarPosition = N.get_child(entity, EnemyHealthBarPosition)
 	if health_root:
 		health_root.position_updated.connect(__update_position)
-		health_root.enemy_destroyed.connect(self.queue_free)
+		health_root.entity_destroyed.connect(self.queue_free)
 
 func __update_position(pos: Vector2):
 	global_position = pos
