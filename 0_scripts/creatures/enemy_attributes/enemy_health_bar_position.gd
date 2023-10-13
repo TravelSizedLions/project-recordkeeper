@@ -9,25 +9,35 @@ class_name EnemyHealthBarPosition
 ## The enemy's maximum health
 @export var max_health: float
 
+@export var ui_element: PackedScene
+
 signal health_update
 signal max_health_update
 signal enemy_destroyed
 signal position_updated
 
+var __relative_position: Vector2
+
 var _current_health: float
 
-func _ready():
-	var ui = N.get_child(self, EnemyFloatingUI)
-	setup_health(ui)
-	setup_name(ui)
-	detach_ui(ui)
+# FIXME: For some reason, adding elements on _ready() doesn't work...
+var __init_hack: bool = false
+func _process(_delta):
+	if not __init_hack:
+		__init_hack = true
+		__relative_position = global_position - enemy.global_position
+		var ui = N.create_scene(ui_element)
+		setup_health(ui)
+		setup_name(ui)
+		detach_ui(ui)
 
 func _physics_process(_delta):
-	position_updated.emit(global_position)
+	# use a static relative position so that if the position of this node moves
+	# out of place, it still looks right on screen.
+	position_updated.emit(enemy.global_position + __relative_position)
 
 func detach_ui(ui):
 	ui.name = "enemy_ui_%s" % [ui.get_instance_id()]
-	ui.get_parent().remove_child(ui)
 	get_tree().root.add_child(ui)
 	for child in get_tree().root.get_children():
 		print('child is ', child.name)

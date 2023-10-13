@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0c3p5mil63qk"]
+
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/enemy_floating_ui.gd" id="1_khlt5"]
+[ext_resource type="Script" path="res://0_scripts/ui/enemy_health_bar.gd" id="2_frq1h"]
+
+[node name="enemy_healthbar_ui" type="Node2D"]
+script = ExtResource("1_khlt5")
+
+[node name="root_control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -60.0
+offset_top = -54.0
+offset_right = -20.0
+offset_bottom = -14.0
+
+[node name="v_box_container" type="VBoxContainer" parent="root_control"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 121.0
+offset_bottom = 42.0
+
+[node name="label" type="Label" parent="root_control/v_box_container"]
+layout_mode = 2
+text = "<enemy name>"
+horizontal_alignment = 1
+
+[node name="panel_container" type="PanelContainer" parent="root_control/v_box_container"]
+layout_mode = 2
+
+[node name="margin_container" type="MarginContainer" parent="root_control/v_box_container/panel_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="health_bar" type="ProgressBar" parent="root_control/v_box_container/panel_container/margin_container"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+show_percentage = false
+script = ExtResource("2_frq1h")

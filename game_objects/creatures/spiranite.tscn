@@ -10,7 +10,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_35j2r"]
 size = Vector2(32, 32)
 
-[node name="spiranite" type="CharacterBody2D"]
+[node name="spiralizer" type="CharacterBody2D"]
+collision_layer = 16
 script = ExtResource("1_eqwdr")
 
 [node name="sprite_2d" type="Sprite2D" parent="."]

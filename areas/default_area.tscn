@@ -39,5 +39,5 @@ position = Vector2(26, 448)
 position = Vector2(967, 448)
 scale = Vector2(-1, 1)
 
-[node name="spiranite" parent="." instance=ExtResource("8_7g8ej")]
+[node name="spiralizer" parent="." instance=ExtResource("8_7g8ej")]
 position = Vector2(589, 327)
