@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/rotates_randomly.gd" id="3_wgmht"]
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/projectile_emitter.gd" id="4_hyk3q"]
 [ext_resource type="PackedScene" uid="uid://dr54j2eq8jsw7" path="res://game_objects/projectiles/bullet/enemy_bullet.tscn" id="5_y3gbj"]
-[ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar.tscn" id="6_0vtwv"]
+[ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar_position.tscn" id="6_0vtwv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_35j2r"]
 size = Vector2(32, 32)

@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://deorpi4r5lf05" path="res://game_objects/creatures/turretle/turretle_cannon.png" id="3_54fv7"]
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/projectile_emitter.gd" id="5_mn7vk"]
 [ext_resource type="PackedScene" uid="uid://chen8u3ntgfw2" path="res://game_objects/projectiles/bullet/enemy_bullet_extra_large.tscn" id="6_65kyo"]
-[ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar.tscn" id="7_c66mk"]
+[ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar_position.tscn" id="7_c66mk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f40ul"]
 size = Vector2(44, 25)
