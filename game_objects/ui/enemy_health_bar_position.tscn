@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://nd0vhhppj3kb"]
+
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/enemy_health_bar_position.gd" id="1_vehyg"]
+[ext_resource type="PackedScene" uid="uid://d0c3p5mil63qk" path="res://game_objects/ui/enemy_healthbar_ui.tscn" id="2_xqpmx"]
+
+[node name="enemy_health_bar_position" type="Node2D"]
+script = ExtResource("1_vehyg")
+ui_element = ExtResource("2_xqpmx")

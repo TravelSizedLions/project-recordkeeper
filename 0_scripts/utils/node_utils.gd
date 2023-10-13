@@ -71,13 +71,14 @@ static func create_native(nativeClass, parent: Node2D = null, owner: Node2D = nu
 static func create_scene(scene: PackedScene, parent: Node = null, owner: Node = null, name: String = ""):
 	return __create(scene.instantiate(), parent, owner, (name if name else StringUtils.file_name(scene.get_path())))
 
-static func __create(node,  parent: Node2D = null, owner: Node2D = null, name: String = ""):
+static func __create(node: Node,  parent: Node2D = null, owner: Node2D = null, name: String = ""):
 	node.set_name(name)
 	if owner:
 		node.connect('tree_entered', (func(): node.set_owner(owner)))
 	elif parent:
 		node.connect('tree_entered', (func(): node.set_owner(parent)))
 	else:
+		print('node:', node, ' added to root. has path: ', node.get_path())
 		node.connect('tree_entered', (func(): node.set_owner(TreeAccess.root)))
 	
 	if parent:

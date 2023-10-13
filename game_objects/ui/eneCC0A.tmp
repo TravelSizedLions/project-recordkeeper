@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://nd0vhhppj3kb"]
+
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/has_enemy_health_bar.gd" id="2_fwkex"]
+[ext_resource type="PackedScene" uid="uid://d1crn4beh4evl" path="res://game_objects/ui/enemy_health_bar_ui.tscn" id="3_0k1lh"]
+
+[node name="has_health_bar" type="Node2D" node_paths=PackedStringArray("__ui_element")]
+script = ExtResource("2_fwkex")
+__ui_element = NodePath("enemy_health_bar_ui")
+
+[node name="remote_transform_2d" type="RemoteTransform2D" parent="."]
+remote_path = NodePath("../enemy_health_bar_ui")
+update_rotation = false
+update_scale = false
+
+[node name="enemy_health_bar_ui" parent="." instance=ExtResource("3_0k1lh")]
