@@ -9,6 +9,8 @@ static func retrieve():
 ## Which character to start as on game start.
 @export var starting_character: Character
 
+@export var fall_damage: float = 5
+
 ## Jared's specific player character settings for things like movment, health, etc.
 @export var jared_settings: PlayerSettings
 
@@ -39,6 +41,9 @@ var __invincible_timer: float
 
 var __flicker_timer: float
 
+## The last place the player was standing before a jump.
+var __last_grounded_position: Vector2
+
 # Health update signals
 signal jared_max_health_update
 signal ephraim_max_health_update
@@ -54,7 +59,8 @@ signal characters_swapped
 func _ready():
 	__set_up_health()
 	__swap_to_jared() if starting_character == Character.Jared else __swap_to_ephraim()
-	respawn_position = position
+	respawn_position = global_position
+	__last_grounded_position = respawn_position
 	collision_layer = CollisionLayer.Default
 	collision_mask = CollisionLayer.Default | CollisionLayer.Projectiles | CollisionLayer.Enemies
 
@@ -201,6 +207,7 @@ func get_active_character() -> Character:
 	return Character.Jared if settings == jared_settings else Character.Ephraim
 
 func die():
+	__last_grounded_position = respawn_position
 	position = respawn_position
 	velocity = Vector2.ZERO
 	reset_jared_health()
@@ -209,6 +216,13 @@ func die():
 	var area_loader: AreaLoader = get_tree().get_first_node_in_group('area_loader')
 	area_loader.reload()
 	on_player_died.emit()
+
+func handle_fall():
+	stop_invincibility()
+	var died = take_damage(fall_damage)
+	if not died:
+		global_position = __last_grounded_position
+		velocity = Vector2.ZERO
 
 func take_damage(amount: float):
 	if is_invincible():
@@ -221,8 +235,10 @@ func take_damage(amount: float):
 
 	if _jared_current_health <= 0 or _ephraim_current_health <= 0:
 		die()
+		return true
 
 	start_invincibility()
+	return false
 
 func reset_jared_health():
 	update_jared_current_health(_jared_max_health)
@@ -251,3 +267,7 @@ func show_sprite():
 
 func hide_sprite():
 	animator.visible = false
+
+## Caches the last grounded position of the player if they die from falling off a cliff
+func set_new_fall_spawnpoint():
+	__last_grounded_position = global_position

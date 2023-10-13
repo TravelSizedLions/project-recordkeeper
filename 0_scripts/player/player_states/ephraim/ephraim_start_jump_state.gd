@@ -10,5 +10,6 @@ func __on_enter():
 	player.animator.play('jump_start')
 
 func __on_animation_finished():
+	player.set_new_fall_spawnpoint()
 	player.velocity.y = player.settings.jump_force
 	transitioner.emit(EphraimRisingState)

@@ -11,4 +11,5 @@ func __on_enter():
 
 func __on_animation_finished():
 	player.velocity.y = player.settings.jump_force
+	player.set_new_fall_spawnpoint()
 	transitioner.emit(JaredRisingState)
