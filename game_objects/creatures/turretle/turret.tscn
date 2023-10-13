@@ -48,7 +48,6 @@ position = Vector2(0, -21.5)
 shape = SubResource("RectangleShape2D_g6rd8")
 
 [node name="enemy_health_bar" parent="." instance=ExtResource("4_qt7rg")]
-offset_top = -97.0
-offset_bottom = -89.0
+position = Vector2(0, -52)
 title = "Turret"
 max_health = 20.0

@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnt442vl8yfwl"]
+
+[ext_resource type="Script" path="res://0_scripts/creatures/spiralizer/spiralizer.gd" id="1_eqwdr"]
+[ext_resource type="Texture2D" uid="uid://bg851mwodcpad" path="res://game_objects/creatures/spiranite/temp_square.png" id="2_unuc2"]
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/rotates_randomly.gd" id="3_wgmht"]
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/projectile_emitter.gd" id="4_hyk3q"]
+[ext_resource type="PackedScene" uid="uid://dr54j2eq8jsw7" path="res://game_objects/projectiles/bullet/enemy_bullet.tscn" id="5_y3gbj"]
+[ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar.tscn" id="6_0vtwv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35j2r"]
+size = Vector2(32, 32)
+
+[node name="spiranite" type="CharacterBody2D"]
+script = ExtResource("1_eqwdr")
+
+[node name="sprite_2d" type="Sprite2D" parent="."]
+texture = ExtResource("2_unuc2")
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_35j2r")
+
+[node name="rotates_randomly" type="Node2D" parent="."]
+script = ExtResource("3_wgmht")
+min_rotation_speed = -180.0
+max_rotation_speed = 180.0
+
+[node name="projectile_emitter" type="Node2D" parent="."]
+script = ExtResource("4_hyk3q")
+projectile = ExtResource("5_y3gbj")
+
+[node name="projectile_emitter_2" type="Node2D" parent="."]
+rotation = 3.14159
+script = ExtResource("4_hyk3q")
+projectile = ExtResource("5_y3gbj")
+
+[node name="has_health_bar" parent="." instance=ExtResource("6_0vtwv")]
+position = Vector2(0, -16)
+title = "Spiralizer"
+max_health = 10.0

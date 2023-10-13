@@ -84,6 +84,7 @@ position = Vector2(-0.5, 10)
 shape = SubResource("RectangleShape2D_c62yb")
 
 [node name="enemy_health_bar" parent="." instance=ExtResource("4_j4dpo")]
+position = Vector2(0, -120)
 title = "Wall Crawler"
 max_health = 100.0
 

@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name HasEnemyHealthBar
 
 @onready var enemy: Enemy = owner

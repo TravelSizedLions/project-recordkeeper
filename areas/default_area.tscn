@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bsf5do17d1yhy"]
+[gd_scene load_steps=9 format=3 uid="uid://bsf5do17d1yhy"]
 
 [ext_resource type="TileSet" uid="uid://dv5q688tstax2" path="res://areas/test_tiles.tres" id="1_hu3hq"]
 [ext_resource type="PackedScene" uid="uid://c58etkl8y5kup" path="res://game_objects/creatures/community_crab/community_crab.tscn" id="2_ltfnk"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b8oq0gad1agkh" path="res://game_objects/creatures/stinger/stinger.tscn" id="5_qbup7"]
 [ext_resource type="PackedScene" uid="uid://bltmhtogqo3dj" path="res://game_objects/creatures/turretle/turret.tscn" id="6_8wujk"]
 [ext_resource type="PackedScene" uid="uid://c0ysg4xu7aaa5" path="res://game_objects/creatures/turretle/turret_static.tscn" id="7_k3ptm"]
+[ext_resource type="PackedScene" uid="uid://dnt442vl8yfwl" path="res://game_objects/creatures/spiranite.tscn" id="8_7g8ej"]
 
 [node name="default_area" type="Node2D"]
 
@@ -37,3 +38,6 @@ position = Vector2(26, 448)
 [node name="turret_2" parent="." instance=ExtResource("7_k3ptm")]
 position = Vector2(967, 448)
 scale = Vector2(-1, 1)
+
+[node name="spiranite" parent="." instance=ExtResource("8_7g8ej")]
+position = Vector2(589, 327)

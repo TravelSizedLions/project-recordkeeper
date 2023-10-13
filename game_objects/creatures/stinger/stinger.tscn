@@ -24,10 +24,7 @@ modulate = Color(1, 0, 0, 1)
 texture = ExtResource("1_1uf72")
 
 [node name="enemy_health_bar" parent="." instance=ExtResource("2_u5utg")]
-offset_left = -50.0
-offset_top = -62.0
-offset_right = 54.0
-offset_bottom = -54.0
+position = Vector2(0, -19)
 title = "Stinger"
 max_health = 10.0
 
