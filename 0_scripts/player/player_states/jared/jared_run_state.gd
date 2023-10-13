@@ -10,6 +10,7 @@ func __on_physics_process(_delta: float):
 	elif player.pressed_jump():
 		transitioner.emit(JaredStartJumpState)
 	elif player.is_falling():
+		player.set_new_fall_spawnpoint()
 		transitioner.emit(JaredFallingState)
 	elif player.pressed_swap():
 		transitioner.emit(JaredSwapOutState)

@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://0_scripts/environment/kill_line.gd" id="1_w4i47"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qiudu"]
-size = Vector2(70.5, 70)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d12un"]
 
 [node name="kill_line" type="Area2D"]
 script = ExtResource("1_w4i47")
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_qiudu")
+scale = Vector2(1e+14, 1)
+shape = SubResource("WorldBoundaryShape2D_d12un")
+debug_color = Color(0.960784, 0, 0.521569, 0.419608)
 
 [connection signal="body_entered" from="." to="." method="on_body_entered"]
-[connection signal="body_shape_entered" from="." to="." method="on_body_shape_entered"]
