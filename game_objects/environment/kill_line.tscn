@@ -8,6 +8,8 @@
 script = ExtResource("1_w4i47")
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="."]
+scale = Vector2(1e+14, 1)
 shape = SubResource("WorldBoundaryShape2D_d12un")
+debug_color = Color(0.960784, 0, 0.521569, 0.419608)
 
 [connection signal="body_entered" from="." to="." method="on_body_entered"]

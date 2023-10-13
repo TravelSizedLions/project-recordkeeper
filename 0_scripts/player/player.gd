@@ -166,7 +166,6 @@ func __set_up_player(next_settings: PlayerSettings):
 	fsm.on_state_transition(settings.start_state)
 
 func __set_up_health():
-	print('setting up health')
 	var jared_hbar: JaredHealthBar = N.find(JaredHealthBar)
 	if jared_hbar:
 		jared_hbar.connect_to_entity(self)
@@ -208,7 +207,7 @@ func get_active_character() -> Character:
 
 func die():
 	__last_grounded_position = respawn_position
-	position = respawn_position
+	global_position = respawn_position
 	velocity = Vector2.ZERO
 	reset_jared_health()
 	reset_ephraim_health()
@@ -218,6 +217,7 @@ func die():
 	on_player_died.emit()
 
 func handle_fall():
+	push_error("handling fall")
 	stop_invincibility()
 	var died = take_damage(fall_damage)
 	if not died:
@@ -225,6 +225,7 @@ func handle_fall():
 		velocity = Vector2.ZERO
 
 func take_damage(amount: float):
+	var died = false
 	if is_invincible():
 		return
 	
@@ -235,10 +236,10 @@ func take_damage(amount: float):
 
 	if _jared_current_health <= 0 or _ephraim_current_health <= 0:
 		die()
-		return true
+		died = true
 
 	start_invincibility()
-	return false
+	return died 
 
 func reset_jared_health():
 	update_jared_current_health(_jared_max_health)
@@ -270,4 +271,14 @@ func hide_sprite():
 
 ## Caches the last grounded position of the player if they die from falling off a cliff
 func set_new_fall_spawnpoint():
-	__last_grounded_position = global_position
+	var player_capsule: CapsuleShape2D
+	for c in N.get_all_children(self, CollisionShape2D):
+		player_capsule = c.shape
+		if player_capsule:
+			break
+	
+	if player_capsule:
+		# shifts the position to prevent accidental repeat falls
+		var dir = -velocity.sign().x
+		var width = player_capsule.get_rect().size.x
+		__last_grounded_position = Vector2(global_position.x + dir*width, global_position.y)

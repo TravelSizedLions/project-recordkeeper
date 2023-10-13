@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsf5do17d1yhy"]
+[gd_scene load_steps=8 format=3 uid="uid://bsf5do17d1yhy"]
 
 [ext_resource type="TileSet" uid="uid://dv5q688tstax2" path="res://areas/test_tiles.tres" id="1_hu3hq"]
 [ext_resource type="PackedScene" uid="uid://c58etkl8y5kup" path="res://game_objects/creatures/community_crab/community_crab.tscn" id="2_ltfnk"]
-[ext_resource type="PackedScene" uid="uid://bj1nienf5yofq" path="res://game_objects/environment/kill_line.tscn" id="3_cqofr"]
 [ext_resource type="PackedScene" uid="uid://bgtf77g65ktfx" path="res://game_objects/creatures/wall_crawler/wall_crawler.tscn" id="4_djxfx"]
 [ext_resource type="PackedScene" uid="uid://b8oq0gad1agkh" path="res://game_objects/creatures/stinger/stinger.tscn" id="5_qbup7"]
 [ext_resource type="PackedScene" uid="uid://bltmhtogqo3dj" path="res://game_objects/creatures/turretle/turret.tscn" id="6_8wujk"]
@@ -22,10 +21,6 @@ position = Vector2(226, 264)
 follow_speed = 4000
 min_follow_dist = 75
 max_follow_dist = 500
-
-[node name="kill_line" parent="." instance=ExtResource("3_cqofr")]
-position = Vector2(508, 1214)
-scale = Vector2(53.64, 2.4)
 
 [node name="wall_crawler" parent="." instance=ExtResource("4_djxfx")]
 
