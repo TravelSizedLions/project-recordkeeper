@@ -15,6 +15,7 @@ collision_layer = 16
 script = ExtResource("1_eqwdr")
 
 [node name="sprite_2d" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
 texture = ExtResource("2_unuc2")
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="."]
@@ -22,16 +23,20 @@ shape = SubResource("RectangleShape2D_35j2r")
 
 [node name="rotates_randomly" type="Node2D" parent="."]
 script = ExtResource("3_wgmht")
-min_rotation_speed = -180.0
-max_rotation_speed = 180.0
+min_rotation_speed = -90.0
+max_rotation_speed = 90.0
 
 [node name="projectile_emitter" type="Node2D" parent="."]
 script = ExtResource("4_hyk3q")
+frequency = 0.25
+speed = 50.0
 projectile = ExtResource("5_y3gbj")
 
 [node name="projectile_emitter_2" type="Node2D" parent="."]
 rotation = 3.14159
 script = ExtResource("4_hyk3q")
+frequency = 0.25
+speed = 50.0
 projectile = ExtResource("5_y3gbj")
 
 [node name="has_health_bar" parent="." instance=ExtResource("6_0vtwv")]
