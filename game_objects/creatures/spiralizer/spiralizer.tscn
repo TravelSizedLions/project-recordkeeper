@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dnt442vl8yfwl"]
 
 [ext_resource type="Script" path="res://0_scripts/creatures/spiralizer/spiralizer.gd" id="1_eqwdr"]
-[ext_resource type="Texture2D" uid="uid://bg851mwodcpad" path="res://game_objects/creatures/spiranite/temp_square.png" id="2_unuc2"]
+[ext_resource type="Texture2D" uid="uid://bg851mwodcpad" path="res://game_objects/creatures/spiralizer/temp_square.png" id="2_unuc2"]
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/rotates_randomly.gd" id="3_wgmht"]
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/projectile_emitter.gd" id="4_hyk3q"]
 [ext_resource type="PackedScene" uid="uid://dr54j2eq8jsw7" path="res://game_objects/projectiles/bullet/enemy_bullet.tscn" id="5_y3gbj"]

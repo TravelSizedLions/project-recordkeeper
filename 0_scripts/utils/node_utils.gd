@@ -60,25 +60,28 @@ static func get_all_children(node: Node, type):
 static func __is_correct_node(node: Node, type, name: String = ""):
 	return is_instance_of(node, type) and (not name or node.name == name)
 
-static func create(script: GDScript, parent: Node2D = null, owner: Node2D = null, name: String = ""):
+static func create(script: GDScript, parent: Node2D = null, owner: Node2D = null, name_prefix: String = ""):
 	var node = Node2D.new()
 	node.set_script(script)
-	return __create(node, parent, owner, (name if name else StringUtils.file_name(script.get_path())))
+	return __create(node, parent, owner, name_prefix)
 
-static func create_native(nativeClass, parent: Node2D = null, owner: Node2D = null, name: String = ""):
-	return __create(nativeClass.new(), parent, owner, name if name else ('%s' % [nativeClass]))
+static func create_native(nativeClass, parent: Node2D = null, owner: Node2D = null, name_prefix: String = ""):
+	return __create(nativeClass.new(), parent, owner, name_prefix)
 
-static func create_scene(scene: PackedScene, parent: Node = null, owner: Node = null, name: String = ""):
-	return __create(scene.instantiate(), parent, owner, (name if name else StringUtils.file_name(scene.get_path())))
+static func create_scene(scene: PackedScene, parent: Node = null, owner: Node = null, name_prefix: String = ""):
+	return __create(scene.instantiate(), parent, owner, name_prefix)
 
-static func __create(node: Node,  parent: Node2D = null, owner: Node2D = null, name: String = ""):
-	node.set_name(name)
+static func __create(node: Node,  parent: Node2D = null, owner: Node2D = null, name_prefix: String = ""):
+	if not name_prefix:
+		name_prefix = "node"
+
+	node.set_name("%s_%s" % [name_prefix, node.get_instance_id()])
+
 	if owner:
 		node.connect('tree_entered', (func(): node.set_owner(owner)))
 	elif parent:
 		node.connect('tree_entered', (func(): node.set_owner(parent)))
 	else:
-		print('node:', node, ' added to root. has path: ', node.get_path())
 		node.connect('tree_entered', (func(): node.set_owner(TreeAccess.root)))
 	
 	if parent:
