@@ -1,9 +1,9 @@
 extends Enemy
 class_name CommunityCrab
 
-@onready var player = get_tree().get_first_node_in_group('player')
-@onready var animator = $animated_sprite_2d
-@onready var charbody = N.get_child(self, CharacterBody2D)
+@onready var player: Player = Player.retrieve()
+@onready var animator: AnimatedSprite2D = $animated_sprite_2d
+@onready var charbody: CharacterBody2D = N.get_child(self, CharacterBody2D)
 
 @export var follow_speed = 10
 @export var min_follow_dist = 100
@@ -27,6 +27,9 @@ func move_towards_player(delta):
 	else:
 		charbody.velocity.x = follow_speed*delta
 	charbody.move_and_slide()
+
+func stop():
+	charbody.velocity = Vector2.ZERO
 
 func __on_disabled():
 	for col in N.get_all_children(self, CollisionShape2D):

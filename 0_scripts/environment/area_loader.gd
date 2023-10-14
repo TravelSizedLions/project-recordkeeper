@@ -28,4 +28,4 @@ func reload():
 		child.queue_free()
 
 	var reloaded: Node = current_area.instantiate()
-	add_child(reloaded)
+	call_deferred("add_child", reloaded)

@@ -27,3 +27,6 @@ func fire():
 	var dir = Vector2.RIGHT.rotated(global_rotation)
 	instance.set_initial_position(global_position + dir*spawn_radius)
 	instance.set_initial_velocity(dir, speed)
+
+func set_timer(time):
+	__timer = time

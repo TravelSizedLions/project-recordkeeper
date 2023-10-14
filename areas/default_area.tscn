@@ -36,3 +36,4 @@ scale = Vector2(-1, 1)
 
 [node name="spiralizer" parent="." instance=ExtResource("8_7g8ej")]
 position = Vector2(589, 327)
+collision_mask = 3

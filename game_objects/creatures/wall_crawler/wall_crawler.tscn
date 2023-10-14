@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bgtf77g65ktfx"]
+[gd_scene load_steps=18 format=3 uid="uid://bgtf77g65ktfx"]
 
 [ext_resource type="Script" path="res://0_scripts/creatures/wall_crawler/wall_crawler.gd" id="1_vy7on"]
 [ext_resource type="Texture2D" uid="uid://d3p5rrqtyw684" path="res://game_objects/creatures/wall_crawler/isolith-move.png" id="2_wmm5a"]
@@ -70,6 +70,9 @@ size = Vector2(59, 250)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_751ih"]
 height = 92.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_uvnke"]
+radius = 0.01
+
 [node name="wall_crawler" type="CharacterBody2D"]
 position = Vector2(937, 0)
 script = ExtResource("1_vy7on")
@@ -86,7 +89,7 @@ shape = SubResource("RectangleShape2D_c62yb")
 [node name="enemy_health_bar" parent="." instance=ExtResource("4_j4dpo")]
 position = Vector2(0, -120)
 title = "Wall Crawler"
-max_health = 100.0
+max_health = 50.0
 
 [node name="has_dangerous_part" parent="." instance=ExtResource("3_vsy7o")]
 
@@ -101,3 +104,12 @@ script = ExtResource("5_11duk")
 
 [node name="can_float_away" type="Node" parent="."]
 script = ExtResource("6_xgiqr")
+
+[node name="trigger_distance" type="Area2D" parent="."]
+position = Vector2(0, 124)
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="trigger_distance"]
+shape = SubResource("CircleShape2D_uvnke")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[connection signal="body_entered" from="trigger_distance" to="." method="on_trigger_distance_body_entered"]

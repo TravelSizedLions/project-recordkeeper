@@ -40,7 +40,7 @@ shape = SubResource("RectangleShape2D_f40ul")
 
 [node name="projectile_emitter" type="Node2D" parent="cannon"]
 script = ExtResource("5_35tro")
-frequency = 3.0
+frequency = 1.5
 projectile = ExtResource("6_dxu6t")
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="."]

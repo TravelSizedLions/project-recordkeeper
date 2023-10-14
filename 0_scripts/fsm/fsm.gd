@@ -35,7 +35,9 @@ func get_state_key(script: GDScript):
 	
 func add_state_node(script: GDScript):
 	var node = N.create(script, self, owner)
+	node.name = get_state_key(script)
 	node.transitioner.connect(on_state_transition)
+	print('FSM: adding state now: %s' % [node.name])
 	states[node.name] = node
 	return node
 

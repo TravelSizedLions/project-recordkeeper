@@ -64,32 +64,32 @@ func _ready():
 	collision_layer = CollisionLayer.Default
 	collision_mask = CollisionLayer.Default | CollisionLayer.Projectiles | CollisionLayer.Enemies
 
-func _process(delta):
+func _process(frameDelta):
 	CharUtils.update_facing(self)
-	process_flicker(delta)
+	process_flicker(frameDelta)
 
-func _physics_process(delta):
-	CharUtils.apply_gravity(self, delta)
-	process_invincibility(delta)
-	process_health_regen(delta)
+func _physics_process(fixedDelta):
+	CharUtils.apply_gravity(self, fixedDelta)
+	process_invincibility(fixedDelta)
+	process_health_regen(fixedDelta)
 	move_and_slide()
 
-func process_health_regen(delta):
+func process_health_regen(fixedDelta):
 	if get_active_character() == Character.Jared:
-		update_ephraim_current_health(_ephraim_current_health + ephraim_settings.regen_speed*delta)
+		update_ephraim_current_health(_ephraim_current_health + ephraim_settings.regen_speed*fixedDelta)
 	else:
-		update_jared_current_health(_jared_current_health + jared_settings.regen_speed*delta)
+		update_jared_current_health(_jared_current_health + jared_settings.regen_speed*fixedDelta)
 
-func process_flicker(delta):
+func process_flicker(frameDelta):
 	if is_invincible():
-		__flicker_timer -= delta
+		__flicker_timer -= frameDelta
 		if __flicker_timer < 0:
 			__flicker_timer = 1/(2*flicker_frequency)
 			toggle_sprite()
 
-func process_invincibility(delta):
+func process_invincibility(fixedDelta):
 	if is_invincible():
-		__invincible_timer -= delta
+		__invincible_timer -= fixedDelta
 		if not is_invincible():
 			show_sprite()
 	
@@ -103,17 +103,14 @@ func pressed_swap():
 	return Input.is_action_just_pressed('swap')
 
 func pressed_special():
-	return can_use_special() && Input.is_action_just_pressed('special')
+	return Input.is_action_just_pressed('special')
 
 func released_special():
-	return can_use_special() && Input.is_action_just_released('special')
+	return Input.is_action_just_released('special')
 
 func holding_special():
-	return can_use_special() && Input.is_action_pressed('special')
+	return Input.is_action_pressed('special')
 
-func can_use_special():
-	return get_active_character() == Character.Ephraim
-	
 func handle_run():
 	var direction = __get_movement_axis()
 	if direction:
@@ -137,10 +134,22 @@ func swap_player():
 func is_firing():
 	if __using_controller():
 		var axis: Vector2 = Input.get_vector('aim_left','aim_right','aim_up','aim_down')
-		return axis != Vector2.ZERO && !holding_special()
+		return axis != Vector2.ZERO
 	else:
 		# using mouse
-		return Input.is_action_pressed('mouse_fire') && !holding_special()
+		return Input.is_action_pressed('mouse_fire')
+
+func pressed_fire():
+	if __using_controller():
+		return Input.is_action_just_pressed('charge_fire')
+	else:
+		return Input.is_action_just_pressed('mouse_fire')
+
+func released_fire():
+	if __using_controller():
+		return Input.is_action_just_released('charge_fire')
+	else:
+		return Input.is_action_just_released('mouse_fire')
 
 func is_aiming():
 	if __using_controller():
@@ -196,10 +205,14 @@ func update_ephraim_current_health(v: float):
 
 func __swap_to_ephraim():
 	__set_up_player(ephraim_settings)
+	N.get_child(self, ChargeLauncher).enable()
+	N.get_child(self, Shooter).disable()
 	characters_swapped.emit(Character.Ephraim)
 
 func __swap_to_jared():
 	__set_up_player(jared_settings)
+	N.get_child(self, ChargeLauncher).disable()
+	N.get_child(self, Shooter).enable()
 	characters_swapped.emit(Character.Jared)
 
 func get_active_character() -> Character:
@@ -217,7 +230,6 @@ func die():
 	on_player_died.emit()
 
 func handle_fall():
-	push_error("handling fall")
 	stop_invincibility()
 	var died = take_damage(fall_damage)
 	if not died:

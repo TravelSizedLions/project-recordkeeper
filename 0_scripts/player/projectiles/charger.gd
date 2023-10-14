@@ -16,6 +16,9 @@ func percent_charged():
 func reset_charge():
 	__charge = -1
 
+func set_charge_percent(percent: float):
+	__charge = clamp(percent*__max_charge_time, 0, __max_charge_time)
+
 func set_max_charge_time(time: float):
 	__max_charge_time = time
 

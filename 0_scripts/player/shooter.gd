@@ -1,11 +1,16 @@
 extends Node2D
+class_name Shooter
 
 @onready var player: Player = get_tree().get_first_node_in_group('player')
 @onready var emitter: Node2D = $emitter
 
+var __enabled: bool = true
 var timer = 0
 
 func _physics_process(delta):
+	if not __enabled:
+		return
+
 	__update_rotation()
 	timer -= delta
 	if player.is_firing():
@@ -25,3 +30,9 @@ func __fire():
 	projectile.from_player()
 	projectile.set_initial_position(emitter.global_position)
 	projectile.set_initial_velocity(direction, speed)
+
+func enable():
+	__enabled = true
+
+func disable():
+	__enabled = false

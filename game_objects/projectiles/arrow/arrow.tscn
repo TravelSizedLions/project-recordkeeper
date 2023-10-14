@@ -31,7 +31,7 @@ script = ExtResource("5_8xq6g")
 
 [node name="causes_damage_on_hit_behavior" type="Node2D" parent="."]
 script = ExtResource("6_jveqb")
-damage = 3.0
+damage = 5.0
 
 [connection signal="body_entered" from="." to="." method="on_body_entered"]
 [connection signal="body_shape_entered" from="." to="." method="on_body_shape_entered"]
