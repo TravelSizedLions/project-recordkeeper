@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 config/icon="res://icon.svg"
 
+[aseprite_importers]
+
+aseprite_executable_path="A:/Games/SteamLibrary/steamapps/common/Aseprite/Aseprite.exe"
+
 [autoload]
 
 tree_accessor="*res://0_scripts/singletons/tree_accessor.gd"
@@ -36,7 +40,7 @@ naming/default_signal_callback_to_self_name="on_{signal_name}"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/nklbdev.aseprite_importers/plugin.cfg")
 
 [input]
 

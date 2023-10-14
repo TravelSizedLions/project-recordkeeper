@@ -1,13 +1,5 @@
-
-# working documents
-*.psd
-*.fla
-*.aseprite
-*.ase
-
 # Godot 4+ specific ignores
 .godot/
-addons/
 
 # Godot-specific ignores
 .import/
@@ -21,3 +13,7 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+
+# other stuff
+addons/gut/
