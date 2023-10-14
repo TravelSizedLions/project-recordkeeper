@@ -11,7 +11,7 @@ func __on_initial_velocity_set(direction: Vector2, speed: float):
 	apply_central_impulse(direction*speed)
 	rotation = direction.angle()
 
-func _integrate_forces(_state):
+func _physics_process(_delta):
 	if not freeze:
-		rotation = linear_velocity.angle()
+		global_rotation = linear_velocity.angle()
 

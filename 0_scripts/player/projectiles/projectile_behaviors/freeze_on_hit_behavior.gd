@@ -12,6 +12,8 @@ func freeze_projectile(body):
 	var collider: CollisionShape2D = get_node('../collision_shape_2d')
 	collider.queue_free()
 	
+	# Detach projectile from its current parent and attach it
+	# to whatever it hit.
 	var parent = self.projectile.get_parent()
 	if parent:
 		var pos = self.projectile.global_position
