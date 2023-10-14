@@ -2,7 +2,6 @@
 * text=auto
 
 # Image
-*.aseprite  filter=lfs diff=lfs merge=lfs -text
 *.ai        filter=lfs diff=lfs merge=lfs -text
 *.apng      filter=lfs diff=lfs merge=lfs -text
 *.astc      filter=lfs diff=lfs merge=lfs -text
@@ -16,7 +15,6 @@
 *.jpg       filter=lfs diff=lfs merge=lfs -text
 *.ktx       filter=lfs diff=lfs merge=lfs -text
 *.png       filter=lfs diff=lfs merge=lfs -text
-*.psd       filter=lfs diff=lfs merge=lfs -text
 *.pvr       filter=lfs diff=lfs merge=lfs -text
 *.svg       filter=lfs diff=lfs merge=lfs -text
 *.svgz      filter=lfs diff=lfs merge=lfs -text
@@ -45,3 +43,9 @@
 *.mpg   filter=lfs diff=lfs merge=lfs -text
 *.ogv   filter=lfs diff=lfs merge=lfs -text
 *.wmv   filter=lfs diff=lfs merge=lfs -text
+
+# Source working documents
+*.psd       filter=lfs diff=lfs merge=lfs -text
+*.fla				filter=lfs diff=lfs merge=lfs -text
+*.aseprite  filter=lfs diff=lfs merge=lfs -text
+*.ase  			filter=lfs diff=lfs merge=lfs -text
