@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://b8oq0gad1agkh"]
 
-[ext_resource type="Texture2D" uid="uid://cab83sn4klvsh" path="res://game_objects/creatures/stinger/temp_square.png" id="1_1uf72"]
 [ext_resource type="Script" path="res://0_scripts/creatures/stinger/stinger.gd" id="1_fld37"]
 [ext_resource type="PackedScene" uid="uid://b5eg8gc3f4yjh" path="res://game_objects/creatures/has_dangerous_part.tscn" id="2_2m3wj"]
+[ext_resource type="Texture2D" uid="uid://b6q8ccwoi5b02" path="res://shared_art/temp-square.png" id="2_38cps"]
 [ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar_position.tscn" id="2_u5utg"]
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/shoots_at_player.gd" id="3_hkars"]
 [ext_resource type="PackedScene" uid="uid://dr54j2eq8jsw7" path="res://game_objects/projectiles/bullet/enemy_bullet.tscn" id="4_udkw0"]
@@ -25,7 +25,7 @@ min_follow_dist = 150
 
 [node name="sprite_2d" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
-texture = ExtResource("1_1uf72")
+texture = ExtResource("2_38cps")
 
 [node name="enemy_health_bar" parent="." instance=ExtResource("2_u5utg")]
 position = Vector2(0, -19)

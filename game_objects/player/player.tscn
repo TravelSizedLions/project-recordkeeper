@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://0_scripts/fsm/fsm.gd" id="3_l0od8"]
 [ext_resource type="Resource" uid="uid://dnbjb7k87ln6t" path="res://settings/ephraim.settings.tres" id="3_mx0id"]
 [ext_resource type="Script" path="res://0_scripts/player/player_states/jared/jared_idle_state.gd" id="4_jhcgf"]
-[ext_resource type="Texture2D" uid="uid://watnixp8ywyj" path="res://game_objects/player/shooter_TEMP.png" id="7_l4blp"]
+[ext_resource type="Texture2D" uid="uid://b6q8ccwoi5b02" path="res://shared_art/temp-square.png" id="7_1ajgq"]
 [ext_resource type="Script" path="res://0_scripts/player/shooter.gd" id="7_ryjvn"]
 [ext_resource type="Script" path="res://0_scripts/player/projectiles/charge_launcher.gd" id="9_k30ic"]
 [ext_resource type="PackedScene" uid="uid://ckohyum7ndxpx" path="res://game_objects/projectiles/glowfly/glowfly_projectile.tscn" id="10_ehee7"]
@@ -20,7 +20,7 @@ radius = 6.0
 height = 32.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xnp18"]
-size = Vector2(640, 1100)
+size = Vector2(1200, 2040)
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_5e45p")
@@ -44,14 +44,14 @@ script = ExtResource("3_l0od8")
 start_state = ExtResource("4_jhcgf")
 
 [node name="shooter" type="Sprite2D" parent="."]
-scale = Vector2(1.5, 1)
-texture = ExtResource("7_l4blp")
+scale = Vector2(0.5, 0.063)
+texture = ExtResource("7_1ajgq")
 centered = false
 offset = Vector2(0, -2)
 script = ExtResource("7_ryjvn")
 
 [node name="emitter" type="Node2D" parent="shooter"]
-position = Vector2(16, 0)
+position = Vector2(38, 15.873)
 
 [node name="charge_launcher" type="Node2D" parent="."]
 script = ExtResource("9_k30ic")
