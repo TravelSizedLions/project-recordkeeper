@@ -54,7 +54,9 @@ func _physics_process(physicsDelta):
 	if not __enabled:
 		return
 
-	handle_main(physicsDelta)
+	if not special_charger.is_charging():
+		handle_main(physicsDelta)
+	
 	if not main_charger.is_charging():
 		handle_special(physicsDelta)
 
