@@ -103,17 +103,14 @@ func pressed_swap():
 	return Input.is_action_just_pressed('swap')
 
 func pressed_special():
-	return can_use_special() && Input.is_action_just_pressed('special')
+	return Input.is_action_just_pressed('special')
 
 func released_special():
-	return can_use_special() && Input.is_action_just_released('special')
+	return Input.is_action_just_released('special')
 
 func holding_special():
-	return can_use_special() && Input.is_action_pressed('special')
+	return Input.is_action_pressed('special')
 
-func can_use_special():
-	return get_active_character() == Character.Ephraim
-	
 func handle_run():
 	var direction = __get_movement_axis()
 	if direction:
@@ -137,10 +134,22 @@ func swap_player():
 func is_firing():
 	if __using_controller():
 		var axis: Vector2 = Input.get_vector('aim_left','aim_right','aim_up','aim_down')
-		return axis != Vector2.ZERO && !holding_special()
+		return axis != Vector2.ZERO
 	else:
 		# using mouse
-		return Input.is_action_pressed('mouse_fire') && !holding_special()
+		return Input.is_action_pressed('mouse_fire')
+
+func pressed_fire():
+	if __using_controller():
+		return Input.is_action_just_pressed('charge_fire')
+	else:
+		return Input.is_action_just_pressed('mouse_fire')
+
+func released_fire():
+	if __using_controller():
+		return Input.is_action_just_released('charge_fire')
+	else:
+		return Input.is_action_just_released('mouse_fire')
 
 func is_aiming():
 	if __using_controller():
@@ -196,10 +205,14 @@ func update_ephraim_current_health(v: float):
 
 func __swap_to_ephraim():
 	__set_up_player(ephraim_settings)
+	N.get_child(self, ChargeLauncher).enable()
+	N.get_child(self, Shooter).disable()
 	characters_swapped.emit(Character.Ephraim)
 
 func __swap_to_jared():
 	__set_up_player(jared_settings)
+	N.get_child(self, ChargeLauncher).disable()
+	N.get_child(self, Shooter).enable()
 	characters_swapped.emit(Character.Jared)
 
 func get_active_character() -> Character:
