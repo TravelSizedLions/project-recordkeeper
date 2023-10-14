@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bo5v566korn74"]
+[gd_scene load_steps=7 format=3 uid="uid://bxdfjwf0b3ncg"]
 
 [ext_resource type="TileSet" uid="uid://dv5q688tstax2" path="res://areas/test_tiles.tres" id="1_v4tn1"]
 [ext_resource type="PackedScene" uid="uid://dnt442vl8yfwl" path="res://game_objects/creatures/spiralizer/spiralizer.tscn" id="2_nvyby"]

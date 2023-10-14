@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://0_scripts/environment/area_loader.gd" id="1_e6fc5"]
 [ext_resource type="Script" path="res://0_scripts/camera/follow_player.gd" id="2_fejqm"]
-[ext_resource type="PackedScene" path="res://areas/playtest_level.tscn" id="2_vpxpy"]
+[ext_resource type="PackedScene" uid="uid://bxdfjwf0b3ncg" path="res://areas/playtest_level.tscn" id="2_vpxpy"]
 [ext_resource type="PackedScene" uid="uid://dsikxkesnwusy" path="res://game_objects/player/player.tscn" id="4_8e0l1"]
 [ext_resource type="PackedScene" uid="uid://sbbs1jakqhju" path="res://game_objects/player/blizz.tscn" id="5_nmqjf"]
 [ext_resource type="PackedScene" uid="uid://b30vuoowyqtls" path="res://game_objects/ui/player_hud.tscn" id="6_6tlbe"]
@@ -28,8 +28,7 @@ drag_bottom_margin = 0.05
 script = ExtResource("2_fejqm")
 
 [node name="player" parent="." instance=ExtResource("4_8e0l1")]
-position = Vector2(378, 417)
-starting_character = 1
+position = Vector2(362, 424)
 
 [node name="blizz" parent="." instance=ExtResource("5_nmqjf")]
 modulate = Color(1, 1, 1, 0.501961)
