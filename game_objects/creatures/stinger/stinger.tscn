@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b8oq0gad1agkh"]
+[gd_scene load_steps=11 format=3 uid="uid://b8oq0gad1agkh"]
 
 [ext_resource type="Texture2D" uid="uid://cab83sn4klvsh" path="res://game_objects/creatures/stinger/temp_square.png" id="1_1uf72"]
 [ext_resource type="Script" path="res://0_scripts/creatures/stinger/stinger.gd" id="1_fld37"]
@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar_position.tscn" id="2_u5utg"]
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/shoots_at_player.gd" id="3_hkars"]
 [ext_resource type="PackedScene" uid="uid://dr54j2eq8jsw7" path="res://game_objects/projectiles/bullet/enemy_bullet.tscn" id="4_udkw0"]
-[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/gravitates_towards_player.gd" id="7_duca1"]
+[ext_resource type="Script" path="res://0_scripts/fsm/fsm.gd" id="8_2hed3"]
+[ext_resource type="Script" path="res://0_scripts/creatures/stinger/states/stinger_idle_state.gd" id="9_nwflv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8shrf"]
 size = Vector2(32, 32)
@@ -18,6 +19,9 @@ size = Vector2(32, 32)
 collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_fld37")
+deceleration = 600
+max_follow_speed = 12800
+min_follow_dist = 150
 
 [node name="sprite_2d" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
@@ -41,7 +45,6 @@ shape = SubResource("RectangleShape2D_oo34a")
 script = ExtResource("3_hkars")
 projectile = ExtResource("4_udkw0")
 
-[node name="gravitates_towards_player" type="Node2D" parent="."]
-script = ExtResource("7_duca1")
-gravitation_speed = 200
-max_speed = 300
+[node name="fsm" type="Node2D" parent="."]
+script = ExtResource("8_2hed3")
+start_state = ExtResource("9_nwflv")

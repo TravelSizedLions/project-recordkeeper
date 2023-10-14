@@ -48,3 +48,8 @@ func __on_exit():
 	
 func __on_animation_finished():
 	pass
+
+func _to_string():
+	var s = get_script().resource_path.get_file()
+	
+	return s

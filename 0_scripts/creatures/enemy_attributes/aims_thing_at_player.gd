@@ -5,4 +5,4 @@ class_name AimsThingAtPlayer
 @onready var player: Player = Player.retrieve()
 
 func _physics_process(_delta):
-	thing_to_aim.rotation = (player.global_position - thing_to_aim.global_position).angle()
+	thing_to_aim.global_rotation = (player.global_position - thing_to_aim.global_position).angle()
