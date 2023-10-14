@@ -22,8 +22,8 @@ tree_accessor="*res://0_scripts/singletons/tree_accessor.gd"
 
 [display]
 
-window/size/viewport_width=960
-window/size/viewport_height=540
+window/size/viewport_width=1800
+window/size/viewport_height=900
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
