@@ -1,0 +1,107 @@
+[gd_scene load_steps=20 format=3 uid="uid://c4d4237mu0in0"]
+
+[ext_resource type="Script" path="res://0_scripts/bosses/nightmare_blizz/nightmare_blizz.gd" id="1_qffis"]
+[ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar_position.tscn" id="2_3ywfr"]
+[ext_resource type="PackedScene" uid="uid://bs7iqdof6wv7a" path="res://game_objects/bosses/nightmare_blizz/shoots_extra_large_at_player.tscn" id="2_462pq"]
+[ext_resource type="PackedScene" uid="uid://j0wnajv1onum" path="res://game_objects/bosses/nightmare_blizz/starbust_four_point_clockwise.tscn" id="2_pcffg"]
+[ext_resource type="PackedScene" uid="uid://cekmkr43ghss3" path="res://game_objects/bosses/nightmare_blizz/shoots_large_at_player.tscn" id="3_hy41p"]
+[ext_resource type="PackedScene" uid="uid://cen1gckg52k7y" path="res://game_objects/bosses/nightmare_blizz/starbust_four_point_counterclockwise.tscn" id="3_pri85"]
+[ext_resource type="PackedScene" uid="uid://c2fdendmpn13b" path="res://game_objects/bosses/nightmare_blizz/blizz_idle.aseprite" id="3_svwjq"]
+[ext_resource type="Script" path="res://0_scripts/fsm/fsm.gd" id="4_hc03x"]
+[ext_resource type="Script" path="res://0_scripts/bosses/nightmare_blizz/states/nightmare_blizz_star_burst_state.gd" id="5_wbtqc"]
+[ext_resource type="Script" path="res://0_scripts/editor_tools/circle_gizmo.gd" id="6_ob3b4"]
+[ext_resource type="PackedScene" uid="uid://wmgp4de7pwwd" path="res://game_objects/bosses/nightmare_blizz/starburst_eightway_extra_large.tscn" id="7_28c1l"]
+[ext_resource type="PackedScene" uid="uid://onv3k1x1d1lv" path="res://game_objects/creatures/turretle/lesser_turret.tscn" id="7_rwfx0"]
+[ext_resource type="PackedScene" uid="uid://cvaxmgv8wqkvu" path="res://game_objects/creatures/stinger/lesser_stinger.tscn" id="8_k8kqw"]
+[ext_resource type="PackedScene" uid="uid://cm04c6170cp6t" path="res://game_objects/bosses/nightmare_blizz/shoots_small_at_player.tscn" id="8_ryn6q"]
+[ext_resource type="PackedScene" uid="uid://d011wre6pfeyl" path="res://game_objects/bosses/nightmare_blizz/starburst_sixteenway_large.tscn" id="8_xtuey"]
+[ext_resource type="PackedScene" uid="uid://bk1cssj4asnjx" path="res://game_objects/bosses/nightmare_blizz/starburst_fourway_bullets_spawn_bullets.tscn" id="9_ajoes"]
+[ext_resource type="Script" path="res://0_scripts/editor_tools/target_gizmo.gd" id="10_1al1i"]
+[ext_resource type="Script" path="res://0_scripts/editor_tools/t_gizmo.gd" id="11_ud3dg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wqk6l"]
+radius = 6.0
+height = 32.0
+
+[node name="boss_staging" type="Node2D"]
+
+[node name="nightmare_blizz" type="CharacterBody2D" parent="." node_paths=PackedStringArray("__targets", "__turret_targets", "__stinger_spawn_area")]
+position = Vector2(464, 304)
+collision_mask = 3
+script = ExtResource("1_qffis")
+move_time_seconds = 0.66
+linger_time = 0.25
+follow_hard_acceleration = 800.0
+__min_follow_distance = 200.0
+__shooter_templates = [ExtResource("2_462pq"), ExtResource("3_hy41p"), ExtResource("8_ryn6q")]
+__burst_patterns = [ExtResource("2_pcffg"), ExtResource("3_pri85"), ExtResource("7_28c1l"), ExtResource("8_xtuey"), ExtResource("9_ajoes")]
+follow_duration_seconds = 6.0
+__targets = NodePath("../targets")
+__turret_targets = NodePath("../turret_positions")
+__stinger_spawn_area = NodePath("stinger_spawn_radius")
+__turret_template = ExtResource("7_rwfx0")
+__stinger_template = ExtResource("8_k8kqw")
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="nightmare_blizz"]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_wqk6l")
+
+[node name="blizz_idle" parent="nightmare_blizz" instance=ExtResource("3_svwjq")]
+modulate = Color(0.780392, 0.407843, 0.776471, 1)
+frame_progress = 0.404576
+
+[node name="fsm" type="Node2D" parent="nightmare_blizz"]
+script = ExtResource("4_hc03x")
+start_state = ExtResource("5_wbtqc")
+
+[node name="stinger_spawn_radius" type="Node2D" parent="nightmare_blizz"]
+position = Vector2(1, 1)
+script = ExtResource("6_ob3b4")
+radius = 100.0
+color = Color(0, 1, 1, 0.12549)
+stroke_width = 0.5
+
+[node name="has_health" parent="nightmare_blizz" instance=ExtResource("2_3ywfr")]
+position = Vector2(0, -43)
+title = "The Nightmare"
+max_health = 200.0
+
+[node name="targets" type="Node2D" parent="."]
+
+[node name="t1" type="Node2D" parent="targets"]
+position = Vector2(463, 429)
+script = ExtResource("10_1al1i")
+
+[node name="t2" type="Node2D" parent="targets"]
+position = Vector2(173, 358)
+script = ExtResource("10_1al1i")
+
+[node name="t3" type="Node2D" parent="targets"]
+position = Vector2(174, 250)
+script = ExtResource("10_1al1i")
+
+[node name="t4" type="Node2D" parent="targets"]
+position = Vector2(463, 175)
+script = ExtResource("10_1al1i")
+
+[node name="t5" type="Node2D" parent="targets"]
+position = Vector2(800, 243)
+script = ExtResource("10_1al1i")
+
+[node name="t6" type="Node2D" parent="targets"]
+position = Vector2(795, 367)
+script = ExtResource("10_1al1i")
+
+[node name="turret_positions" type="Node2D" parent="."]
+
+[node name="left" type="Node2D" parent="turret_positions"]
+position = Vector2(-16, 411)
+rotation = 1.57079
+script = ExtResource("11_ud3dg")
+color = Color(1, 0, 0, 1)
+
+[node name="right" type="Node2D" parent="turret_positions"]
+position = Vector2(960, 411)
+rotation = -1.5708
+script = ExtResource("11_ud3dg")
+color = Color(1, 0, 0, 1)

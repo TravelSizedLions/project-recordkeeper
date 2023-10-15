@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://du3ybbnwe2oj"]
+
+[ext_resource type="Script" path="res://0_scripts/player/projectiles/kinematic_projectile.gd" id="1_rxa4h"]
+[ext_resource type="Resource" uid="uid://o3mqk1ikkpfh" path="res://settings/projectiles.settings.tres" id="2_m4fno"]
+[ext_resource type="Texture2D" uid="uid://bf3618g2u6v8m" path="res://game_objects/projectiles/bullet/bullet_extra_large.png" id="3_443wr"]
+[ext_resource type="Script" path="res://0_scripts/player/projectiles/projectile_behaviors/destroy_on_hit_behavior.gd" id="4_jt7oo"]
+[ext_resource type="Script" path="res://0_scripts/player/projectiles/projectile_behaviors/causes_damage_on_hit_behavior.gd" id="5_fv01g"]
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/projectile_emitter.gd" id="6_jvitm"]
+[ext_resource type="PackedScene" uid="uid://dr54j2eq8jsw7" path="res://game_objects/projectiles/bullet/enemy_bullet.tscn" id="8_6mpfq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lg6ob"]
+radius = 15.0
+
+[node name="enemy_bullet" type="RigidBody2D"]
+gravity_scale = 0.0
+lock_rotation = true
+continuous_cd = 2
+script = ExtResource("1_rxa4h")
+settings = ExtResource("2_m4fno")
+
+[node name="sprite_2d" type="Sprite2D" parent="."]
+modulate = Color(0.882353, 0.45098, 1, 1)
+texture = ExtResource("3_443wr")
+
+[node name="destroy_on_contact" type="Node2D" parent="."]
+script = ExtResource("4_jt7oo")
+
+[node name="causes_damage_on_hit_behavior" type="Node2D" parent="."]
+script = ExtResource("5_fv01g")
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lg6ob")
+
+[node name="starburst" type="Node2D" parent="."]
+
+[node name="projectile_emitter_2" type="Node2D" parent="starburst"]
+rotation = 1.5708
+script = ExtResource("6_jvitm")
+frequency = 0.25
+projectile = ExtResource("8_6mpfq")
+
+[node name="projectile_emitter_4" type="Node2D" parent="starburst"]
+rotation = 4.71239
+script = ExtResource("6_jvitm")
+frequency = 0.25
+projectile = ExtResource("8_6mpfq")
+
+[connection signal="body_entered" from="." to="." method="on_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="on_body_shape_entered"]

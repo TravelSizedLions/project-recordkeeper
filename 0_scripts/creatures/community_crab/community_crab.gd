@@ -9,6 +9,9 @@ class_name CommunityCrab
 @export var min_follow_dist = 100
 @export var max_follow_dist = 500
 
+func _ready():
+	N.get_child(self, FSM).start()
+
 func _process(_delta):
 	if _enabled:
 		CharUtils.update_facing(self)

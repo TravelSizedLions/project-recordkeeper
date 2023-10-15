@@ -6,9 +6,10 @@ class_name FSM
 var states: Dictionary = {}
 var current_state: State = null;
 
-func _enter_tree():
+func start():
+	owner = get_parent()
 	if start_state:
-		current_state = add_state_node(start_state)
+		on_state_transition(start_state)
 	else:
 		push_error('no start state found for FSM "%s" on "%s"' % [self, owner])
 
@@ -26,7 +27,9 @@ func on_state_transition(target_state: GDScript):
 	if not next_state:
 		next_state = add_state_node(target_state)
 
-	current_state.exit()
+	if current_state:
+		current_state.exit()
+
 	current_state = next_state
 	current_state.enter()
 

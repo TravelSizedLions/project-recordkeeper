@@ -43,6 +43,7 @@ static func get_child(node: Node, type, name: String = ""):
 
 	return null
 
+## Gets all children of a specific type, including the node in question if it's the correct type.
 static func get_all_children(node: Node, type):
 	if not node:
 		return []

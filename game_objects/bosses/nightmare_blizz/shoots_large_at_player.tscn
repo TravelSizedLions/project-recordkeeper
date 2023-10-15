@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cekmkr43ghss3"]
+
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/shoots_at_player.gd" id="1_t50eg"]
+[ext_resource type="PackedScene" uid="uid://bx04ep0iyl7f1" path="res://game_objects/projectiles/bullet/enemy_bullet_large.tscn" id="2_uc4mn"]
+
+[node name="shoots_large_at_player" type="Node2D"]
+script = ExtResource("1_t50eg")
+projectile = ExtResource("2_uc4mn")
+fire_every = 0.33
+speed = 300.0
+spawn_radius = 30.0

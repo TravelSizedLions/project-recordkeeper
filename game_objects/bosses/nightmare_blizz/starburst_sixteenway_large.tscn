@@ -1,0 +1,121 @@
+[gd_scene load_steps=3 format=3 uid="uid://d011wre6pfeyl"]
+
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/projectile_emitter.gd" id="1_hyv6q"]
+[ext_resource type="PackedScene" uid="uid://bx04ep0iyl7f1" path="res://game_objects/projectiles/bullet/enemy_bullet_large.tscn" id="2_la653"]
+
+[node name="starburst_sixteenway_large" type="Node2D"]
+
+[node name="node_2d" type="Node2D" parent="."]
+
+[node name="projectile_emitter" type="Node2D" parent="node_2d"]
+script = ExtResource("1_hyv6q")
+frequency = 0.33
+spawn_radius = 30.0
+projectile = ExtResource("2_la653")
+
+[node name="projectile_emitter_2" type="Node2D" parent="node_2d"]
+rotation = 0.785398
+script = ExtResource("1_hyv6q")
+frequency = 0.33
+spawn_radius = 30.0
+projectile = ExtResource("2_la653")
+
+[node name="projectile_emitter_3" type="Node2D" parent="node_2d"]
+rotation = 1.5708
+script = ExtResource("1_hyv6q")
+frequency = 0.33
+spawn_radius = 30.0
+projectile = ExtResource("2_la653")
+
+[node name="projectile_emitter_4" type="Node2D" parent="node_2d"]
+rotation = 2.35619
+script = ExtResource("1_hyv6q")
+frequency = 0.33
+spawn_radius = 30.0
+projectile = ExtResource("2_la653")
+
+[node name="projectile_emitter_5" type="Node2D" parent="node_2d"]
+rotation = 3.14159
+script = ExtResource("1_hyv6q")
+frequency = 0.33
+spawn_radius = 30.0
+projectile = ExtResource("2_la653")
+
+[node name="projectile_emitter_6" type="Node2D" parent="node_2d"]
+rotation = -2.3562
+script = ExtResource("1_hyv6q")
+frequency = 0.33
+spawn_radius = 30.0
+projectile = ExtResource("2_la653")
+
+[node name="projectile_emitter_7" type="Node2D" parent="node_2d"]
+rotation = -1.5708
+script = ExtResource("1_hyv6q")
+frequency = 0.33
+spawn_radius = 30.0
+projectile = ExtResource("2_la653")
+
+[node name="projectile_emitter_8" type="Node2D" parent="node_2d"]
+rotation = -0.785395
+script = ExtResource("1_hyv6q")
+frequency = 0.33
+spawn_radius = 30.0
+projectile = ExtResource("2_la653")
+
+[node name="node_2d_2" type="Node2D" parent="."]
+rotation = 0.392699
+
+[node name="projectile_emitter" type="Node2D" parent="node_2d_2"]
+script = ExtResource("1_hyv6q")
+frequency = 0.66
+spawn_radius = 30.0
+projectile = ExtResource("2_la653")
+
+[node name="projectile_emitter_2" type="Node2D" parent="node_2d_2"]
+rotation = 0.785398
+script = ExtResource("1_hyv6q")
+frequency = 0.66
+spawn_radius = 30.0
+projectile = ExtResource("2_la653")
+
+[node name="projectile_emitter_3" type="Node2D" parent="node_2d_2"]
+rotation = 1.5708
+script = ExtResource("1_hyv6q")
+frequency = 0.66
+spawn_radius = 30.0
+projectile = ExtResource("2_la653")
+
+[node name="projectile_emitter_4" type="Node2D" parent="node_2d_2"]
+rotation = 2.35619
+script = ExtResource("1_hyv6q")
+frequency = 0.66
+spawn_radius = 30.0
+projectile = ExtResource("2_la653")
+
+[node name="projectile_emitter_5" type="Node2D" parent="node_2d_2"]
+rotation = 3.14159
+script = ExtResource("1_hyv6q")
+frequency = 0.66
+spawn_radius = 30.0
+projectile = ExtResource("2_la653")
+
+[node name="projectile_emitter_6" type="Node2D" parent="node_2d_2"]
+rotation = -2.3562
+script = ExtResource("1_hyv6q")
+frequency = 0.66
+spawn_radius = 30.0
+projectile = ExtResource("2_la653")
+
+[node name="projectile_emitter_7" type="Node2D" parent="node_2d_2"]
+rotation = -1.5708
+script = ExtResource("1_hyv6q")
+frequency = 0.66
+spawn_radius = 30.0
+projectile = ExtResource("2_la653")
+
+[node name="projectile_emitter_8" type="Node2D" parent="node_2d_2"]
+rotation = -0.785395
+script = ExtResource("1_hyv6q")
+frequency = 0.66
+spawn_radius = 30.0
+projectile = ExtResource("2_la653")
