@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1y3xdx3sh1x2"]
+[gd_scene load_steps=9 format=3 uid="uid://b1y3xdx3sh1x2"]
 
 [ext_resource type="Script" path="res://0_scripts/environment/area_loader.gd" id="1_e6fc5"]
 [ext_resource type="Script" path="res://0_scripts/camera/follow_player.gd" id="2_fejqm"]
 [ext_resource type="PackedScene" uid="uid://bxdfjwf0b3ncg" path="res://areas/playtest_level.tscn" id="2_vpxpy"]
+[ext_resource type="PackedScene" uid="uid://bn5wuhwsvens7" path="res://areas/boss_area.tscn" id="3_26bta"]
 [ext_resource type="PackedScene" uid="uid://dsikxkesnwusy" path="res://game_objects/player/player.tscn" id="4_8e0l1"]
 [ext_resource type="PackedScene" uid="uid://sbbs1jakqhju" path="res://game_objects/player/blizz.tscn" id="5_nmqjf"]
 [ext_resource type="PackedScene" uid="uid://b30vuoowyqtls" path="res://game_objects/ui/player_hud.tscn" id="6_6tlbe"]
@@ -14,7 +15,7 @@
 script = ExtResource("1_e6fc5")
 default_area = ExtResource("2_vpxpy")
 
-[node name="playtest_level" parent="area_loader" instance=ExtResource("2_vpxpy")]
+[node name="boss_area" parent="area_loader" instance=ExtResource("3_26bta")]
 
 [node name="camera_2d" type="Camera2D" parent="."]
 process_callback = 0

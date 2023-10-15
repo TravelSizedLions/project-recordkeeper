@@ -24,8 +24,8 @@ static func retrieve():
 ## How quickly the character flickers while invincible (in cycles/second)
 @export var flicker_frequency: float
 
-@onready var fsm = $state_machine
-@onready var animator = $animated_sprite_2d
+@onready var fsm: FSM = N.get_child(self, FSM)
+@onready var animator: AnimatedSprite2D = N.get_child(self, AnimatedSprite2D)
 
 var settings: PlayerSettings
 
@@ -63,6 +63,7 @@ func _ready():
 	__last_grounded_position = respawn_position
 	collision_layer = CollisionLayer.Default
 	collision_mask = CollisionLayer.Default | CollisionLayer.Projectiles | CollisionLayer.Enemies
+	fsm.start()
 
 func _process(frameDelta):
 	CharUtils.update_facing(self)

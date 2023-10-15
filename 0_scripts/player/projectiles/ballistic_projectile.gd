@@ -14,4 +14,3 @@ func __on_initial_velocity_set(direction: Vector2, speed: float):
 func _physics_process(_delta):
 	if not freeze:
 		global_rotation = linear_velocity.angle()
-

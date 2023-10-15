@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://wmgp4de7pwwd"]
+
+[ext_resource type="PackedScene" uid="uid://chen8u3ntgfw2" path="res://game_objects/projectiles/bullet/enemy_bullet_extra_large.tscn" id="2_6doqq"]
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/projectile_emitter.gd" id="2_lw5y5"]
+
+[node name="starburst_eightway_extra_large" type="Node2D"]
+
+[node name="projectile_emitter" type="Node2D" parent="."]
+script = ExtResource("2_lw5y5")
+frequency = 0.5
+spawn_radius = 30.0
+projectile = ExtResource("2_6doqq")
+
+[node name="projectile_emitter_2" type="Node2D" parent="."]
+rotation = 0.785398
+script = ExtResource("2_lw5y5")
+frequency = 0.5
+spawn_radius = 30.0
+projectile = ExtResource("2_6doqq")
+
+[node name="projectile_emitter_3" type="Node2D" parent="."]
+rotation = 1.5708
+script = ExtResource("2_lw5y5")
+frequency = 0.5
+spawn_radius = 30.0
+projectile = ExtResource("2_6doqq")
+
+[node name="projectile_emitter_4" type="Node2D" parent="."]
+rotation = 2.35619
+script = ExtResource("2_lw5y5")
+frequency = 0.5
+spawn_radius = 30.0
+projectile = ExtResource("2_6doqq")
+
+[node name="projectile_emitter_5" type="Node2D" parent="."]
+rotation = 3.14159
+script = ExtResource("2_lw5y5")
+frequency = 0.5
+spawn_radius = 30.0
+projectile = ExtResource("2_6doqq")
+
+[node name="projectile_emitter_6" type="Node2D" parent="."]
+rotation = 3.92699
+script = ExtResource("2_lw5y5")
+frequency = 0.5
+spawn_radius = 30.0
+projectile = ExtResource("2_6doqq")
+
+[node name="projectile_emitter_7" type="Node2D" parent="."]
+rotation = 4.71239
+script = ExtResource("2_lw5y5")
+frequency = 0.5
+spawn_radius = 30.0
+projectile = ExtResource("2_6doqq")
+
+[node name="projectile_emitter_8" type="Node2D" parent="."]
+rotation = 5.49779
+script = ExtResource("2_lw5y5")
+frequency = 0.5
+spawn_radius = 30.0
+projectile = ExtResource("2_6doqq")

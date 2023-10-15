@@ -1,7 +1,7 @@
 extends Node2D
 class_name EnemyHealthBarPosition
 
-@onready var entity = owner
+@onready var entity = get_parent()
 
 ## The entity's title
 @export var title: String = ""
@@ -57,3 +57,9 @@ func take_damage(val: float):
 	if _current_health <= 0:
 		entity.queue_free()
 		entity_destroyed.emit()
+
+func get_current_health():
+	return _current_health
+
+func get_max_health():
+	return max_health

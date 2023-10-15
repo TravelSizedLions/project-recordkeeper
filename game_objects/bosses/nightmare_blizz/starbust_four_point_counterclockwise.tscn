@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://cen1gckg52k7y"]
+
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/rotates_thing.gd" id="1_sdycj"]
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/projectile_emitter.gd" id="2_45cal"]
+[ext_resource type="PackedScene" uid="uid://dr54j2eq8jsw7" path="res://game_objects/projectiles/bullet/enemy_bullet.tscn" id="3_wybj1"]
+
+[node name="starburst_four_point_counterclockwise" type="Node2D"]
+
+[node name="rotates_thing_randomly" type="Node2D" parent="."]
+script = ExtResource("1_sdycj")
+min_rotation_speed = -45.0
+max_rotation_speed = -90.0
+
+[node name="projectile_emitter" type="Node2D" parent="."]
+script = ExtResource("2_45cal")
+frequency = 0.2
+spawn_radius = 30.0
+projectile = ExtResource("3_wybj1")
+
+[node name="projectile_emitter_2" type="Node2D" parent="."]
+rotation = 1.5708
+script = ExtResource("2_45cal")
+frequency = 0.2
+spawn_radius = 30.0
+projectile = ExtResource("3_wybj1")
+
+[node name="projectile_emitter_3" type="Node2D" parent="."]
+rotation = 3.14159
+script = ExtResource("2_45cal")
+frequency = 0.2
+spawn_radius = 30.0
+projectile = ExtResource("3_wybj1")
+
+[node name="projectile_emitter_4" type="Node2D" parent="."]
+rotation = 4.71239
+script = ExtResource("2_45cal")
+frequency = 0.2
+spawn_radius = 30.0
+projectile = ExtResource("3_wybj1")

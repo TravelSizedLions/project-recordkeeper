@@ -3,6 +3,8 @@ class_name Enemy
 
 @export var _enabled: bool = true
 
+signal destroyed
+
 func _enter_tree():
 	if collision_layer == CollisionLayer.Default:
 		collision_layer = CollisionLayer.Enemies
@@ -10,6 +12,10 @@ func _enter_tree():
 	if collision_mask == CollisionLayer.Default:
 		collision_mask = CollisionLayer.Default | CollisionLayer.Projectiles
 	__on_tree_entered()
+
+func _exit_tree():
+	destroyed.emit(self)
+	__on_tree_exited()
 
 func disable():
 	_enabled = false
@@ -26,4 +32,7 @@ func __on_disabled():
 	pass
 
 func __on_enabled():
+	pass
+
+func __on_tree_exited():
 	pass

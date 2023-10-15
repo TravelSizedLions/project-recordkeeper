@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk1cssj4asnjx"]
+
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/projectile_emitter.gd" id="1_l3usr"]
+[ext_resource type="PackedScene" uid="uid://du3ybbnwe2oj" path="res://game_objects/projectiles/bullet/enemy_bullet_spawns_smaller_bullets.tscn" id="2_72ske"]
+
+[node name="starburst_fourway_bullets_spawn_bullets" type="Node2D"]
+
+[node name="projectile_emitter" type="Node2D" parent="."]
+script = ExtResource("1_l3usr")
+frequency = 0.5
+spawn_radius = 30.0
+projectile = ExtResource("2_72ske")
+
+[node name="projectile_emitter_5" type="Node2D" parent="."]
+rotation = 3.14159
+script = ExtResource("1_l3usr")
+frequency = 0.5
+spawn_radius = 30.0
+projectile = ExtResource("2_72ske")

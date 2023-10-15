@@ -12,6 +12,9 @@ class_name Stinger
 @export var min_follow_dist = 200
 @export var max_follow_dist = 1000
 
+func _ready():
+	N.get_child(self, FSM).start()
+
 func should_follow_player():
 	if not _enabled:
 		return false
@@ -29,7 +32,7 @@ func move_towards_player(physicsDelta: float):
 	if abs(dir.x) < abs(dir.y):
 		v = v + Vector2(dir.x*soft_acceleration, dir.y*hard_acceleration)*physicsDelta
 	else:
-		v = v + Vector2(dir.x*hard_acceleration, dir.y*hard_acceleration)*physicsDelta
+		v = v + Vector2(dir.x*hard_acceleration, dir.y*soft_acceleration)*physicsDelta
 	charbody.velocity = v
 
 	if charbody.velocity.length() > max_follow_speed:
