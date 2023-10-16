@@ -18,6 +18,7 @@ default_area = ExtResource("2_vpxpy")
 [node name="boss_area" parent="area_loader" instance=ExtResource("3_26bta")]
 
 [node name="camera_2d" type="Camera2D" parent="."]
+offset = Vector2(0, -120)
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 16.0
