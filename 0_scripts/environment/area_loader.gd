@@ -20,6 +20,10 @@ func reload():
 	var children = get_children()
 	var freed = []
 
+	var projectiles: Array = N.get_all_children(get_tree().root, Projectile)
+	for p in projectiles:
+		p.queue_free()
+
 	for child in children:
 		remove_child(child)
 		freed.append(child)

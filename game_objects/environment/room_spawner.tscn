@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5gppo3j6bluc"]
+
+[ext_resource type="Script" path="res://0_scripts/environment/area_trigger.gd" id="1_jkya0"]
+[ext_resource type="Script" path="res://0_scripts/triggerables/spawner.gd" id="2_h7ble"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rl7rr"]
+resource_local_to_scene = true
+size = Vector2(1126, 549)
+
+[node name="room_spawner" type="Area2D"]
+position = Vector2(7349, -176)
+script = ExtResource("1_jkya0")
+trigger_every_time = null
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
+position = Vector2(62, 18.5)
+shape = SubResource("RectangleShape2D_rl7rr")
+debug_color = Color(0, 0.6, 0.701961, 0.109804)
+
+[node name="spawn_point" type="Marker2D" parent="."]
+position = Vector2(649, -119)
+script = ExtResource("2_h7ble")
+
+[connection signal="body_entered" from="." to="." method="on_body_entered"]

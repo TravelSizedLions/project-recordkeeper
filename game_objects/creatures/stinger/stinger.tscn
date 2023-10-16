@@ -20,8 +20,8 @@ collision_layer = 16
 collision_mask = 18
 script = ExtResource("1_fld37")
 deceleration = 600
-max_follow_speed = 12800
-min_follow_dist = 150
+max_follow_speed = 80000
+min_follow_dist = 250
 
 [node name="sprite_2d" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)

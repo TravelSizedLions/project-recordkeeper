@@ -61,7 +61,7 @@ func _ready():
 	__swap_to_jared() if starting_character == Character.Jared else __swap_to_ephraim()
 	respawn_position = global_position
 	__last_grounded_position = respawn_position
-	collision_layer = CollisionLayer.Default
+	collision_layer = CollisionLayer.Player
 	collision_mask = CollisionLayer.Default | CollisionLayer.Projectiles | CollisionLayer.Enemies
 	fsm.start()
 

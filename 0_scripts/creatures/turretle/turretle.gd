@@ -13,6 +13,6 @@ func _ready():
 		var emitter: ProjectileEmitter = N.get_child(self, ProjectileEmitter)
 		emitter.speed = speed
 		emitter.frequency = frequency
-		offset = fmod(offset, frequency)
-		emitter.set_timer(frequency-offset)
+		emitter.offset = fmod(offset, frequency)
+		emitter.set_timer()
 	

@@ -3,7 +3,7 @@ extends Node2D
 class_name TGizmo
 
 @export var radius: float = 8
-@export var color: Color = Color.WHITE
+@export var color: Color = Color.GREEN
 @export var stroke_width: float = .5
 
 func _draw():

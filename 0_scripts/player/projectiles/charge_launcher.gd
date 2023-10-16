@@ -30,7 +30,7 @@ class_name ChargeLauncher
 @export var special_projectile: PackedScene
 
 @export_group('Burst Fire Settings')
-@export var number_of_projectiles: int = 3
+@export var burst_stages: Array[int]
 @export var time_between_projectiles: float = 0.1
 
 var __burst_fire_timer: float = -1
@@ -67,38 +67,33 @@ func handle_main(physicsDelta):
 		else:
 			main_charger.start_charge(physicsDelta)
 	elif main_charger.is_charging() && player.released_fire():
-		fire(main_charger, main_projectile)
-		if should_burst_fire():
-			start_burst_fire()
-		else:
-			main_charger.reset_charge()
+		__burst_fire_left = get_num_projectiles()
+		burst_fire()
 	
 	if __burst_fire_left == 0:
 		main_charger.handle_charge(physicsDelta)
 		update_aim(main_charger)
 
-	handle_burst_fire(physicsDelta)
+func get_num_projectiles():
+	var num_stages = burst_stages.size()
+	var actual_percent_charged = (main_charger.percent_charged() - start_charge_percentage)/(1-start_charge_percentage)
+	prints('charge', actual_percent_charged)
+	var charge_per_stage = 1.0/num_stages
 
-func should_burst_fire():
-	var actual_percent = main_charger.percent_charged() - start_charge_percentage
-	return actual_percent*charge_time_seconds > time_between_projectiles*number_of_projectiles
-
-func start_burst_fire():
-	__burst_fire_left = number_of_projectiles - 1
-	__burst_fire_timer = time_between_projectiles
-
-func handle_burst_fire(physicsDelta):
-	if __burst_fire_left == 0:
-		return
+	for stage in range(num_stages):
+		if (stage+1)*charge_per_stage >= actual_percent_charged:
+			prints('stage', stage)
+			return burst_stages[stage]
 	
-	__burst_fire_timer -= physicsDelta
-	if __burst_fire_timer < 0:
-		__burst_fire_timer = time_between_projectiles
-		__burst_fire_left -= 1
-		fire(main_charger, main_projectile)
-		if __burst_fire_left == 0:
-			main_charger.reset_charge()
+	return burst_stages[0]
 
+func burst_fire():
+	fire(main_charger, main_projectile)
+	__burst_fire_left -= 1
+	if __burst_fire_left > 0:
+		get_tree().create_timer(time_between_projectiles, false).timeout.connect(burst_fire)
+	else:
+		main_charger.reset_charge()
 
 func handle_special(physicsDelta):
 	if __remaining_special_ammo > 0 && player.pressed_special():
