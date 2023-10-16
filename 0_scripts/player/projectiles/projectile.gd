@@ -10,10 +10,10 @@ var __initial_position: Vector2
 signal on_hit
 
 func _enter_tree():
-	contact_monitor = true
-	max_contacts_reported = 100
-	__initial_position = global_position
-	from_player()
+		contact_monitor = true
+		max_contacts_reported = 100
+		__initial_position = global_position
+		from_player()
 
 func _physics_process(delta):
 	__timer -= delta
@@ -42,11 +42,11 @@ func on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_inde
 
 func from_player():
 	collision_layer = CollisionLayer.Projectiles
-	collision_mask = CollisionLayer.Default | CollisionLayer.EnemyProjectiles | CollisionLayer.Enemies | CollisionLayer.FloatingEnemies
+	collision_mask = CollisionLayer.EnemyProjectiles | CollisionLayer.Enemies | CollisionLayer.FloatingEnemies
 
 func from_enemy():
 	collision_layer = CollisionLayer.EnemyProjectiles
-	collision_mask = CollisionLayer.Default | CollisionLayer.Projectiles
+	collision_mask = CollisionLayer.Projectiles | CollisionLayer.Player
 
 func get_initial_position():
 	return __initial_position

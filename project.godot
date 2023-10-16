@@ -23,6 +23,7 @@ aseprite_executable_path="A:/Games/SteamLibrary/steamapps/common/Aseprite/Asepri
 [autoload]
 
 tree_accessor="*res://0_scripts/singletons/tree_accessor.gd"
+SoundManager="*res://addons/sound_manager/sound_manager.gd"
 
 [display]
 
@@ -40,7 +41,7 @@ naming/default_signal_callback_to_self_name="on_{signal_name}"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/nklbdev.aseprite_importers/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/nklbdev.aseprite_importers/plugin.cfg", "res://addons/sound_manager/plugin.cfg")
 
 [input]
 
@@ -112,6 +113,7 @@ charge_fire={
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="enemy_projectiles"
 2d_physics/layer_5="floating_enemies"
+2d_physics/layer_8="player"
 2d_physics/layer_32="auxiliary"
 
 [physics]

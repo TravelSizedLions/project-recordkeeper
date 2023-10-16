@@ -1,6 +1,25 @@
 extends Area2D
 class_name BulletBoundary
 
+@export var buffer: float = 50
+
+@onready var cam: Camera2D = N.find(Camera2D)
+var col: CollisionShape2D
+var shape: RectangleShape2D
+
+func _ready():
+	col = N.get_child(self, CollisionShape2D)
+	shape = col.shape
+	watch_viewport()
+	
+func _physics_process(_delta):
+	col.global_position = cam.get_screen_center_position()
+
+func watch_viewport():
+	var size = get_viewport_rect().size
+	shape.size = Vector2(size.y, size.x) + Vector2(2*buffer, 2*buffer)
+	col.global_position = cam.get_screen_center_position()
+
 func on_body_exited(body):
 	var projectile = N.get_child(body, Projectile)
 	if projectile:
