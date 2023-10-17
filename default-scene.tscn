@@ -45,11 +45,10 @@ shape = SubResource("RectangleShape2D_ickvo")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="player" parent="." instance=ExtResource("4_8e0l1")]
-position = Vector2(13160, -502)
+position = Vector2(425, 417)
 
 [node name="blizz" parent="." instance=ExtResource("5_nmqjf")]
 modulate = Color(1, 1, 1, 0.501961)
-z_index = -1
 
 [node name="kill_line" parent="." instance=ExtResource("6_dbvj0")]
 position = Vector2(0, 1000)

@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://cen1gckg52k7y" path="res://game_objects/bosses/nightmare_blizz/starbust_four_point_counterclockwise.tscn" id="3_pri85"]
 [ext_resource type="PackedScene" uid="uid://c2fdendmpn13b" path="res://game_objects/bosses/nightmare_blizz/blizz_idle.aseprite" id="3_svwjq"]
 [ext_resource type="Script" path="res://0_scripts/fsm/fsm.gd" id="4_hc03x"]
-[ext_resource type="Script" path="res://0_scripts/bosses/nightmare_blizz/states/nightmare_blizz_star_burst_state.gd" id="5_wbtqc"]
 [ext_resource type="Script" path="res://0_scripts/editor_tools/circle_gizmo.gd" id="6_ob3b4"]
 [ext_resource type="PackedScene" uid="uid://wmgp4de7pwwd" path="res://game_objects/bosses/nightmare_blizz/starburst_eightway_extra_large.tscn" id="7_28c1l"]
 [ext_resource type="PackedScene" uid="uid://onv3k1x1d1lv" path="res://game_objects/creatures/turretle/lesser_turret.tscn" id="7_rwfx0"]
@@ -18,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bk1cssj4asnjx" path="res://game_objects/bosses/nightmare_blizz/starburst_fourway_bullets_spawn_bullets.tscn" id="9_ajoes"]
 [ext_resource type="Script" path="res://0_scripts/editor_tools/target_gizmo.gd" id="10_1al1i"]
 [ext_resource type="Script" path="res://0_scripts/editor_tools/t_gizmo.gd" id="11_ud3dg"]
+[ext_resource type="Script" path="res://0_scripts/bosses/nightmare_blizz/states/nightmare_blizz_move_location_state.gd" id="14_o03e6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wqk6l"]
 radius = 6.0
@@ -27,7 +27,8 @@ height = 32.0
 
 [node name="nightmare_blizz" type="CharacterBody2D" parent="." node_paths=PackedStringArray("__targets", "__turret_targets", "__stinger_spawn_area")]
 position = Vector2(464, 304)
-collision_mask = 3
+collision_layer = 5
+collision_mask = 131
 script = ExtResource("1_qffis")
 move_time_seconds = 0.66
 linger_time = 0.25
@@ -52,7 +53,7 @@ frame_progress = 0.404576
 
 [node name="fsm" type="Node2D" parent="nightmare_blizz"]
 script = ExtResource("4_hc03x")
-start_state = ExtResource("5_wbtqc")
+start_state = ExtResource("14_o03e6")
 
 [node name="stinger_spawn_radius" type="Node2D" parent="nightmare_blizz"]
 position = Vector2(1, 1)

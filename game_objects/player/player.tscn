@@ -20,7 +20,6 @@ height = 32.0
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_5e45p")
-starting_character = null
 fall_damage = 1.0
 jared_settings = ExtResource("2_m85vd")
 ephraim_settings = ExtResource("3_mx0id")
@@ -32,6 +31,7 @@ position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_7e8aw")
 
 [node name="animated_sprite_2d" type="AnimatedSprite2D" parent="."]
+z_index = 1
 position = Vector2(4, -10)
 sprite_frames = ExtResource("2_50vnq")
 animation = &"idle"

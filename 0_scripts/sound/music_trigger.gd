@@ -1,4 +1,4 @@
-extends Node2D
+extends Triggerable
 class_name MusicTrigger
 
 @export var __start_automatically: bool = true
@@ -9,3 +9,6 @@ func _ready():
 	if __start_automatically and __music:
 		SoundManager.play_music(__music, 1)
 
+func _on_trigger():
+	if __music:
+		SoundManager.play_music(__music, 1)

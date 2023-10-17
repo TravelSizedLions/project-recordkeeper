@@ -33,10 +33,7 @@ class_name ChargeLauncher
 @export var burst_stages: Array[int]
 @export var time_between_projectiles: float = 0.1
 
-var __burst_fire_timer: float = -1
 var __burst_fire_left: int = 0
-
-
 var __enabled: bool = true
 var __remaining_special_ammo: int
 var __last_known_direction: Vector2
