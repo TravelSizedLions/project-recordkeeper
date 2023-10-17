@@ -42,11 +42,11 @@ func on_body_shape_entered(_body_rid, body, _body_shape_index, _local_shape_inde
 
 func from_player():
 	collision_layer = CollisionLayer.Projectiles
-	collision_mask = CollisionLayer.EnemyProjectiles | CollisionLayer.Enemies | CollisionLayer.FloatingEnemies
+	collision_mask = CollisionLayer.Default | CollisionLayer.EnemyProjectiles | CollisionLayer.Enemies | CollisionLayer.FloatingEnemies
 
 func from_enemy():
 	collision_layer = CollisionLayer.EnemyProjectiles
-	collision_mask = CollisionLayer.Projectiles | CollisionLayer.Player
+	collision_mask = CollisionLayer.Projectiles | CollisionLayer.PlayerCharacter
 
 func get_initial_position():
 	return __initial_position

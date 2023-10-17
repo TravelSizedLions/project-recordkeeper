@@ -61,7 +61,7 @@ func _ready():
 	__swap_to_jared() if starting_character == Character.Jared else __swap_to_ephraim()
 	respawn_position = global_position
 	__last_grounded_position = respawn_position
-	collision_layer = CollisionLayer.Player
+	collision_layer = CollisionLayer.PlayerCharacter
 	collision_mask = CollisionLayer.Default | CollisionLayer.Projectiles | CollisionLayer.Enemies
 	fsm.start()
 
@@ -226,9 +226,13 @@ func die():
 	reset_jared_health()
 	reset_ephraim_health()
 	stop_invincibility()
+	call_deferred('__after_died')
+
+func __after_died():
 	var area_loader: AreaLoader = get_tree().get_first_node_in_group('area_loader')
 	area_loader.reload()
 	on_player_died.emit()
+
 
 func handle_fall():
 	stop_invincibility()

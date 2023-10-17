@@ -12,6 +12,7 @@ func _on_trigger():
 func spawn():
 	if not __parent:
 		var instance = N.create_scene(__thing_to_spawn)
-		instance.global_position = global_position
+		if "global_position" in instance:
+			instance.global_position = global_position
 	else:
 		N.create_scene(__thing_to_spawn, __parent)

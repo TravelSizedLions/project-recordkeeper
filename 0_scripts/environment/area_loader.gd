@@ -18,18 +18,23 @@ func _ready():
 
 func reload():
 	var children = get_children()
-	var freed = []
 
-	var projectiles: Array = N.get_all_children(get_tree().root, Projectile)
-	for p in projectiles:
+	SoundManager.stop_music()
+
+	var root = get_tree().root
+	for p in N.get_all_children(root, Projectile):
 		p.queue_free()
 
-	for child in children:
-		remove_child(child)
-		freed.append(child)
-	
-	for child in freed:
-		child.queue_free()
+	for e in N.get_all_children(root, Enemy):
+		e.queue_free()
 
+	for c in children:
+		c.queue_free()
+
+	Triggerable.disable_triggers()
+	call_deferred('__after_reload')
+
+func __after_reload():
 	var reloaded: Node = current_area.instantiate()
-	call_deferred("add_child", reloaded)
+	add_child(reloaded)
+	get_tree().create_timer(3).timeout.connect(Triggerable.enable_triggers)

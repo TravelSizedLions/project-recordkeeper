@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0c3p5mil63qk"]
+[gd_scene load_steps=4 format=3 uid="uid://d0c3p5mil63qk"]
 
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/enemy_floating_ui.gd" id="1_khlt5"]
 [ext_resource type="Script" path="res://0_scripts/ui/enemy_health_bar.gd" id="2_frq1h"]
+[ext_resource type="Theme" uid="uid://dyp70yiyby0fk" path="res://game_objects/ui/enemy_health_bar.tres" id="2_yjmtb"]
 
 [node name="enemy_healthbar_ui" type="Node2D"]
 script = ExtResource("1_khlt5")
@@ -13,6 +14,7 @@ offset_left = -60.0
 offset_top = -54.0
 offset_right = -20.0
 offset_bottom = -14.0
+theme = ExtResource("2_yjmtb")
 
 [node name="v_box_container" type="VBoxContainer" parent="root_control"]
 layout_mode = 0
@@ -23,6 +25,7 @@ offset_bottom = 42.0
 
 [node name="label" type="Label" parent="root_control/v_box_container"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "<enemy name>"
 horizontal_alignment = 1
 
