@@ -5,6 +5,7 @@ class_name FSM
 
 var states: Dictionary = {}
 var current_state: State = null;
+var __started: bool = false
 
 func start():
 	owner = get_parent()
@@ -14,10 +15,12 @@ func start():
 		push_error('no start state found for FSM "%s" on "%s"' % [self, owner])
 
 func _process(delta):
-	current_state.process(delta)
+	if current_state:
+		current_state.process(delta)
 
 func _physics_process(delta):
-	current_state.physics_process(delta)
+	if current_state:
+		current_state.physics_process(delta)
 
 func on_state_transition(target_state: GDScript):
 	var next_state = states.get(
@@ -40,10 +43,8 @@ func add_state_node(script: GDScript):
 	var node = N.create(script, self, owner)
 	node.name = get_state_key(script)
 	node.transitioner.connect(on_state_transition)
-	print('FSM: adding state now: %s' % [node.name])
 	states[node.name] = node
 	return node
 
 func on_animation_finished():
-	print('animation finished!')
 	current_state.finished_animation()
