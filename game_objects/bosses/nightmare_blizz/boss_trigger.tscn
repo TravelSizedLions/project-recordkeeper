@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=3 uid="uid://bk14f1c0n417m"]
+
+[ext_resource type="PackedScene" uid="uid://c1r80obsqa44b" path="res://game_objects/environment/area_trigger_2d.tscn" id="1_hvaap"]
+[ext_resource type="Script" path="res://0_scripts/triggerables/spawner.gd" id="2_tvw7q"]
+[ext_resource type="PackedScene" uid="uid://c4d4237mu0in0" path="res://game_objects/bosses/nightmare_blizz/nightmare_blizz_staging.tscn" id="3_1hwnc"]
+[ext_resource type="Script" path="res://0_scripts/sound/stop_music_trigger.gd" id="4_6wisy"]
+[ext_resource type="Script" path="res://0_scripts/sound/music_with_intro.gd" id="5_c1anb"]
+[ext_resource type="AudioStream" uid="uid://8t1y8wjq5gs6" path="res://music/meganeko_cybergrind_intro.wav" id="6_8m32m"]
+[ext_resource type="AudioStream" uid="uid://stmfxdojjmdj" path="res://music/meganeko_cybergrind_loop.wav" id="7_upl8j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bp6il"]
+resource_local_to_scene = true
+size = Vector2(978, 29)
+
+[node name="boss_trigger" type="Node2D"]
+
+[node name="area_trigger_2d" parent="." instance=ExtResource("1_hvaap")]
+trigger_delay_seconds = 3.0
+
+[node name="collision_shape_2d" parent="area_trigger_2d" index="0"]
+position = Vector2(473, 468.5)
+shape = SubResource("RectangleShape2D_bp6il")
+
+[node name="boss_spawn" type="Node2D" parent="area_trigger_2d"]
+script = ExtResource("2_tvw7q")
+__thing_to_spawn = ExtResource("3_1hwnc")
+
+[node name="stop_music_trigger" type="Node2D" parent="area_trigger_2d"]
+script = ExtResource("4_6wisy")
+
+[node name="music_with_intro" type="Node2D" parent="area_trigger_2d"]
+script = ExtResource("5_c1anb")
+__start_automatically = false
+__intro = ExtResource("6_8m32m")
+__main_loop = ExtResource("7_upl8j")
+
+[editable path="area_trigger_2d"]
