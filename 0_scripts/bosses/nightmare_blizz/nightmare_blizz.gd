@@ -72,6 +72,9 @@ var __turrets: Array = []
 var __stingers: Array = []
 
 func _ready():
+	get_tree().create_timer(0.05).timeout.connect(start)
+
+func start():
 	N.get_child(self, FSM).start()
 
 func _exit_tree():
