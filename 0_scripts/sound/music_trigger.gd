@@ -7,8 +7,8 @@ class_name MusicTrigger
 
 func _ready():
 	if __start_automatically and __music:
-		SoundManager.play_music(__music, 1)
+		SoundManager.play_music(__music)
 
 func _on_trigger():
 	if __music:
-		SoundManager.play_music(__music, 1)
+		SoundManager.play_music(__music)

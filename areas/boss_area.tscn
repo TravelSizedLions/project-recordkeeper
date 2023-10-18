@@ -1,35 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://bn5wuhwsvens7"]
+[gd_scene load_steps=3 format=3 uid="uid://bn5wuhwsvens7"]
 
-[ext_resource type="PackedScene" uid="uid://c1r80obsqa44b" path="res://game_objects/environment/area_trigger_2d.tscn" id="1_e28dk"]
 [ext_resource type="Script" path="res://0_scripts/triggerables/spawner.gd" id="2_1ftas"]
-[ext_resource type="PackedScene" uid="uid://c4d4237mu0in0" path="res://game_objects/bosses/nightmare_blizz/nightmare_blizz_staging.tscn" id="2_14tg4"]
-[ext_resource type="Script" path="res://0_scripts/sound/stop_music_trigger.gd" id="4_4t85j"]
-[ext_resource type="PackedScene" uid="uid://b5y2pdyuhcv6f" path="res://music/cybergrind_loop.tscn" id="4_kxwxn"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bp6il"]
-resource_local_to_scene = true
-size = Vector2(978, 29)
+[ext_resource type="PackedScene" uid="uid://bk14f1c0n417m" path="res://game_objects/bosses/nightmare_blizz/boss_trigger.tscn" id="2_1we3r"]
 
 [node name="boss_area" type="Node2D"]
 
-[node name="area_trigger_2d" parent="." instance=ExtResource("1_e28dk")]
-trigger_delay_seconds = 3.0
+[node name="timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
 
-[node name="collision_shape_2d" parent="area_trigger_2d" index="0"]
-position = Vector2(473, 468.5)
-shape = SubResource("RectangleShape2D_bp6il")
-
-[node name="boss_spawn" type="Node2D" parent="area_trigger_2d" node_paths=PackedStringArray("__parent")]
+[node name="spawner" type="Node2D" parent="timer" node_paths=PackedStringArray("__parent")]
 script = ExtResource("2_1ftas")
-__thing_to_spawn = ExtResource("2_14tg4")
+__thing_to_spawn = ExtResource("2_1we3r")
 __parent = NodePath("../..")
 
-[node name="stop_music_trigger" type="Node2D" parent="area_trigger_2d"]
-script = ExtResource("4_4t85j")
-
-[node name="boss_music_intro_spawn" type="Node2D" parent="area_trigger_2d" node_paths=PackedStringArray("__parent")]
-script = ExtResource("2_1ftas")
-__thing_to_spawn = ExtResource("4_kxwxn")
-__parent = NodePath("../..")
-
-[editable path="area_trigger_2d"]
+[connection signal="timeout" from="timer" to="timer/spawner" method="trigger"]
