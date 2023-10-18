@@ -5,7 +5,6 @@ class_name FSM
 
 var states: Dictionary = {}
 var current_state: State = null;
-var __started: bool = false
 
 func start():
 	owner = get_parent()
