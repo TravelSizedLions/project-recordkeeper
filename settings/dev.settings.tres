@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="DeveloperSettings" load_steps=3 format=3 uid="uid://nei2g2sdxy5x"]
+
+[ext_resource type="Script" path="res://0_scripts/developer_settings.gd" id="1_e3fwv"]
+[ext_resource type="PackedScene" uid="uid://df84ysxsblrbc" path="res://game_objects/player/player_layer.tscn" id="1_yk5a0"]
+
+[resource]
+script = ExtResource("1_e3fwv")
+player_layer_template = ExtResource("1_yk5a0")

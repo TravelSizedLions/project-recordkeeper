@@ -7,9 +7,8 @@ class_name PlayerHUD
 @export var jared_info: Control
 @export var ephraim_info: Control
 
-@onready var player: Player = get_tree().get_first_node_in_group('player')
-
-func _ready():
+func _enter_tree():
+	var player = Player.retrieve()
 	player.characters_swapped.connect(__on_characters_swapped)
 	__on_characters_swapped(player.get_active_character())
 

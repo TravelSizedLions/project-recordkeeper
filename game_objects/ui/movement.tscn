@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfjl5kiaggtro"]
+
+[ext_resource type="VideoStream" path="res://game_objects/ui/basic-movement.ogv" id="1_kqkks"]
+[ext_resource type="Script" path="res://0_scripts/ui/looping_video.gd" id="2_qjnhx"]
+[ext_resource type="Texture2D" uid="uid://l3ejt4hsfh4g" path="res://game_objects/ui/wasd.png" id="3_hkxb0"]
+[ext_resource type="Texture2D" uid="uid://c7l24e3622jmp" path="res://game_objects/ui/spacebar.png" id="4_02xim"]
+
+[node name="click_to_shoot" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="panel_container" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="margin_container" type="MarginContainer" parent="panel_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="v_box_container" type="VBoxContainer" parent="panel_container/margin_container"]
+layout_mode = 2
+
+[node name="margin_container" type="MarginContainer" parent="panel_container/margin_container/v_box_container"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 12
+
+[node name="video_stream_player" type="VideoStreamPlayer" parent="panel_container/margin_container/v_box_container/margin_container"]
+custom_minimum_size = Vector2(318, 178)
+layout_mode = 2
+stream = ExtResource("1_kqkks")
+volume_db = -80.0
+autoplay = true
+expand = true
+script = ExtResource("2_qjnhx")
+
+[node name="h_box_container" type="HBoxContainer" parent="panel_container/margin_container/v_box_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="rich_text_label" type="RichTextLabel" parent="panel_container/margin_container/v_box_container/h_box_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Move with"
+fit_content = true
+autowrap_mode = 0
+
+[node name="texture_rect" type="TextureRect" parent="panel_container/margin_container/v_box_container/h_box_container"]
+layout_mode = 2
+texture = ExtResource("3_hkxb0")
+
+[node name="rich_text_label_2" type="RichTextLabel" parent="panel_container/margin_container/v_box_container/h_box_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "and jump with"
+fit_content = true
+autowrap_mode = 0
+
+[node name="texture_rect_2" type="TextureRect" parent="panel_container/margin_container/v_box_container/h_box_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+texture = ExtResource("4_02xim")
+stretch_mode = 2
+
+[node name="rich_text_label_3" type="RichTextLabel" parent="panel_container/margin_container/v_box_container/h_box_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "."
+fit_content = true
+autowrap_mode = 0
+
+[node name="h_box_container_2" type="HBoxContainer" parent="panel_container/margin_container/v_box_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="rich_text_label" type="RichTextLabel" parent="panel_container/margin_container/v_box_container/h_box_container_2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "The two characters move and jump differently!"
+fit_content = true
+autowrap_mode = 0
+
+[connection signal="finished" from="panel_container/margin_container/v_box_container/margin_container/video_stream_player" to="panel_container/margin_container/v_box_container/margin_container/video_stream_player" method="replay"]

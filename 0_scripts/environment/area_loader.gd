@@ -9,30 +9,32 @@ var current_area: PackedScene
 func _ready():
 	if get_child_count() > 0:
 		current_area = load(get_child(0).scene_file_path)
-		for child in get_children():
-			child.queue_free()
 	else:
 		current_area = default_area
 
 	reload()
 
+func load_new_area(area: PackedScene):
+	current_area = area
+	reload()
+
 func reload():
-	var children = get_children()
+	if current_area:
+		var children = get_children()
+		SoundManager.stop_music()
 
-	SoundManager.stop_music()
+		var root = get_tree().root
+		for p in N.get_all_children(root, Projectile):
+			p.queue_free()
 
-	var root = get_tree().root
-	for p in N.get_all_children(root, Projectile):
-		p.queue_free()
+		for e in N.get_all_children(root, Enemy):
+			e.queue_free()
 
-	for e in N.get_all_children(root, Enemy):
-		e.queue_free()
+		for c in children:
+			c.queue_free()
 
-	for c in children:
-		c.queue_free()
-
-#	Triggerable.disable_triggers()
-	call_deferred('__after_reload')
+	#	Triggerable.disable_triggers()
+		call_deferred('__after_reload')
 
 func __after_reload():
 	var reloaded: Node = current_area.instantiate()
