@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7essepu63y2x"]
+
+[ext_resource type="Script" path="res://0_scripts/triggerables/load_level_trigger.gd" id="1_5skmn"]
+[ext_resource type="PackedScene" uid="uid://bxdfjwf0b3ncg" path="res://areas/playtest_level.tscn" id="2_fqu6y"]
+
+[node name="main_menu" type="Node2D"]
+
+[node name="menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="panel_container" type="PanelContainer" parent="menu"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 394.0
+offset_right = 146.0
+offset_bottom = 515.0
+
+[node name="margin_container" type="MarginContainer" parent="menu/panel_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="v_box_container" type="VBoxContainer" parent="menu/panel_container/margin_container"]
+layout_mode = 2
+
+[node name="start" type="Button" parent="menu/panel_container/margin_container/v_box_container"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="load_level_trigger" type="Node2D" parent="menu/panel_container/margin_container/v_box_container/start"]
+script = ExtResource("1_5skmn")
+level_to_load = ExtResource("2_fqu6y")
+
+[node name="controls" type="Button" parent="menu/panel_container/margin_container/v_box_container"]
+layout_mode = 2
+text = "Controls"
+
+[node name="quit" type="Button" parent="menu/panel_container/margin_container/v_box_container"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="menu/panel_container/margin_container/v_box_container/start" to="menu/panel_container/margin_container/v_box_container/start/load_level_trigger" method="trigger"]

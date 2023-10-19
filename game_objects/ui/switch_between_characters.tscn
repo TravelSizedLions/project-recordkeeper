@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://lxa0ihny2d8m"]
+
+[ext_resource type="Texture2D" uid="uid://d2jdk0k7yii46" path="res://game_objects/player/jerrod_idle.png" id="1_tvpn2"]
+[ext_resource type="Texture2D" uid="uid://b42snvoau17sy" path="res://game_objects/ui/tab1.png" id="2_ab33f"]
+[ext_resource type="Texture2D" uid="uid://dlijel7dm30ys" path="res://game_objects/ui/tab2.png" id="3_mvdsk"]
+[ext_resource type="Texture2D" uid="uid://dnf7gkbmxcoxh" path="res://game_objects/ui/tab3.png" id="4_oo7p1"]
+[ext_resource type="Texture2D" uid="uid://cp68imgqjws" path="res://game_objects/ui/double-arrow.aseprite" id="5_g5vyk"]
+[ext_resource type="Texture2D" uid="uid://bxuiiri000amp" path="res://game_objects/player/ephraim_plain.png" id="6_t5rmg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtf6n"]
+atlas = ExtResource("1_tvpn2")
+region = Rect2(0, 0, 48, 56)
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_4yaho"]
+frames = 3
+frame_0/texture = ExtResource("2_ab33f")
+frame_1/texture = ExtResource("3_mvdsk")
+frame_1/duration = 0.13
+frame_2/texture = ExtResource("4_oo7p1")
+frame_2/duration = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqbgq"]
+atlas = ExtResource("6_t5rmg")
+region = Rect2(0, 0, 48, 56)
+
+[node name="switch_between_characters" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="panel_container" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="margin_container" type="MarginContainer" parent="panel_container"]
+layout_mode = 2
+
+[node name="v_box_container" type="VBoxContainer" parent="panel_container/margin_container"]
+layout_mode = 2
+
+[node name="h_box_container" type="HBoxContainer" parent="panel_container/margin_container/v_box_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="jerrod" type="TextureRect" parent="panel_container/margin_container/v_box_container/h_box_container"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_gtf6n")
+stretch_mode = 2
+
+[node name="v_box_container" type="VBoxContainer" parent="panel_container/margin_container/v_box_container/h_box_container"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="button" type="TextureRect" parent="panel_container/margin_container/v_box_container/h_box_container/v_box_container"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_4yaho")
+stretch_mode = 3
+
+[node name="texture_rect" type="TextureRect" parent="panel_container/margin_container/v_box_container/h_box_container/v_box_container"]
+layout_mode = 2
+texture = ExtResource("5_g5vyk")
+
+[node name="ephraim" type="TextureRect" parent="panel_container/margin_container/v_box_container/h_box_container"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_yqbgq")
+
+[node name="rich_text_label" type="RichTextLabel" parent="panel_container/margin_container/v_box_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Switch between characters with [b]tab.[/b]
+"
+fit_content = true
+autowrap_mode = 0
+
+[node name="rich_text_label_2" type="RichTextLabel" parent="panel_container/margin_container/v_box_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "The character you're not using regenerates health!"
+fit_content = true
+autowrap_mode = 0

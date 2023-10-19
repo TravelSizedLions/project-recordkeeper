@@ -58,12 +58,21 @@ signal characters_swapped
 
 func _ready():
 	__set_up_health()
-	__swap_to_jared() if starting_character == Character.Jared else __swap_to_ephraim()
-	respawn_position = global_position
-	__last_grounded_position = respawn_position
+	__swap_to_jared() if starting_character == Character.Jared else __swap_to_ephraim() 
+	var spawn = N.find(Spawnpoint)
+	if spawn:
+		set_spawn(spawn)
+	else:
+		respawn_position = global_position
+		__last_grounded_position = respawn_position
 	collision_layer = CollisionLayer.PlayerCharacter
 	collision_mask = CollisionLayer.Default | CollisionLayer.Projectiles | CollisionLayer.Enemies
-	fsm.start()
+	fsm.start() 
+
+func set_spawn(spawn: Vector2):
+	respawn_position = spawn
+	__last_grounded_position = spawn
+	global_position = spawn
 
 func _process(frameDelta):
 	CharUtils.update_facing(self)
