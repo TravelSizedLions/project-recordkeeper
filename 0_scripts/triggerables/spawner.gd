@@ -8,7 +8,7 @@ class_name  Spawner
 
 func _on_trigger():
 	call_deferred('spawn')
-
+	
 func spawn():
 	if not __parent:
 		var instance = N.create_scene(__thing_to_spawn)

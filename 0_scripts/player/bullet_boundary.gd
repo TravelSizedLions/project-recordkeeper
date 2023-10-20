@@ -7,6 +7,9 @@ class_name BulletBoundary
 var col: CollisionShape2D
 var shape: RectangleShape2D
 
+func _enter_tree():
+	get_tree().root.propagate_call('find_projectile_boundary')
+
 func _ready():
 	col = N.get_child(self, CollisionShape2D)
 	shape = col.shape

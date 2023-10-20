@@ -1,15 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1y3xdx3sh1x2"]
+[gd_scene load_steps=7 format=3 uid="uid://b1y3xdx3sh1x2"]
 
 [ext_resource type="Script" path="res://0_scripts/environment/area_loader.gd" id="1_e6fc5"]
-[ext_resource type="PackedScene" uid="uid://bxdfjwf0b3ncg" path="res://areas/playtest_level.tscn" id="2_vpxpy"]
+[ext_resource type="Script" path="res://0_scripts/effects/star_parallax.gd" id="1_pceoh"]
+[ext_resource type="PackedScene" uid="uid://dvndfej0xynx8" path="res://game_objects/particles/star.tscn" id="2_30co1"]
+[ext_resource type="PackedScene" uid="uid://bxdfjwf0b3ncg" path="res://playtest_level.tscn" id="2_68ebt"]
 [ext_resource type="PackedScene" uid="uid://b7essepu63y2x" path="res://areas/main_menu.tscn" id="3_6avc1"]
 [ext_resource type="PackedScene" uid="uid://bj1nienf5yofq" path="res://game_objects/environment/kill_line.tscn" id="6_dbvj0"]
 
 [node name="root_scene" type="Node2D"]
 
+[node name="star_parallax" type="Node2D" parent="."]
+script = ExtResource("1_pceoh")
+__template = ExtResource("2_30co1")
+__num_stars = 300
+__min_size = 0.05
+__max_size = 1.5
+__min_speed = 30.0
+__max_speed = 60.0
+
 [node name="area_loader" type="Node2D" parent="." groups=["area_loader"]]
 script = ExtResource("1_e6fc5")
-default_area = ExtResource("2_vpxpy")
+default_area = ExtResource("2_68ebt")
 
 [node name="main_menu" parent="area_loader" instance=ExtResource("3_6avc1")]
 

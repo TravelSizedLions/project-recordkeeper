@@ -14,8 +14,8 @@ func _ready():
 
 	reload()
 
-func load_new_area(area: PackedScene):
-	current_area = area
+func load_new_area(path_to_scene: String):
+	current_area = load(path_to_scene)
 	reload()
 
 func reload():
@@ -33,10 +33,5 @@ func reload():
 		for c in children:
 			c.queue_free()
 
-	#	Triggerable.disable_triggers()
-		call_deferred('__after_reload')
-
-func __after_reload():
-	var reloaded: Node = current_area.instantiate()
-	add_child(reloaded)
-#	get_tree().create_timer(3).timeout.connect(Triggerable.enable_triggers)
+		var reloaded: Node = current_area.instantiate()
+		add_child(reloaded)

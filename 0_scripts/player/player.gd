@@ -41,6 +41,8 @@ var __invincible_timer: float
 
 var __flicker_timer: float
 
+var __dead: bool = false
+
 ## The last place the player was standing before a jump.
 var __last_grounded_position: Vector2
 
@@ -59,15 +61,18 @@ signal characters_swapped
 func _ready():
 	__set_up_health()
 	__swap_to_jared() if starting_character == Character.Jared else __swap_to_ephraim() 
-	var spawn = N.find(Spawnpoint)
-	if spawn:
-		set_spawn(spawn)
-	else:
-		respawn_position = global_position
-		__last_grounded_position = respawn_position
+	search_for_spawn()
 	collision_layer = CollisionLayer.PlayerCharacter
 	collision_mask = CollisionLayer.Default | CollisionLayer.Projectiles | CollisionLayer.Enemies
 	fsm.start() 
+
+func search_for_spawn():
+	var spawn = N.find(Spawnpoint)
+	if spawn:
+		set_spawn(spawn.global_position)
+	else:
+		respawn_position = global_position
+		__last_grounded_position = respawn_position
 
 func set_spawn(spawn: Vector2):
 	respawn_position = spawn
@@ -79,10 +84,11 @@ func _process(frameDelta):
 	process_flicker(frameDelta)
 
 func _physics_process(fixedDelta):
-	CharUtils.apply_gravity(self, fixedDelta)
 	process_invincibility(fixedDelta)
 	process_health_regen(fixedDelta)
-	move_and_slide()
+	if not __dead:
+		CharUtils.apply_gravity(self, fixedDelta)
+		move_and_slide()
 
 func process_health_regen(fixedDelta):
 	if get_active_character() == Character.Jared:
@@ -229,19 +235,28 @@ func get_active_character() -> Character:
 	return Character.Jared if settings == jared_settings else Character.Ephraim
 
 func die():
+	__dead = true
+	fsm.on_state_transition(DeathState)
+
+func respawn():
 	__last_grounded_position = respawn_position
 	global_position = respawn_position
 	velocity = Vector2.ZERO
 	reset_jared_health()
 	reset_ephraim_health()
 	stop_invincibility()
-	call_deferred('__after_died')
+	call_deferred('__after_respawn')
 
-func __after_died():
+func __after_respawn():
 	var area_loader: AreaLoader = get_tree().get_first_node_in_group('area_loader')
 	area_loader.reload()
 	on_player_died.emit()
+	__dead = false
 
+	if get_active_character() == Character.Jared:
+		fsm.on_state_transition(JaredIdleState)
+	else:
+		fsm.on_state_transition(EphraimIdleState)
 
 func handle_fall():
 	stop_invincibility()
@@ -252,8 +267,8 @@ func handle_fall():
 
 func take_damage(amount: float):
 	var died = false
-	if is_invincible():
-		return
+	if __dead or is_invincible():
+		return died
 	
 	if get_active_character() == Character.Jared:
 		update_jared_current_health(_jared_current_health-amount)

@@ -1,23 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7essepu63y2x"]
+[gd_scene load_steps=3 format=3 uid="uid://b7essepu63y2x"]
 
 [ext_resource type="Script" path="res://0_scripts/triggerables/load_level_trigger.gd" id="1_5skmn"]
-[ext_resource type="PackedScene" uid="uid://bxdfjwf0b3ncg" path="res://areas/playtest_level.tscn" id="2_fqu6y"]
-[ext_resource type="PackedScene" uid="uid://bdndfpslo5ngr" path="res://game_objects/ui/click_to_shoot.tscn" id="3_g6iyr"]
+[ext_resource type="Theme" uid="uid://bxghltfgjmsvf" path="res://game_objects/ui/title_font.tres" id="2_l1vnc"]
 
 [node name="main_menu" type="Node2D"]
 
-[node name="menu" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="menu" type="CanvasLayer" parent="."]
 
 [node name="panel_container" type="PanelContainer" parent="menu"]
-layout_mode = 0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 30.0
-offset_top = 394.0
+offset_top = -146.0
 offset_right = 146.0
-offset_bottom = 515.0
+offset_bottom = -25.0
+grow_vertical = 0
 
 [node name="margin_container" type="MarginContainer" parent="menu/panel_container"]
 layout_mode = 2
@@ -35,7 +33,7 @@ text = "Start Game"
 
 [node name="load_level_trigger" type="Node2D" parent="menu/panel_container/margin_container/v_box_container/start"]
 script = ExtResource("1_5skmn")
-level_to_load = ExtResource("2_fqu6y")
+level_to_load = "res://playtest_level.tscn"
 
 [node name="controls" type="Button" parent="menu/panel_container/margin_container/v_box_container"]
 layout_mode = 2
@@ -44,12 +42,47 @@ text = "Controls"
 [node name="load_level_trigger" type="Node2D" parent="menu/panel_container/margin_container/v_box_container/controls"]
 position = Vector2(-40, -439)
 script = ExtResource("1_5skmn")
-level_to_load = ExtResource("3_g6iyr")
+level_to_load = "res://game_objects/ui/switch_between_characters.tscn"
 player_load_setting = 1
 
 [node name="quit" type="Button" parent="menu/panel_container/margin_container/v_box_container"]
 layout_mode = 2
 text = "Quit"
+
+[node name="rich_text_label" type="RichTextLabel" parent="menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_l1vnc")
+text = "Project Recordkeeper"
+fit_content = true
+autowrap_mode = 0
+
+[node name="rich_text_label_2" type="RichTextLabel" parent="menu"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = 14.0
+offset_right = 166.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+text = "v0.0.4"
+fit_content = true
+autowrap_mode = 0
 
 [connection signal="pressed" from="menu/panel_container/margin_container/v_box_container/start" to="menu/panel_container/margin_container/v_box_container/start/load_level_trigger" method="trigger"]
 [connection signal="pressed" from="menu/panel_container/margin_container/v_box_container/controls" to="menu/panel_container/margin_container/v_box_container/controls/load_level_trigger" method="trigger"]

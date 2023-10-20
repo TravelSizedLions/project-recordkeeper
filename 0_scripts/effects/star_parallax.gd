@@ -1,4 +1,5 @@
-extends Node
+extends Node2D
+class_name StarParallax
 
 @export var __template: PackedScene
 @export var __num_stars: int = 100
@@ -27,14 +28,19 @@ func generate_initial():
 			screen_notifier.screen_exited.connect(create_instance_resetter(instance))
 
 func get_random_screen_position(viewport: Viewport, camera: Camera2D) -> Vector2:
-	var cam_pos: Vector2 = camera.global_position
+	var cam_pos: Vector2
+	if not camera:
+		cam_pos = Vector2.ZERO
+	else:
+		cam_pos = camera.global_position
+
 	var bounds = viewport.get_visible_rect().size
 	var relative_position: Vector2 = Vector2(
 		__rng.randf_range(-bounds.x, bounds.x),
 		__rng.randf_range(-bounds.y, bounds.y)
 	)
 	
-	return cam_pos + relative_position
+	return cam_pos + Vector2.RIGHT*bounds + relative_position
 
 func create_instance_resetter(instance):
 	return func():

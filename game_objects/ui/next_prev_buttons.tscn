@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlxx7wbrmgh3e"]
+
+[ext_resource type="Texture2D" uid="uid://cxwk8p28eaxeq" path="res://game_objects/ui/arrows10.png" id="1_7gwk0"]
+[ext_resource type="Texture2D" uid="uid://d1knysiift7cl" path="res://game_objects/ui/arrows11.png" id="2_ng705"]
+[ext_resource type="Script" path="res://0_scripts/triggerables/load_level_trigger.gd" id="3_6217n"]
+[ext_resource type="Texture2D" uid="uid://dcp2hr171bevr" path="res://game_objects/ui/arrows4.png" id="4_8dv6o"]
+[ext_resource type="Texture2D" uid="uid://boh318cf3rpqw" path="res://game_objects/ui/arrows5.png" id="5_k2rtx"]
+
+[node name="next_prev_buttons" type="MarginContainer"]
+
+[node name="hbox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="prev_button" type="TextureButton" parent="hbox"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("1_7gwk0")
+texture_pressed = ExtResource("2_ng705")
+texture_hover = ExtResource("1_7gwk0")
+texture_focused = ExtResource("1_7gwk0")
+stretch_mode = 0
+
+[node name="load_level_trigger" type="Node2D" parent="hbox/prev_button"]
+script = ExtResource("3_6217n")
+player_load_setting = 1
+
+[node name="next_button" type="TextureButton" parent="hbox"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 10
+keep_pressed_outside = true
+texture_normal = ExtResource("4_8dv6o")
+texture_pressed = ExtResource("5_k2rtx")
+texture_hover = ExtResource("4_8dv6o")
+texture_focused = ExtResource("4_8dv6o")
+stretch_mode = 0
+
+[node name="load_level_trigger" type="Node2D" parent="hbox/next_button"]
+script = ExtResource("3_6217n")
+player_load_setting = 1
+
+[connection signal="pressed" from="hbox/prev_button" to="hbox/prev_button/load_level_trigger" method="trigger"]
+[connection signal="pressed" from="hbox/next_button" to="hbox/next_button/load_level_trigger" method="trigger"]

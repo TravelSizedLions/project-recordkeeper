@@ -22,7 +22,7 @@ var _current_health: float
 
 # FIXME: For some reason, adding elements on _ready() doesn't work...
 var __init_hack: bool = false
-func _process(_delta):
+func _physics_process(_delta):
 	if not __init_hack and ui_element:
 		__init_hack = true
 		__relative_position = global_position - entity.global_position
@@ -30,8 +30,6 @@ func _process(_delta):
 		setup_health(ui)
 		setup_name(ui)
 		rename_ui(ui)
-
-func _physics_process(_delta):
 	# use a static relative position so that if the position of this node moves
 	# out of place, it still looks right on screen.
 	position_updated.emit(entity.global_position + __relative_position)

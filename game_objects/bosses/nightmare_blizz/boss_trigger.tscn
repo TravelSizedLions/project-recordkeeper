@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bk14f1c0n417m"]
+[gd_scene load_steps=11 format=3 uid="uid://bk14f1c0n417m"]
 
 [ext_resource type="PackedScene" uid="uid://c1r80obsqa44b" path="res://game_objects/environment/area_trigger_2d.tscn" id="1_hvaap"]
 [ext_resource type="Script" path="res://0_scripts/triggerables/spawner.gd" id="2_tvw7q"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://0_scripts/sound/music_with_intro.gd" id="5_c1anb"]
 [ext_resource type="AudioStream" uid="uid://dxchmjbcee5yu" path="res://music/meganeko_violent-purple_intro.wav" id="6_65sgs"]
 [ext_resource type="AudioStream" uid="uid://dq22566uf4on6" path="res://music/meganeko_violent-purple_loop.wav" id="7_65iqv"]
+[ext_resource type="Texture2D" uid="uid://djfqk78jb2pp8" path="res://game_objects/particles/smoke.png" id="8_nj556"]
+[ext_resource type="Script" path="res://0_scripts/triggerables/poof_effect_trigger.gd" id="9_7t1f3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bp6il"]
 resource_local_to_scene = true
@@ -33,5 +35,25 @@ script = ExtResource("5_c1anb")
 __start_automatically = false
 __intro = ExtResource("6_65sgs")
 __main_loop = ExtResource("7_65iqv")
+
+[node name="poof" type="CPUParticles2D" parent="area_trigger_2d"]
+emitting = false
+amount = 64
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.39
+texture = ExtResource("8_nj556")
+emission_shape = 4
+emission_points = PackedVector2Array()
+emission_colors = PackedColorArray()
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.87
+initial_velocity_max = 336.63
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+color = Color(1, 1, 1, 0.501961)
+script = ExtResource("9_7t1f3")
 
 [editable path="area_trigger_2d"]
