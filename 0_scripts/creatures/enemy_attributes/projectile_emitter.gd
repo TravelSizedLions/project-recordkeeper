@@ -25,7 +25,8 @@ func _ready():
 func fire():
 	var dir = Vector2.RIGHT.rotated(global_rotation)
 	var pos = global_position + dir*spawn_radius
-	if not __bounds.started_outside(pos):
+	if __bounds and not __bounds.started_outside(pos):
+		prints('firing!')
 		var instance: Projectile = N.create_scene(projectile)
 		instance.from_enemy()
 		instance.set_initial_position(pos)
@@ -35,3 +36,6 @@ func fire():
 
 func set_timer():
 	get_tree().create_timer(frequency).timeout.connect(fire)
+
+func find_projectile_boundary():
+	__bounds = get_tree().get_first_node_in_group('bullet_boundary')

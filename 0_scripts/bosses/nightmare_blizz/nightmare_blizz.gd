@@ -73,9 +73,13 @@ var __stingers: Array = []
 
 func _ready():
 	get_tree().create_timer(0.05).timeout.connect(start)
+	var poof_effect = N.get_child(self, Triggerable, 'poof')
+	if poof_effect:
+		poof_effect.trigger()
 
 func start():
 	N.get_child(self, FSM).start()
+
 
 func _exit_tree():
 	for turret in __turrets:

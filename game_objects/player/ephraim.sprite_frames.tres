@@ -1,7 +1,28 @@
-[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://tblams6ab8gl"]
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://tblams6ab8gl"]
 
 [ext_resource type="Texture2D" uid="uid://bxuiiri000amp" path="res://game_objects/player/ephraim_plain.png" id="1_484pb"]
+[ext_resource type="Texture2D" uid="uid://bxyfocmg82dye" path="res://game_objects/player/death_animation.png" id="1_w574e"]
 [ext_resource type="Texture2D" uid="uid://bgaxrwiakm0n2" path="res://game_objects/player/jerrod_land.png" id="2_yciqt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giwjc"]
+atlas = ExtResource("1_w574e")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qcde"]
+atlas = ExtResource("1_w574e")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2qy7"]
+atlas = ExtResource("1_w574e")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khvya"]
+atlas = ExtResource("1_w574e")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1m0p"]
+atlas = ExtResource("1_w574e")
+region = Rect2(512, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5peet"]
 atlas = ExtResource("2_yciqt")
@@ -13,6 +34,26 @@ region = Rect2(56, 0, 56, 56)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_giwjc")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_0qcde")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_v2qy7")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_khvya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1m0p")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_484pb")

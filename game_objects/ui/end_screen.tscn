@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://fgte42sp4f3y"]
+
+[ext_resource type="Texture2D" uid="uid://dut1xcsyvpugb" path="res://game_objects/bosses/nightmare_blizz/blizz_idle_ui1.png" id="1_ayfyp"]
+[ext_resource type="Texture2D" uid="uid://dl4sdh67rjtwu" path="res://game_objects/bosses/nightmare_blizz/blizz_idle_ui2.png" id="2_2eeoe"]
+[ext_resource type="Texture2D" uid="uid://3xbfyeeqgq8j" path="res://game_objects/bosses/nightmare_blizz/blizz_idle_ui3.png" id="3_n1f5d"]
+[ext_resource type="Texture2D" uid="uid://cojkbdjeshnm7" path="res://game_objects/bosses/nightmare_blizz/blizz_idle_ui4.png" id="4_wal51"]
+[ext_resource type="Texture2D" uid="uid://1neh6mbtb3xe" path="res://game_objects/ui/main_menu_btn1.png" id="5_li37j"]
+[ext_resource type="Texture2D" uid="uid://bh4h32jgve3qc" path="res://game_objects/ui/main_menu_btn3.png" id="6_vxqbf"]
+[ext_resource type="Texture2D" uid="uid://1enpi5b5p7e3" path="res://game_objects/ui/main_menu_btn2.png" id="7_18dih"]
+[ext_resource type="Script" path="res://0_scripts/triggerables/load_level_trigger.gd" id="8_gyx04"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_o0mj3"]
+frames = 4
+frame_0/texture = ExtResource("1_ayfyp")
+frame_1/texture = ExtResource("2_2eeoe")
+frame_1/duration = 0.25
+frame_2/texture = ExtResource("3_n1f5d")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("4_wal51")
+frame_3/duration = 0.25
+
+[node name="end_screen" type="CanvasLayer"]
+
+[node name="control" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="control_2" type="Control" parent="control"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="panel_container" type="PanelContainer" parent="control"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="margin_container" type="MarginContainer" parent="control/panel_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="v_box_container" type="VBoxContainer" parent="control/panel_container/margin_container"]
+layout_mode = 2
+
+[node name="texture_rect" type="TextureRect" parent="control/panel_container/margin_container/v_box_container"]
+custom_minimum_size = Vector2(224, 312)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = SubResource("AnimatedTexture_o0mj3")
+stretch_mode = 4
+
+[node name="rich_text_label" type="RichTextLabel" parent="control/panel_container/margin_container/v_box_container"]
+layout_mode = 2
+text = "Congrats! and thanks for playing!"
+fit_content = true
+autowrap_mode = 0
+
+[node name="margin_container" type="MarginContainer" parent="control"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="texture_button" type="TextureButton" parent="control/margin_container"]
+custom_minimum_size = Vector2(128, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("5_li37j")
+texture_pressed = ExtResource("6_vxqbf")
+texture_hover = ExtResource("7_18dih")
+texture_focused = ExtResource("5_li37j")
+stretch_mode = 4
+
+[node name="load_level_trigger" type="Node2D" parent="control/margin_container/texture_button"]
+script = ExtResource("8_gyx04")
+level_to_load = "res://areas/main_menu.tscn"
+player_load_setting = 1
+
+[node name="control" type="Control" parent="control"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="button_up" from="control/margin_container/texture_button" to="control/margin_container/texture_button/load_level_trigger" method="trigger"]

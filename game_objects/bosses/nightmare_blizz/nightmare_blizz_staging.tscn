@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c4d4237mu0in0"]
+[gd_scene load_steps=22 format=3 uid="uid://c4d4237mu0in0"]
 
 [ext_resource type="Script" path="res://0_scripts/bosses/nightmare_blizz/nightmare_blizz.gd" id="1_qffis"]
 [ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar_position.tscn" id="2_3ywfr"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" path="res://0_scripts/editor_tools/t_gizmo.gd" id="11_ud3dg"]
 [ext_resource type="Script" path="res://0_scripts/bosses/nightmare_blizz/states/nightmare_blizz_move_location_state.gd" id="14_o03e6"]
 [ext_resource type="Texture2D" uid="uid://d36b2lkpp8gki" path="res://game_objects/bosses/nightmare_blizz/light.png" id="17_me0ly"]
+[ext_resource type="Script" path="res://0_scripts/triggerables/load_level_trigger.gd" id="18_7i6ji"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wqk6l"]
 radius = 6.0
@@ -69,7 +70,12 @@ stroke_width = 0.5
 [node name="has_health" parent="nightmare_blizz" instance=ExtResource("2_3ywfr")]
 position = Vector2(0, -43)
 title = "The Nightmare"
-max_health = 200.0
+max_health = 1.0
+
+[node name="load_level_trigger" type="Node2D" parent="nightmare_blizz"]
+script = ExtResource("18_7i6ji")
+level_to_load = "res://game_objects/ui/end_screen.tscn"
+player_load_setting = 1
 
 [node name="targets" type="Node2D" parent="."]
 
@@ -110,3 +116,5 @@ position = Vector2(960, 411)
 rotation = -1.5708
 script = ExtResource("11_ud3dg")
 color = Color(1, 0, 0, 1)
+
+[connection signal="tree_exited" from="nightmare_blizz" to="nightmare_blizz/load_level_trigger" method="trigger"]

@@ -1,6 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=37 format=3 uid="uid://cd1w6xcyvk2xv"]
+[gd_resource type="SpriteFrames" load_steps=43 format=3 uid="uid://cd1w6xcyvk2xv"]
 
 [ext_resource type="Texture2D" uid="uid://clw6aaha6e2wl" path="res://game_objects/player/jerrod_double_jump.png" id="1_1ijti"]
+[ext_resource type="Texture2D" uid="uid://bxyfocmg82dye" path="res://game_objects/player/death_animation.png" id="1_jhkep"]
 [ext_resource type="Texture2D" uid="uid://crcupfgaalg2o" path="res://game_objects/player/jerrod_fall.png" id="2_xj1bs"]
 [ext_resource type="Texture2D" uid="uid://d2jdk0k7yii46" path="res://game_objects/player/jerrod_idle.png" id="3_08r65"]
 [ext_resource type="Texture2D" uid="uid://bfhuemywvth17" path="res://game_objects/player/jerrod_jump.png" id="4_7cti1"]
@@ -8,6 +9,26 @@
 [ext_resource type="Texture2D" uid="uid://b4lvdovr1qmwo" path="res://game_objects/player/jerrod_rise.png" id="6_041np"]
 [ext_resource type="Texture2D" uid="uid://83xeplc4hdkk" path="res://game_objects/player/jerrod_run.png" id="7_bsner"]
 [ext_resource type="Texture2D" uid="uid://bxuiiri000amp" path="res://game_objects/player/ephraim_plain.png" id="8_k4pd4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8bx1"]
+atlas = ExtResource("1_jhkep")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c32f2"]
+atlas = ExtResource("1_jhkep")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18ajx"]
+atlas = ExtResource("1_jhkep")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgcv2"]
+atlas = ExtResource("1_jhkep")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6dpj"]
+atlas = ExtResource("1_jhkep")
+region = Rect2(512, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptpdq"]
 atlas = ExtResource("1_1ijti")
@@ -123,6 +144,26 @@ region = Rect2(616, 0, 56, 56)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_v8bx1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c32f2")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_18ajx")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_lgcv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6dpj")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ptpdq")
