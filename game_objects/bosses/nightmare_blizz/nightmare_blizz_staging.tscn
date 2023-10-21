@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c4d4237mu0in0"]
+[gd_scene load_steps=33 format=3 uid="uid://c4d4237mu0in0"]
 
 [ext_resource type="Script" path="res://0_scripts/bosses/nightmare_blizz/nightmare_blizz.gd" id="1_qffis"]
 [ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar_position.tscn" id="2_3ywfr"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cen1gckg52k7y" path="res://game_objects/bosses/nightmare_blizz/starbust_four_point_counterclockwise.tscn" id="3_pri85"]
 [ext_resource type="PackedScene" uid="uid://c2fdendmpn13b" path="res://game_objects/bosses/nightmare_blizz/blizz_idle.aseprite" id="3_svwjq"]
 [ext_resource type="Script" path="res://0_scripts/fsm/fsm.gd" id="4_hc03x"]
+[ext_resource type="Texture2D" uid="uid://bxyfocmg82dye" path="res://game_objects/player/death_animation.png" id="4_nc2ef"]
+[ext_resource type="Script" path="res://0_scripts/triggerables/animation_trigger.gd" id="5_blfqw"]
 [ext_resource type="Script" path="res://0_scripts/editor_tools/circle_gizmo.gd" id="6_ob3b4"]
 [ext_resource type="PackedScene" uid="uid://wmgp4de7pwwd" path="res://game_objects/bosses/nightmare_blizz/starburst_eightway_extra_large.tscn" id="7_28c1l"]
 [ext_resource type="PackedScene" uid="uid://onv3k1x1d1lv" path="res://game_objects/creatures/turretle/lesser_turret.tscn" id="7_rwfx0"]
@@ -20,12 +22,98 @@
 [ext_resource type="Script" path="res://0_scripts/bosses/nightmare_blizz/states/nightmare_blizz_move_location_state.gd" id="14_o03e6"]
 [ext_resource type="Texture2D" uid="uid://d36b2lkpp8gki" path="res://game_objects/bosses/nightmare_blizz/light.png" id="17_me0ly"]
 [ext_resource type="Script" path="res://0_scripts/triggerables/load_level_trigger.gd" id="18_7i6ji"]
+[ext_resource type="Texture2D" uid="uid://djfqk78jb2pp8" path="res://game_objects/particles/smoke.png" id="19_6wo2s"]
+[ext_resource type="Script" path="res://0_scripts/triggerables/poof_effect_trigger.gd" id="20_cqjci"]
+[ext_resource type="Script" path="res://0_scripts/triggerables/shake_camera_trigger.gd" id="25_eqs05"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4akff"]
+atlas = ExtResource("4_nc2ef")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7vl1"]
+atlas = ExtResource("4_nc2ef")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngksr"]
+atlas = ExtResource("4_nc2ef")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3kfp"]
+atlas = ExtResource("4_nc2ef")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1oqc4"]
+atlas = ExtResource("4_nc2ef")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ceya3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4akff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7vl1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngksr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3kfp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1oqc4")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wqk6l"]
 radius = 6.0
 height = 32.0
 
 [node name="boss_staging" type="Node2D"]
+
+[node name="poof" type="CPUParticles2D" parent="."]
+position = Vector2(464, 304)
+emitting = false
+amount = 64
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 0.39
+texture = ExtResource("19_6wo2s")
+emission_shape = 4
+emission_points = PackedVector2Array()
+emission_colors = PackedColorArray()
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.87
+initial_velocity_max = 336.63
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+color = Color(1, 1, 1, 0.501961)
+script = ExtResource("20_cqjci")
+
+[node name="load_level_trigger" type="Node2D" parent="."]
+position = Vector2(464, 304)
+script = ExtResource("18_7i6ji")
+level_to_load = "res://game_objects/ui/end_screen.tscn"
+player_load_setting = 1
+delay = 3.0
+
+[node name="splode" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(464, 304)
+sprite_frames = SubResource("SpriteFrames_ceya3")
+script = ExtResource("5_blfqw")
+animation_to_play = "default"
+
+[node name="shake_camera_trigger" type="Node2D" parent="."]
+script = ExtResource("25_eqs05")
+duration = 0.75
+intensity = 32.0
 
 [node name="nightmare_blizz" type="CharacterBody2D" parent="." node_paths=PackedStringArray("__targets", "__turret_targets", "__stinger_spawn_area")]
 position = Vector2(464, 304)
@@ -72,10 +160,11 @@ position = Vector2(0, -43)
 title = "The Nightmare"
 max_health = 1.0
 
-[node name="load_level_trigger" type="Node2D" parent="nightmare_blizz"]
-script = ExtResource("18_7i6ji")
-level_to_load = "res://game_objects/ui/end_screen.tscn"
-player_load_setting = 1
+[node name="poof_link" type="RemoteTransform2D" parent="nightmare_blizz"]
+remote_path = NodePath("../../poof")
+
+[node name="splode_link" type="RemoteTransform2D" parent="nightmare_blizz"]
+remote_path = NodePath("../../splode")
 
 [node name="targets" type="Node2D" parent="."]
 
@@ -117,4 +206,6 @@ rotation = -1.5708
 script = ExtResource("11_ud3dg")
 color = Color(1, 0, 0, 1)
 
-[connection signal="tree_exited" from="nightmare_blizz" to="nightmare_blizz/load_level_trigger" method="trigger"]
+[connection signal="tree_exited" from="nightmare_blizz" to="load_level_trigger" method="trigger"]
+[connection signal="tree_exited" from="nightmare_blizz" to="poof" method="trigger"]
+[connection signal="tree_exited" from="nightmare_blizz" to="shake_camera_trigger" method="trigger"]

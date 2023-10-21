@@ -49,6 +49,7 @@ func _ready():
 
 func _physics_process(physicsDelta):
 	if not __enabled:
+		arcdrawer.clear_arc()
 		return
 
 	if not special_charger.is_charging():
@@ -74,23 +75,24 @@ func handle_main(physicsDelta):
 func get_num_projectiles():
 	var num_stages = burst_stages.size()
 	var actual_percent_charged = (main_charger.percent_charged() - start_charge_percentage)/(1-start_charge_percentage)
-	prints('charge', actual_percent_charged)
 	var charge_per_stage = 1.0/num_stages
 
 	for stage in range(num_stages):
 		if (stage+1)*charge_per_stage >= actual_percent_charged:
-			prints('stage', stage)
 			return burst_stages[stage]
 	
 	return burst_stages[0]
 
 func burst_fire():
-	fire(main_charger, main_projectile)
-	__burst_fire_left -= 1
-	if __burst_fire_left > 0:
-		get_tree().create_timer(time_between_projectiles, false).timeout.connect(burst_fire)
-	else:
-		main_charger.reset_charge()
+	var percent_charged = main_charger.percent_charged()
+	main_charger.reset_charge()
+
+	var burst_fire_fn = func():
+		fire(percent_charged, main_projectile)
+		__burst_fire_left -= 1
+
+	for i in range(__burst_fire_left):
+		get_tree().create_timer(time_between_projectiles*i, false).timeout.connect(burst_fire_fn)
 
 func handle_special(physicsDelta):
 	if __remaining_special_ammo > 0 && player.pressed_special():
@@ -99,7 +101,7 @@ func handle_special(physicsDelta):
 		else:
 			special_charger.start_charge(physicsDelta)
 	elif special_charger.is_charging() && player.released_special():
-		fire(special_charger, special_projectile)
+		fire(special_charger.percent_charged(), special_projectile)
 		__remaining_special_ammo -= 1
 		on_update_capacity.emit(__remaining_special_ammo, max_special_ammo)
 		special_charger.reset_charge()
@@ -117,9 +119,9 @@ func update_aim(charger: Charger):
 			__last_known_direction*max_lob_force*charger.percent_charged()
 		)
 
-func fire(charger: Charger, projectile: PackedScene):
+func fire(percent_charged: float, projectile: PackedScene):
 	var p = N.create_scene(projectile)
-	var force = max_lob_force*charger.percent_charged()
+	var force = max_lob_force*percent_charged
 	p.set_initial_position(global_position + __last_known_direction*buffer_radius)
 	p.set_initial_velocity(__last_known_direction, force)
 	arcdrawer.clear_arc()
