@@ -21,7 +21,7 @@ func load_new_area(path_to_scene: String):
 func reload():
 	if current_area:
 		var children = get_children()
-		SoundManager.stop_music()
+		# SoundManager.stop_music()
 
 		var root = get_tree().root
 		for p in N.get_all_children(root, Projectile):

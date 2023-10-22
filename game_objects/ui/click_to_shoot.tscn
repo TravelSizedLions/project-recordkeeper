@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bdndfpslo5ngr"]
 
-[ext_resource type="VideoStream" path="res://game_objects/ui/click-to-shoot.ogv" id="1_l3pox"]
+[ext_resource type="VideoStream" path="res://game_objects/ui/click-to-shoot (3).ogv" id="1_bu6nb"]
 [ext_resource type="Script" path="res://0_scripts/ui/looping_video.gd" id="2_iwq64"]
 [ext_resource type="Texture2D" uid="uid://bm05xvj7rd0cj" path="res://game_objects/ui/mouse.aseprite" id="3_i0kln"]
 [ext_resource type="PackedScene" uid="uid://dlxx7wbrmgh3e" path="res://game_objects/ui/next_prev_buttons.tscn" id="4_8onf6"]
@@ -41,7 +41,7 @@ layout_mode = 2
 [node name="video_stream_player" type="VideoStreamPlayer" parent="panel_container/margin_container/v_box_container_2/v_box_container/margin_container/aspect_ratio_container"]
 custom_minimum_size = Vector2(636, 356)
 layout_mode = 2
-stream = ExtResource("1_l3pox")
+stream = ExtResource("1_bu6nb")
 volume_db = -80.0
 autoplay = true
 expand = true
