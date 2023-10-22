@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cvaxmgv8wqkvu"]
 
 [ext_resource type="Script" path="res://0_scripts/creatures/stinger/stinger.gd" id="1_pabyg"]
-[ext_resource type="Texture2D" uid="uid://b6q8ccwoi5b02" path="res://shared_art/temp-square.png" id="2_rdd7x"]
+[ext_resource type="Texture2D" uid="uid://b5tft6eb21cs8" path="res://game_objects/creatures/stinger/stinger.png" id="2_7j87q"]
 [ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar_position.tscn" id="3_6cvp7"]
 [ext_resource type="PackedScene" uid="uid://b5eg8gc3f4yjh" path="res://game_objects/creatures/has_dangerous_part.tscn" id="4_644t3"]
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/shoots_at_player.gd" id="5_v4oom"]
@@ -9,11 +9,11 @@
 [ext_resource type="Script" path="res://0_scripts/fsm/fsm.gd" id="7_calmc"]
 [ext_resource type="Script" path="res://0_scripts/creatures/stinger/states/stinger_idle_state.gd" id="8_2vfy7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8shrf"]
-size = Vector2(32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_n3kq8"]
+radius = 12.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oo34a"]
-size = Vector2(32, 32)
+[sub_resource type="CircleShape2D" id="CircleShape2D_ex5kq"]
+radius = 13.0
 
 [node name="stinger" type="CharacterBody2D"]
 collision_layer = 16
@@ -26,8 +26,7 @@ min_follow_dist = 250
 max_follow_dist = 999999999
 
 [node name="sprite_2d" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
-texture = ExtResource("2_rdd7x")
+texture = ExtResource("2_7j87q")
 
 [node name="enemy_health_bar" parent="." instance=ExtResource("3_6cvp7")]
 position = Vector2(0, -19)
@@ -37,11 +36,11 @@ max_health = 5.0
 [node name="has_dangerous_part" parent="." instance=ExtResource("4_644t3")]
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="has_dangerous_part"]
-shape = SubResource("RectangleShape2D_8shrf")
+shape = SubResource("CircleShape2D_n3kq8")
 debug_color = Color(0.921569, 0.0941176, 0.647059, 0.419608)
 
 [node name="collision_shape_2d" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_oo34a")
+shape = SubResource("CircleShape2D_ex5kq")
 
 [node name="shoots_at_player" type="Node2D" parent="."]
 script = ExtResource("5_v4oom")
