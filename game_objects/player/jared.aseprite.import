@@ -1,0 +1,25 @@
+[remap]
+
+importer="Aseprite SpriteFrames Import"
+type="SpriteFrames"
+uid="uid://cf253jsro36u8"
+path="res://.godot/imported/jared.aseprite-ff247b694cfeca8e6530ea7462aa87d1.res"
+
+[deps]
+
+source_file="res://game_objects/player/jared.aseprite"
+dest_files=["res://.godot/imported/jared.aseprite-ff247b694cfeca8e6530ea7462aa87d1.res"]
+
+[params]
+
+spritesheet/layout=0
+spritesheet/fixed_rows_count=1
+spritesheet/fixed_columns_count=1
+spritesheet/border_type=0
+spritesheet/trim=false
+spritesheet/ignore_empty=false
+spritesheet/merge_duplicates=false
+animation/default/name="default"
+animation/default/direction=0
+animation/default/repeat_count=0
+animation/autoplay=""

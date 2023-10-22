@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://fgte42sp4f3y"]
+[gd_scene load_steps=12 format=3 uid="uid://fgte42sp4f3y"]
 
 [ext_resource type="Texture2D" uid="uid://dut1xcsyvpugb" path="res://game_objects/bosses/nightmare_blizz/blizz_idle_ui1.png" id="1_ayfyp"]
 [ext_resource type="Texture2D" uid="uid://dl4sdh67rjtwu" path="res://game_objects/bosses/nightmare_blizz/blizz_idle_ui2.png" id="2_2eeoe"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://bh4h32jgve3qc" path="res://game_objects/ui/main_menu_btn3.png" id="6_vxqbf"]
 [ext_resource type="Texture2D" uid="uid://1enpi5b5p7e3" path="res://game_objects/ui/main_menu_btn2.png" id="7_18dih"]
 [ext_resource type="Script" path="res://0_scripts/triggerables/load_level_trigger.gd" id="8_gyx04"]
+[ext_resource type="Script" path="res://0_scripts/sound/music_trigger.gd" id="9_b2rr5"]
+[ext_resource type="AudioStream" uid="uid://bndp6sw0yer00" path="res://music/weirdo_pipes_loopable.wav" id="10_nougb"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_o0mj3"]
 frames = 4
@@ -86,5 +88,10 @@ player_load_setting = 1
 [node name="control" type="Control" parent="control"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="music_trigger" type="Node2D" parent="."]
+script = ExtResource("9_b2rr5")
+__music = ExtResource("10_nougb")
+__cross_fade = 1.0
 
 [connection signal="button_up" from="control/margin_container/texture_button" to="control/margin_container/texture_button/load_level_trigger" method="trigger"]
