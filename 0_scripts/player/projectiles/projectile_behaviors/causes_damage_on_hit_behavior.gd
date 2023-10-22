@@ -2,8 +2,6 @@ extends ProjectileOnHitBehavior
 class_name CausesDamageOnHitBehavior
 
 @export var damage: float = 1
-@export var damage_player = true
-@export var damage_enemy = false
 
 var caused_damage_already: bool = false
 

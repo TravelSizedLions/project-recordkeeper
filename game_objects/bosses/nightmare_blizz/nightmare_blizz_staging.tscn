@@ -158,7 +158,7 @@ stroke_width = 0.5
 [node name="has_health" parent="nightmare_blizz" instance=ExtResource("2_3ywfr")]
 position = Vector2(0, -43)
 title = "The Nightmare"
-max_health = 250.0
+max_health = 200.0
 
 [node name="poof_link" type="RemoteTransform2D" parent="nightmare_blizz"]
 remote_path = NodePath("../../poof")

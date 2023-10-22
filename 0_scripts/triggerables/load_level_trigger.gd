@@ -1,9 +1,12 @@
-class_name LoadLevelTrigger extends Triggerable
+extends Triggerable
+class_name LoadLevelTrigger
 
 enum LoadLevelPlayerOptions {
 	LoadPlayer,
 	RemovePlayer,
 }
+
+const PlayerLayerResourcePath = "res://game_objects/player/player_layer.tscn"
 
 @export_file var level_to_load: String
 @export var player_load_setting: LoadLevelPlayerOptions
@@ -21,7 +24,7 @@ func __load_level():
 	var player_layer = TreeAccess.tree.get_first_node_in_group('player_layer')
 	match player_load_setting:
 		LoadLevelPlayerOptions.LoadPlayer:
-			var template: PackedScene = load(DeveloperSettings.PlayerLayerResourcePath)
+			var template: PackedScene = load(PlayerLayerResourcePath)
 			N.create_scene(template, player_layer)
 			var player: Player = Player.retrieve()
 			player.search_for_spawn()

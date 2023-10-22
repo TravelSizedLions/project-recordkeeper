@@ -82,7 +82,7 @@ offset_bottom = 59.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 2
-text = "v0.0.4"
+text = "v0.0.5"
 fit_content = true
 autowrap_mode = 0
 
@@ -91,5 +91,5 @@ script = ExtResource("3_7xli0")
 __music = ExtResource("4_gpqgt")
 __cross_fade = 0.5
 
-[connection signal="pressed" from="menu/panel_container/margin_container/v_box_container/start" to="menu/panel_container/margin_container/v_box_container/start/load_level_trigger" method="trigger"]
-[connection signal="pressed" from="menu/panel_container/margin_container/v_box_container/controls" to="menu/panel_container/margin_container/v_box_container/controls/load_level_trigger" method="trigger"]
+[connection signal="button_up" from="menu/panel_container/margin_container/v_box_container/start" to="menu/panel_container/margin_container/v_box_container/start/load_level_trigger" method="trigger"]
+[connection signal="button_up" from="menu/panel_container/margin_container/v_box_container/controls" to="menu/panel_container/margin_container/v_box_container/controls/load_level_trigger" method="trigger"]
