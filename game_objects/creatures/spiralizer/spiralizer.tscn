@@ -1,25 +1,33 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnt442vl8yfwl"]
+[gd_scene load_steps=9 format=3 uid="uid://dnt442vl8yfwl"]
 
 [ext_resource type="Script" path="res://0_scripts/creatures/spiralizer/spiralizer.gd" id="1_eqwdr"]
-[ext_resource type="Texture2D" uid="uid://b6q8ccwoi5b02" path="res://shared_art/temp-square.png" id="2_msrar"]
+[ext_resource type="Texture2D" uid="uid://cbsq7n2mj8xyj" path="res://game_objects/creatures/spiralizer/spiralizer.png" id="2_qlawq"]
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/rotates_randomly.gd" id="3_wgmht"]
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/projectile_emitter.gd" id="4_hyk3q"]
 [ext_resource type="PackedScene" uid="uid://dr54j2eq8jsw7" path="res://game_objects/projectiles/bullet/enemy_bullet.tscn" id="5_y3gbj"]
 [ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar_position.tscn" id="6_0vtwv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_35j2r"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhqds"]
 size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l32k7"]
+size = Vector2(26.8701, 26.163)
 
 [node name="spiralizer" type="CharacterBody2D"]
 collision_layer = 16
 script = ExtResource("1_eqwdr")
 
 [node name="sprite_2d" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
-texture = ExtResource("2_msrar")
+texture = ExtResource("2_qlawq")
 
-[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_35j2r")
+[node name="collision_shape_2d_3" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_uhqds")
+
+[node name="collision_shape_2d_2" type="CollisionShape2D" parent="."]
+position = Vector2(0.25, 0.75)
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_l32k7")
 
 [node name="rotates_randomly" type="Node2D" parent="."]
 script = ExtResource("3_wgmht")
