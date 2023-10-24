@@ -206,6 +206,5 @@ rotation = -1.5708
 script = ExtResource("11_ud3dg")
 color = Color(1, 0, 0, 1)
 
-[connection signal="tree_exited" from="nightmare_blizz" to="poof" method="trigger"]
-[connection signal="tree_exited" from="nightmare_blizz" to="load_level_trigger" method="trigger"]
-[connection signal="tree_exited" from="nightmare_blizz" to="shake_camera_trigger" method="trigger"]
+[connection signal="entity_destroyed" from="nightmare_blizz/has_health" to="poof" method="trigger"]
+[connection signal="entity_destroyed" from="nightmare_blizz/has_health" to="load_level_trigger" method="trigger"]
