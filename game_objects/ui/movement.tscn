@@ -95,7 +95,15 @@ size_flags_horizontal = 4
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "The two characters move and jump differently!"
+text = "The two characters move and jump differently,"
+fit_content = true
+autowrap_mode = 0
+
+[node name="rich_text_label" type="RichTextLabel" parent="panel_container/margin_container/v_box_container_2/v_box_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "so if you can't reach somewhere with one character, try the other!"
 fit_content = true
 autowrap_mode = 0
 
