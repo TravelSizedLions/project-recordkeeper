@@ -69,6 +69,7 @@ show_percentage = false
 script = ExtResource("3_4tpqb")
 
 [node name="ammunition_tracker" type="PanelContainer" parent="."]
+visible = false
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
