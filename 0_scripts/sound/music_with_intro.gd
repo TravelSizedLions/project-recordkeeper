@@ -15,10 +15,6 @@ func _on_trigger():
 	__start()
 
 func __start():
-#	var last_track: AudioStream = SoundManager.get_currently_playing_music_tracks()[0]
-#	if last_track == __intro or last_track == __main_loop:
-#		last_track.finished.connect(__on_finished)
-#	else:
 	SoundManager.play_music(__intro, __cross_fade).finished.connect(__on_finished)
 
 func __on_finished():
