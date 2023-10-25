@@ -20,7 +20,10 @@ func _on_trigger():
 	
 func __load_level():
 	var area_loader: AreaLoader = TreeAccess.tree.get_first_node_in_group('area_loader')
+	area_loader.on_finished_load.connect(__try_load_player)
 	area_loader.load_new_area(level_to_load)
+
+func __try_load_player():
 	var player_layer = TreeAccess.tree.get_first_node_in_group('player_layer')
 	match player_load_setting:
 		LoadLevelPlayerOptions.LoadPlayer:
@@ -32,4 +35,7 @@ func __load_level():
 			for child in player_layer.get_children():
 
 				child.queue_free()
+	
+	var area_loader: AreaLoader = TreeAccess.tree.get_first_node_in_group('area_loader')
+	area_loader.on_finished_load.disconnect(__try_load_player)
 

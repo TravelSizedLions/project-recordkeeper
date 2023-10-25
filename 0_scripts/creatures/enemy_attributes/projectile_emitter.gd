@@ -26,7 +26,6 @@ func fire():
 	var dir = Vector2.RIGHT.rotated(global_rotation)
 	var pos = global_position + dir*spawn_radius
 	if __bounds and not __bounds.started_outside(pos):
-		prints('firing!')
 		var instance: Projectile = N.create_scene(projectile)
 		instance.from_enemy()
 		instance.set_initial_position(pos)

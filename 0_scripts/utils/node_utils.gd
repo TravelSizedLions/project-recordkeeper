@@ -44,17 +44,17 @@ static func get_child(node: Node, type, name: String = ""):
 	return null
 
 ## Gets all children of a specific type, including the node in question if it's the correct type.
-static func get_all_children(node: Node, type):
+static func get_all_children(node: Node, type, include_self: bool = true):
 	if not node:
 		return []
 	
 	var result = []
 
-	if __is_correct_node(node, type):
+	if include_self and __is_correct_node(node, type):
 		result.append(node)
 
 	for child in node.get_children():
-		result += N.get_all_children(child, type)
+		result += N.get_all_children(child, type, true)
 
 	return result
 

@@ -1,5 +1,6 @@
-[gd_scene load_steps=33 format=3 uid="uid://c4d4237mu0in0"]
+[gd_scene load_steps=34 format=3 uid="uid://c4d4237mu0in0"]
 
+[ext_resource type="Script" path="res://0_scripts/triggerables/trigger_group.gd" id="1_qbx51"]
 [ext_resource type="Script" path="res://0_scripts/bosses/nightmare_blizz/nightmare_blizz.gd" id="1_qffis"]
 [ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar_position.tscn" id="2_3ywfr"]
 [ext_resource type="PackedScene" uid="uid://bs7iqdof6wv7a" path="res://game_objects/bosses/nightmare_blizz/shoots_extra_large_at_player.tscn" id="2_462pq"]
@@ -75,7 +76,10 @@ height = 32.0
 
 [node name="boss_staging" type="Node2D"]
 
-[node name="poof" type="CPUParticles2D" parent="."]
+[node name="trigger_group" type="Node2D" parent="."]
+script = ExtResource("1_qbx51")
+
+[node name="poof" type="CPUParticles2D" parent="trigger_group"]
 position = Vector2(464, 304)
 emitting = false
 amount = 64
@@ -96,21 +100,21 @@ orbit_velocity_max = 0.1
 color = Color(1, 1, 1, 0.501961)
 script = ExtResource("20_cqjci")
 
-[node name="load_level_trigger" type="Node2D" parent="."]
+[node name="load_level_trigger" type="Node2D" parent="trigger_group"]
 position = Vector2(464, 304)
 script = ExtResource("18_7i6ji")
-level_to_load = "res://game_objects/ui/end_screen.tscn"
+level_to_load = "res://areas/credits/credits_game_by.tscn"
 player_load_setting = 1
 delay = 3.0
 
-[node name="splode" type="AnimatedSprite2D" parent="."]
+[node name="splode" type="AnimatedSprite2D" parent="trigger_group"]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(464, 304)
 sprite_frames = SubResource("SpriteFrames_ceya3")
 script = ExtResource("5_blfqw")
 animation_to_play = "default"
 
-[node name="shake_camera_trigger" type="Node2D" parent="."]
+[node name="shake_camera_trigger" type="Node2D" parent="trigger_group"]
 script = ExtResource("25_eqs05")
 duration = 0.75
 intensity = 32.0
@@ -158,13 +162,13 @@ stroke_width = 0.5
 [node name="has_health" parent="nightmare_blizz" instance=ExtResource("2_3ywfr")]
 position = Vector2(0, -43)
 title = "The Nightmare"
-max_health = 200.0
+max_health = 1.0
 
 [node name="poof_link" type="RemoteTransform2D" parent="nightmare_blizz"]
-remote_path = NodePath("../../poof")
+remote_path = NodePath("../../trigger_group/poof")
 
 [node name="splode_link" type="RemoteTransform2D" parent="nightmare_blizz"]
-remote_path = NodePath("../../splode")
+remote_path = NodePath("../../trigger_group/splode")
 
 [node name="targets" type="Node2D" parent="."]
 
@@ -206,5 +210,4 @@ rotation = -1.5708
 script = ExtResource("11_ud3dg")
 color = Color(1, 0, 0, 1)
 
-[connection signal="entity_destroyed" from="nightmare_blizz/has_health" to="poof" method="trigger"]
-[connection signal="entity_destroyed" from="nightmare_blizz/has_health" to="load_level_trigger" method="trigger"]
+[connection signal="entity_destroyed" from="nightmare_blizz/has_health" to="trigger_group" method="trigger"]

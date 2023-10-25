@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://cw6tqa4g4v86s"]
+
+[ext_resource type="Theme" uid="uid://bxghltfgjmsvf" path="res://game_objects/ui/title_font.tres" id="1_ilcvv"]
+[ext_resource type="Texture2D" uid="uid://cciukmehprwss" path="res://TSL-cat.png" id="2_kp87o"]
+[ext_resource type="Script" path="res://0_scripts/triggerables/load_level_trigger.gd" id="2_osxp1"]
+[ext_resource type="Script" path="res://0_scripts/sound/music_with_intro.gd" id="4_pjpnt"]
+[ext_resource type="AudioStream" uid="uid://bcqspcf6ikmnl" path="res://music/galaxy-tones_ascension_intro.wav" id="5_7hi7j"]
+[ext_resource type="AudioStream" uid="uid://dkk2php45sam4" path="res://music/galaxy-tones_ascension_loop.wav" id="6_g05m8"]
+
+[node name="credits-main-menu-music" type="Node2D"]
+
+[node name="main-menu-credit" type="CanvasLayer" parent="."]
+
+[node name="margin_container" type="MarginContainer" parent="main-menu-credit"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ilcvv")
+
+[node name="v_box_container" type="VBoxContainer" parent="main-menu-credit/margin_container"]
+layout_mode = 2
+
+[node name="control_2" type="Control" parent="main-menu-credit/margin_container/v_box_container"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="label_3" type="Label" parent="main-menu-credit/margin_container/v_box_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "A Game By
+"
+
+[node name="texture_rect" type="TextureRect" parent="main-menu-credit/margin_container/v_box_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = ExtResource("2_kp87o")
+stretch_mode = 4
+
+[node name="label" type="RichTextLabel" parent="main-menu-credit/margin_container/v_box_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Travel Sized Lions"
+fit_content = true
+autowrap_mode = 0
+
+[node name="label_2" type="Label" parent="main-menu-credit/margin_container/v_box_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "
+
+travelsizedlions.newgrounds.com
+youtube @travelsizedlions"
+horizontal_alignment = 1
+
+[node name="control" type="Control" parent="main-menu-credit/margin_container/v_box_container"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="timer" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+autostart = true
+
+[node name="load_level_trigger" type="Node2D" parent="timer"]
+script = ExtResource("2_osxp1")
+level_to_load = "res://areas/credits/credits_main_menu_music.tscn"
+player_load_setting = 1
+
+[node name="music_with_intro" type="Node2D" parent="."]
+script = ExtResource("4_pjpnt")
+__intro = ExtResource("5_7hi7j")
+__main_loop = ExtResource("6_g05m8")
+__cross_fade = 1.0
+
+[connection signal="timeout" from="timer" to="timer/load_level_trigger" method="trigger"]

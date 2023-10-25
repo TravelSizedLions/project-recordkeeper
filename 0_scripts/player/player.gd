@@ -69,8 +69,10 @@ func _ready():
 func search_for_spawn():
 	var spawn = N.find(Spawnpoint)
 	if spawn:
+		prints('found spawn')
 		set_spawn(spawn.global_position)
 	else:
+		prints('did not find spawn')
 		respawn_position = global_position
 		__last_grounded_position = respawn_position
 

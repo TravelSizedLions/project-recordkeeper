@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://nd0vhhppj3kb"]
+[gd_scene load_steps=6 format=3 uid="uid://nd0vhhppj3kb"]
 
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/enemy_health_bar_position.gd" id="1_vehyg"]
 [ext_resource type="PackedScene" uid="uid://d0c3p5mil63qk" path="res://game_objects/ui/enemy_healthbar_ui.tscn" id="2_xqpmx"]
+[ext_resource type="Script" path="res://0_scripts/triggerables/trigger_group.gd" id="3_k8eyh"]
 [ext_resource type="Script" path="res://0_scripts/triggerables/shake_camera_trigger.gd" id="3_pcj1v"]
 [ext_resource type="Script" path="res://0_scripts/triggerables/kick_camera_trigger.gd" id="3_tr134"]
 
@@ -9,14 +10,16 @@
 script = ExtResource("1_vehyg")
 ui_element = ExtResource("2_xqpmx")
 
-[node name="kick_camera_trigger" type="Node2D" parent="."]
+[node name="trigger_group" type="Node2D" parent="."]
+script = ExtResource("3_k8eyh")
+
+[node name="kick_camera_trigger" type="Node2D" parent="trigger_group"]
 script = ExtResource("3_tr134")
 duration = 0.25
 
-[node name="shake_camera_trigger" type="Node2D" parent="."]
+[node name="shake_camera_trigger" type="Node2D" parent="trigger_group"]
 script = ExtResource("3_pcj1v")
 duration = 0.18
 intensity = 10.0
 
-[connection signal="entity_destroyed" from="." to="kick_camera_trigger" method="trigger"]
-[connection signal="entity_destroyed" from="." to="shake_camera_trigger" method="trigger"]
+[connection signal="entity_destroyed" from="." to="trigger_group" method="trigger"]

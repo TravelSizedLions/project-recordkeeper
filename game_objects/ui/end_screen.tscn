@@ -1,15 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://fgte42sp4f3y"]
+[gd_scene load_steps=14 format=3 uid="uid://fgte42sp4f3y"]
 
 [ext_resource type="Texture2D" uid="uid://dut1xcsyvpugb" path="res://game_objects/bosses/nightmare_blizz/blizz_idle_ui1.png" id="1_ayfyp"]
 [ext_resource type="Texture2D" uid="uid://dl4sdh67rjtwu" path="res://game_objects/bosses/nightmare_blizz/blizz_idle_ui2.png" id="2_2eeoe"]
 [ext_resource type="Texture2D" uid="uid://3xbfyeeqgq8j" path="res://game_objects/bosses/nightmare_blizz/blizz_idle_ui3.png" id="3_n1f5d"]
 [ext_resource type="Texture2D" uid="uid://cojkbdjeshnm7" path="res://game_objects/bosses/nightmare_blizz/blizz_idle_ui4.png" id="4_wal51"]
+[ext_resource type="Theme" uid="uid://bxghltfgjmsvf" path="res://game_objects/ui/title_font.tres" id="5_csgcr"]
 [ext_resource type="Texture2D" uid="uid://1neh6mbtb3xe" path="res://game_objects/ui/main_menu_btn1.png" id="5_li37j"]
 [ext_resource type="Texture2D" uid="uid://bh4h32jgve3qc" path="res://game_objects/ui/main_menu_btn3.png" id="6_vxqbf"]
 [ext_resource type="Texture2D" uid="uid://1enpi5b5p7e3" path="res://game_objects/ui/main_menu_btn2.png" id="7_18dih"]
 [ext_resource type="Script" path="res://0_scripts/triggerables/load_level_trigger.gd" id="8_gyx04"]
-[ext_resource type="Script" path="res://0_scripts/sound/music_trigger.gd" id="9_b2rr5"]
-[ext_resource type="AudioStream" uid="uid://bndp6sw0yer00" path="res://music/weirdo_pipes_loopable.wav" id="10_nougb"]
+[ext_resource type="Script" path="res://0_scripts/sound/music_with_intro.gd" id="9_88o4t"]
+[ext_resource type="AudioStream" uid="uid://bcqspcf6ikmnl" path="res://music/galaxy-tones_ascension_intro.wav" id="10_m0aj5"]
+[ext_resource type="AudioStream" uid="uid://dkk2php45sam4" path="res://music/galaxy-tones_ascension_loop.wav" id="11_dj7qe"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_o0mj3"]
 frames = 4
@@ -35,21 +37,22 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="panel_container" type="PanelContainer" parent="control"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="margin_container" type="MarginContainer" parent="control/panel_container"]
+[node name="margin_container_2" type="MarginContainer" parent="control/panel_container"]
 layout_mode = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="v_box_container" type="VBoxContainer" parent="control/panel_container/margin_container"]
+[node name="v_box_container" type="VBoxContainer" parent="control/panel_container/margin_container_2"]
 layout_mode = 2
 
-[node name="texture_rect" type="TextureRect" parent="control/panel_container/margin_container/v_box_container"]
+[node name="texture_rect" type="TextureRect" parent="control/panel_container/margin_container_2/v_box_container"]
 custom_minimum_size = Vector2(224, 312)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -57,9 +60,12 @@ size_flags_vertical = 3
 texture = SubResource("AnimatedTexture_o0mj3")
 stretch_mode = 4
 
-[node name="rich_text_label" type="RichTextLabel" parent="control/panel_container/margin_container/v_box_container"]
+[node name="label" type="RichTextLabel" parent="control/panel_container/margin_container_2/v_box_container"]
 layout_mode = 2
-text = "Congrats! and thanks for playing!"
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme = ExtResource("5_csgcr")
+text = "Thanks for playing!"
 fit_content = true
 autowrap_mode = 0
 
@@ -89,9 +95,10 @@ player_load_setting = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="music_trigger" type="Node2D" parent="."]
-script = ExtResource("9_b2rr5")
-__music = ExtResource("10_nougb")
+[node name="music_with_intro" type="Node2D" parent="."]
+script = ExtResource("9_88o4t")
+__intro = ExtResource("10_m0aj5")
+__main_loop = ExtResource("11_dj7qe")
 __cross_fade = 1.0
 
 [connection signal="button_up" from="control/margin_container/texture_button" to="control/margin_container/texture_button/load_level_trigger" method="trigger"]

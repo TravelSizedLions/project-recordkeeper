@@ -1,6 +1,5 @@
 extends "res://addons/sound_manager/abstract_audio_player_pool.gd"
 
-
 var tweens: Dictionary = {}
 var track_history: PackedStringArray = []
 
