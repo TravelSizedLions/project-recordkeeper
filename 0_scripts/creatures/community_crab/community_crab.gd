@@ -19,6 +19,11 @@ func _process(_delta):
 func should_follow_player():
 	if not _enabled:
 		return false
+		
+	if not player:
+		player = Player.retrieve()
+		if not player:
+			return false
 
 	var dist = abs(position.x - player.position.x)
 	return dist > min_follow_dist and dist < max_follow_dist

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbmurvwfr2db0"]
+
+[ext_resource type="Script" path="res://0_scripts/toggleables/area_toggle.gd" id="1_423ap"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j4qki"]
+resource_local_to_scene = true
+size = Vector2(219, 57)
+
+[node name="area_toggle_2d" type="Area2D"]
+script = ExtResource("1_423ap")
+
+[node name="collision_shape_2d" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j4qki")
+
+[connection signal="body_entered" from="." to="." method="on_body_entered"]
+[connection signal="body_exited" from="." to="." method="on_body_exited"]

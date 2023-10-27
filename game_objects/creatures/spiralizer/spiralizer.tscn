@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dnt442vl8yfwl"]
+[gd_scene load_steps=10 format=3 uid="uid://dnt442vl8yfwl"]
 
 [ext_resource type="Script" path="res://0_scripts/creatures/spiralizer/spiralizer.gd" id="1_eqwdr"]
 [ext_resource type="Texture2D" uid="uid://cbsq7n2mj8xyj" path="res://game_objects/creatures/spiralizer/spiralizer.png" id="2_qlawq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/projectile_emitter.gd" id="4_hyk3q"]
 [ext_resource type="PackedScene" uid="uid://dr54j2eq8jsw7" path="res://game_objects/projectiles/bullet/enemy_bullet.tscn" id="5_y3gbj"]
 [ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar_position.tscn" id="6_0vtwv"]
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/can_float_away.gd" id="7_tcbhv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uhqds"]
 size = Vector2(32, 32)
@@ -51,3 +52,6 @@ projectile = ExtResource("5_y3gbj")
 position = Vector2(0, -16)
 title = "Spiralizer"
 max_health = 10.0
+
+[node name="can_float_away" type="Node" parent="."]
+script = ExtResource("7_tcbhv")

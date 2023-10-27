@@ -68,7 +68,7 @@ size_flags_vertical = 1
 show_percentage = false
 script = ExtResource("3_4tpqb")
 
-[node name="ammunition_tracker" type="PanelContainer" parent="."]
+[node name="ammunition_tracker" type="PanelContainer" parent="." groups=["ammo_tracker"]]
 visible = false
 anchors_preset = 2
 anchor_top = 1.0

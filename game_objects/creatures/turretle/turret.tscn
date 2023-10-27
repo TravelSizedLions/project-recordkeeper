@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bltmhtogqo3dj"]
+[gd_scene load_steps=11 format=3 uid="uid://bltmhtogqo3dj"]
 
 [ext_resource type="Script" path="res://0_scripts/creatures/turretle/turretle.gd" id="1_nd5hw"]
 [ext_resource type="Texture2D" uid="uid://cvfgwat0i7o53" path="res://game_objects/creatures/turretle/turretle_base.png" id="2_jike6"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://nd0vhhppj3kb" path="res://game_objects/ui/enemy_health_bar_position.tscn" id="4_qt7rg"]
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/projectile_emitter.gd" id="5_35tro"]
 [ext_resource type="PackedScene" uid="uid://chen8u3ntgfw2" path="res://game_objects/projectiles/bullet/enemy_bullet_extra_large.tscn" id="6_dxu6t"]
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/can_float_away.gd" id="8_kymqn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f40ul"]
 size = Vector2(44, 25)
@@ -51,3 +52,6 @@ shape = SubResource("RectangleShape2D_g6rd8")
 position = Vector2(0, -52)
 title = "Turret"
 max_health = 10.0
+
+[node name="can_float_away" type="Node" parent="."]
+script = ExtResource("8_kymqn")
