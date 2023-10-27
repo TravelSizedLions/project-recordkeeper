@@ -1,23 +1,39 @@
 [gd_scene load_steps=8 format=3 uid="uid://b1y3xdx3sh1x2"]
 
 [ext_resource type="Script" path="res://0_scripts/environment/area_loader.gd" id="1_e6fc5"]
-[ext_resource type="Script" path="res://0_scripts/effects/star_parallax.gd" id="1_pceoh"]
-[ext_resource type="PackedScene" uid="uid://dvndfej0xynx8" path="res://game_objects/particles/star.tscn" id="2_30co1"]
+[ext_resource type="Texture2D" uid="uid://cgwfansloibai" path="res://game_objects/particles/star.png" id="1_vsqnq"]
 [ext_resource type="PackedScene" uid="uid://b7essepu63y2x" path="res://areas/main_menu.tscn" id="3_6avc1"]
 [ext_resource type="PackedScene" uid="uid://bj1nienf5yofq" path="res://game_objects/environment/kill_line.tscn" id="6_dbvj0"]
 [ext_resource type="Texture2D" uid="uid://b6q8ccwoi5b02" path="res://shared_art/temp-square.png" id="7_rsmcp"]
 [ext_resource type="Script" path="res://0_scripts/environment/screen_transition.gd" id="8_u84n5"]
 
+[sub_resource type="Gradient" id="Gradient_w4x6t"]
+offsets = PackedFloat32Array(0.00429185, 1)
+colors = PackedColorArray(0.66, 0.66, 1, 1, 1, 0.75, 0.75, 1)
+
 [node name="root_scene" type="Node2D"]
 
-[node name="star_parallax" type="Node2D" parent="."]
-script = ExtResource("1_pceoh")
-__template = ExtResource("2_30co1")
-__num_stars = 300
-__min_size = 0.05
-__max_size = 1.5
-__min_speed = 30.0
-__max_speed = 60.0
+[node name="canvas_layer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="cpu_particles_2d" type="CPUParticles2D" parent="canvas_layer"]
+z_index = -2
+position = Vector2(1053, 230)
+amount = 800
+lifetime = 120.0
+preprocess = 30.0
+draw_order = 1
+texture = ExtResource("1_vsqnq")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1000)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 80.0
+scale_amount_min = 0.1
+scale_amount_max = 1.25
+color_initial_ramp = SubResource("Gradient_w4x6t")
 
 [node name="area_loader" type="Node2D" parent="." node_paths=PackedStringArray("transition") groups=["area_loader"]]
 script = ExtResource("1_e6fc5")
