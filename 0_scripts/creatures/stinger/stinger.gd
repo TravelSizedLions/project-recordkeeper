@@ -45,3 +45,9 @@ func decelerate(physicsDelta):
 	speed = clamp(speed - deceleration*physicsDelta, 0, max_follow_speed)
 	charbody.velocity = charbody.velocity.normalized()*speed
 	charbody.move_and_slide()
+
+func __on_disabled():
+	N.get_child(self, ShootsAtPlayer).disable()
+
+func __on_enabled():
+	N.get_child(self, ShootsAtPlayer).enable()

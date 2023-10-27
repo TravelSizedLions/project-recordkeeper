@@ -42,7 +42,7 @@ signal on_update_capacity
 
 func _ready():
 	__connect_to_ui()
-	__reset_to_max()
+#	__reset_to_max()
 	main_charger.set_max_charge_time(charge_time_seconds)
 	special_charger.set_max_charge_time(charge_time_seconds)
 	player.on_player_died.connect(__reset_to_max)
@@ -140,3 +140,6 @@ func enable():
 
 func disable():
 	__enabled = false
+	
+func reload_special_ammo():
+	__reset_to_max()

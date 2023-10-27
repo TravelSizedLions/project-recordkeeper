@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8oq0gad1agkh"]
+[gd_scene load_steps=12 format=3 uid="uid://b8oq0gad1agkh"]
 
 [ext_resource type="Script" path="res://0_scripts/creatures/stinger/stinger.gd" id="1_fld37"]
 [ext_resource type="PackedScene" uid="uid://b5eg8gc3f4yjh" path="res://game_objects/creatures/has_dangerous_part.tscn" id="2_2m3wj"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/shoots_at_player.gd" id="3_hkars"]
 [ext_resource type="PackedScene" uid="uid://dr54j2eq8jsw7" path="res://game_objects/projectiles/bullet/enemy_bullet.tscn" id="4_udkw0"]
 [ext_resource type="Script" path="res://0_scripts/fsm/fsm.gd" id="8_2hed3"]
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/can_float_away.gd" id="9_mbm4x"]
 [ext_resource type="Script" path="res://0_scripts/creatures/stinger/states/stinger_idle_state.gd" id="9_nwflv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_syn3u"]
@@ -48,3 +49,6 @@ projectile = ExtResource("4_udkw0")
 [node name="fsm" type="Node2D" parent="."]
 script = ExtResource("8_2hed3")
 start_state = ExtResource("9_nwflv")
+
+[node name="can_float_away" type="Node" parent="."]
+script = ExtResource("9_mbm4x")

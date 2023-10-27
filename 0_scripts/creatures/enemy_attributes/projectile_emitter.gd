@@ -19,10 +19,15 @@ class_name ProjectileEmitter
 @warning_ignore("unused_private_class_variable")
 @onready var __bounds: BulletBoundary = get_tree().get_first_node_in_group('bullet_boundary')
 
+var __enabled: bool = true
+
 func _ready():
 	get_tree().create_timer(frequency-offset).timeout.connect(fire)
 	
 func fire():
+	if not __enabled:
+		return
+
 	var dir = Vector2.RIGHT.rotated(global_rotation)
 	var pos = global_position + dir*spawn_radius
 	if __bounds and not __bounds.started_outside(pos):
@@ -38,3 +43,10 @@ func set_timer():
 
 func find_projectile_boundary():
 	__bounds = get_tree().get_first_node_in_group('bullet_boundary')
+
+func enable():
+	__enabled = true
+	set_timer()
+	
+func disable():
+	__enabled = false

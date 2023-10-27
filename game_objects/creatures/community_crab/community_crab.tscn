@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c58etkl8y5kup"]
+[gd_scene load_steps=22 format=3 uid="uid://c58etkl8y5kup"]
 
 [ext_resource type="Script" path="res://0_scripts/creatures/community_crab/community_crab.gd" id="1_corwl"]
 [ext_resource type="Texture2D" uid="uid://d14wmllw3vh7w" path="res://game_objects/creatures/community_crab/community_crab.png" id="1_g3j8e"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://0_scripts/creatures/community_crab/states/community_crab_idle_state.gd" id="4_4p8hi"]
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/can_float_away.gd" id="6_60vqb"]
 [ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/has_gravity.gd" id="7_prcqq"]
+[ext_resource type="Theme" uid="uid://cvw2rcvmq6w6u" path="res://game_objects/creatures/community_crab/crab_text.tres" id="9_n37vl"]
+[ext_resource type="Script" path="res://0_scripts/toggleables/show_hide_toggle.gd" id="9_ofwwt"]
+[ext_resource type="PackedScene" uid="uid://cbmurvwfr2db0" path="res://game_objects/environment/area_toggle_2d.tscn" id="11_4xxg2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tuw82"]
 atlas = ExtResource("2_kuimb")
@@ -80,12 +83,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2uiql"]
 size = Vector2(71, 84)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbdcy"]
+resource_local_to_scene = true
+size = Vector2(582, 83)
+
 [node name="community_crab" type="CharacterBody2D"]
 script = ExtResource("1_corwl")
-min_follow_dist = 0
-max_follow_dist = 100
+follow_speed = 4000
 
 [node name="animated_sprite_2d" type="AnimatedSprite2D" parent="."]
+scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_k0qjr")
 animation = &"follow"
 autoplay = "idle"
@@ -100,7 +107,51 @@ start_state = ExtResource("4_4p8hi")
 
 [node name="can_float_away" type="Node2D" parent="."]
 script = ExtResource("6_60vqb")
-floating_away = null
 
 [node name="has_gravity" type="Node" parent="."]
 script = ExtResource("7_prcqq")
+
+[node name="text_ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -86.0
+offset_right = 40.0
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="panel_container" type="PanelContainer" parent="text_ui"]
+layout_mode = 1
+offset_right = 110.0
+offset_bottom = 20.0
+scale = Vector2(1.76, 1)
+
+[node name="margin_container" type="MarginContainer" parent="text_ui/panel_container"]
+layout_mode = 2
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="rich_text_label" type="Label" parent="text_ui/panel_container/margin_container"]
+layout_mode = 2
+theme = ExtResource("9_n37vl")
+text = "I am completely useless.
+Look at how useless I am."
+horizontal_alignment = 1
+
+[node name="area_toggle_2d" parent="." instance=ExtResource("11_4xxg2")]
+
+[node name="collision_shape_2d" parent="area_toggle_2d" index="0"]
+position = Vector2(1, 5.5)
+shape = SubResource("RectangleShape2D_jbdcy")
+
+[node name="show_hide_toggle" type="Node" parent="area_toggle_2d" node_paths=PackedStringArray("thing_to_hide")]
+script = ExtResource("9_ofwwt")
+thing_to_hide = NodePath("../../text_ui")
+
+[editable path="area_toggle_2d"]

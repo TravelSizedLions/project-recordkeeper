@@ -11,7 +11,7 @@ func start():
 	if start_state:
 		on_state_transition(start_state)
 	else:
-		push_error('no start state found for FSM "%s" on "%s"' % [self, owner])
+		push_warning('no start state found for FSM "%s" on "%s"' % [self, owner])
 
 func _process(delta):
 	if current_state:

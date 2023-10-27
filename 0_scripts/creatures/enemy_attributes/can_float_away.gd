@@ -14,8 +14,11 @@ func _physics_process(delta):
 			enemy.rotation_degrees -= rotation_speed*delta
 		else:
 			enemy.rotation_degrees += rotation_speed*delta
-	enemy.move_and_slide()
+		enemy.move_and_slide()
 
 func apply_attribute():
 	floating_away = true
 	enemy.disable()
+	var grav_component = N.get_child(enemy, HasGravity)
+	if grav_component:
+		grav_component.queue_free()
