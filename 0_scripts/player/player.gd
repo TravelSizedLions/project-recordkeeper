@@ -241,24 +241,27 @@ func die():
 	fsm.on_state_transition(DeathState)
 
 func respawn():
-	__last_grounded_position = respawn_position
-	global_position = respawn_position
-	velocity = Vector2.ZERO
 	reset_jared_health()
 	reset_ephraim_health()
 	stop_invincibility()
-	call_deferred('__after_respawn')
-
-func __after_respawn():
 	var area_loader: AreaLoader = get_tree().get_first_node_in_group('area_loader')
+	area_loader.on_finished_load.connect(__after_respawn)
 	area_loader.reload()
 	on_player_died.emit()
 	__dead = false
+
+func __after_respawn():
+	__last_grounded_position = respawn_position
+	global_position = respawn_position
+	velocity = Vector2.ZERO
 
 	if get_active_character() == Character.Jared:
 		fsm.on_state_transition(JaredIdleState)
 	else:
 		fsm.on_state_transition(EphraimIdleState)
+
+	var area_loader: AreaLoader = get_tree().get_first_node_in_group('area_loader')
+	area_loader.on_finished_load.disconnect(__after_respawn)
 
 func handle_fall():
 	stop_invincibility()
