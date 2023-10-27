@@ -15,7 +15,7 @@ func _ready():
 	else:
 		current_area = default_area
 
-	transition.on_loading_start.connect(reload)
+	transition.on_loading_start.connect(__reload)
 	transition.transition_to_loading()
 
 func load_new_area(path_to_scene: String):
@@ -23,6 +23,9 @@ func load_new_area(path_to_scene: String):
 	transition.transition_to_loading()
 
 func reload():
+	transition.transition_to_loading()
+
+func __reload():
 	if current_area:
 		var children = get_children()
 
