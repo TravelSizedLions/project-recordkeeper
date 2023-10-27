@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dsikxkesnwusy"]
+[gd_scene load_steps=17 format=3 uid="uid://dsikxkesnwusy"]
 
 [ext_resource type="Script" path="res://0_scripts/player/player.gd" id="1_5e45p"]
 [ext_resource type="SpriteFrames" uid="uid://cd1w6xcyvk2xv" path="res://game_objects/player/jared.sprite_frames.tres" id="2_50vnq"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b6q8ccwoi5b02" path="res://shared_art/temp-square.png" id="7_1ajgq"]
 [ext_resource type="Script" path="res://0_scripts/player/shooter.gd" id="7_ryjvn"]
 [ext_resource type="Script" path="res://0_scripts/player/projectiles/charge_launcher.gd" id="9_k30ic"]
+[ext_resource type="PackedScene" uid="uid://dr54j2eq8jsw7" path="res://game_objects/projectiles/bullet/enemy_bullet.tscn" id="9_m8er3"]
 [ext_resource type="PackedScene" uid="uid://ckohyum7ndxpx" path="res://game_objects/projectiles/glowfly/glowfly_projectile.tscn" id="10_ehee7"]
 [ext_resource type="PackedScene" uid="uid://hjst3dqaq8q2" path="res://game_objects/projectiles/arrow/arrow.tscn" id="11_81jud"]
 [ext_resource type="Script" path="res://0_scripts/player/projectiles/arc_drawer.gd" id="11_ikt32"]
@@ -49,6 +50,7 @@ texture = ExtResource("7_1ajgq")
 centered = false
 offset = Vector2(0, -2)
 script = ExtResource("7_ryjvn")
+__special_projectile = ExtResource("9_m8er3")
 
 [node name="emitter" type="Node2D" parent="shooter"]
 position = Vector2(46, 15.873)

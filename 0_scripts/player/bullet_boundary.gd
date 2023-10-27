@@ -25,12 +25,12 @@ func watch_viewport():
 
 func on_body_exited(body):
 	var projectile = N.get_child(body, Projectile)
-	if projectile:
+	if projectile and not is_frozen_bullet(projectile):
 		projectile.queue_free()
 
 func on_body_entered(body):
 	var projectile: Projectile = N.get_child(body, Projectile)
-	if projectile:
+	if projectile and not is_frozen_bullet(projectile):
 		var initial_position = projectile.get_initial_position()
 		if started_outside(initial_position):
 			projectile.queue_free()
@@ -50,4 +50,6 @@ func started_outside(initial_position: Vector2):
 	
 	return true
 		
-		
+func is_frozen_bullet(projectile: Projectile):
+	var freeze_attr: FreezeOnHitBehavior = N.get_child(projectile, FreezeOnHitBehavior)
+	return freeze_attr and freeze_attr.is_applied()
