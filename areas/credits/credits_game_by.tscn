@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://cw6tqa4g4v86s"]
+[gd_scene load_steps=9 format=3 uid="uid://cw6tqa4g4v86s"]
 
 [ext_resource type="Theme" uid="uid://bxghltfgjmsvf" path="res://game_objects/ui/title_font.tres" id="1_ilcvv"]
 [ext_resource type="Texture2D" uid="uid://cciukmehprwss" path="res://TSL-cat.png" id="2_kp87o"]
 [ext_resource type="Script" path="res://0_scripts/triggerables/load_level_trigger.gd" id="2_osxp1"]
+[ext_resource type="Theme" uid="uid://0346csy6lp2i" path="res://game_objects/ui/link_font.tres" id="3_nd5m5"]
 [ext_resource type="Script" path="res://0_scripts/sound/music_with_intro.gd" id="4_pjpnt"]
 [ext_resource type="AudioStream" uid="uid://bcqspcf6ikmnl" path="res://music/galaxy-tones_ascension_intro.wav" id="5_7hi7j"]
 [ext_resource type="AudioStream" uid="uid://dkk2php45sam4" path="res://music/galaxy-tones_ascension_loop.wav" id="6_g05m8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3ecdc"]
+friction = 0.0
 
 [node name="credits-main-menu-music" type="Node2D"]
 
@@ -25,23 +29,49 @@ layout_mode = 2
 [node name="control_2" type="Control" parent="main-menu-credit/margin_container/v_box_container"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 4.0
+size_flags_stretch_ratio = 2.0
 
 [node name="label_3" type="Label" parent="main-menu-credit/margin_container/v_box_container"]
+texture_filter = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "A Game By
 "
 
-[node name="texture_rect" type="TextureRect" parent="main-menu-credit/margin_container/v_box_container"]
+[node name="rigid_body_2d" type="RigidBody2D" parent="main-menu-credit/margin_container/v_box_container"]
+position = Vector2(471, 249)
+rotation = -0.0872665
+mass = 0.01
+physics_material_override = SubResource("PhysicsMaterial_3ecdc")
+gravity_scale = 0.0
+linear_velocity = Vector2(5, 0)
+linear_damp_mode = 1
+angular_velocity = 0.139626
+
+[node name="content" type="VBoxContainer" parent="main-menu-credit/margin_container/v_box_container/rigid_body_2d"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -136.0
+offset_right = 480.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ilcvv")
+
+[node name="texture_rect" type="TextureRect" parent="main-menu-credit/margin_container/v_box_container/rigid_body_2d/content"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 texture = ExtResource("2_kp87o")
 stretch_mode = 4
 
-[node name="label" type="RichTextLabel" parent="main-menu-credit/margin_container/v_box_container"]
+[node name="label" type="RichTextLabel" parent="main-menu-credit/margin_container/v_box_container/rigid_body_2d/content"]
+texture_filter = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -49,29 +79,42 @@ text = "Travel Sized Lions"
 fit_content = true
 autowrap_mode = 0
 
-[node name="label_2" type="Label" parent="main-menu-credit/margin_container/v_box_container"]
+[node name="label_5" type="RichTextLabel" parent="main-menu-credit/margin_container/v_box_container/rigid_body_2d/content"]
+texture_filter = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
-text = "
+theme = ExtResource("3_nd5m5")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[url={https://https://www.youtube.com/channel/UC2NyXXUlpxJ60SUFjdFmkew}]Youtube: @travelsizedlions[/url]"
+fit_content = true
+autowrap_mode = 0
 
-travelsizedlions.newgrounds.com
-youtube @travelsizedlions"
-horizontal_alignment = 1
+[node name="label_4" type="RichTextLabel" parent="main-menu-credit/margin_container/v_box_container/rigid_body_2d/content"]
+texture_filter = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme = ExtResource("3_nd5m5")
+bbcode_enabled = true
+text = "[url={https://travelsizedlions.newgrounds.com}]travelsizedlions.newgrounds.com[/url]"
+fit_content = true
+autowrap_mode = 0
 
 [node name="control" type="Control" parent="main-menu-credit/margin_container/v_box_container"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 4.0
+size_flags_stretch_ratio = 16.0
 
 [node name="timer" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 10.0
 one_shot = true
 autostart = true
 
 [node name="load_level_trigger" type="Node2D" parent="timer"]
 script = ExtResource("2_osxp1")
-level_to_load = "res://areas/credits/credits_main_menu_music.tscn"
+level_to_load = "res://game_objects/ui/end_screen.tscn"
 player_load_setting = 1
 
 [node name="music_with_intro" type="Node2D" parent="."]

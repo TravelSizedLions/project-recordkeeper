@@ -1,10 +1,8 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cvw2rcvmq6w6u"]
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cvw2rcvmq6w6u"]
 
-[ext_resource type="FontFile" uid="uid://bs7npwkbq5m3y" path="res://fonts/source-code-pro/source-code-pro-2.010R-ro-1.030R-it/TTF/SourceCodePro-Medium.ttf" id="1_ib5hj"]
 [ext_resource type="FontFile" uid="uid://c310byy7ujqed" path="res://fonts/source-code-pro/source-code-pro-2.010R-ro-1.030R-it/TTF/SourceCodePro-Regular.ttf" id="2_fck5c"]
 
 [resource]
 default_base_scale = 2.0
 default_font = ExtResource("2_fck5c")
 Label/font_sizes/font_size = 12
-Label/fonts/font = ExtResource("1_ib5hj")

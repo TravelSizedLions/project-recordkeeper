@@ -24,7 +24,7 @@ position = Vector2(0, -17)
 texture = ExtResource("2_jike6")
 
 [node name="cannon" type="CharacterBody2D" parent="."]
-position = Vector2(2, -39)
+position = Vector2(5, -39)
 collision_layer = 16
 collision_mask = 2
 
@@ -50,7 +50,7 @@ shape = SubResource("RectangleShape2D_g6rd8")
 
 [node name="enemy_health_bar" parent="." instance=ExtResource("4_qt7rg")]
 position = Vector2(0, -52)
-title = "Turret"
+title = "Turretle"
 max_health = 10.0
 
 [node name="can_float_away" type="Node" parent="."]

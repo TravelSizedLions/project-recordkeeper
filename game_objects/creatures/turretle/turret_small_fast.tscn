@@ -51,7 +51,7 @@ shape = SubResource("RectangleShape2D_g6rd8")
 
 [node name="enemy_health_bar" parent="." instance=ExtResource("7_fkuga")]
 position = Vector2(0, -52)
-title = "Turret"
+title = "Turretle"
 max_health = 10.0
 
 [node name="can_float_away" type="Node" parent="."]
