@@ -16,7 +16,7 @@ func _physics_process(delta):
 
 	__update_rotation()
 	timer -= delta
-	if player.is_firing() or (__special_enabled and player.holding_special()):
+	if player.is_firing():
 		if timer <= 0:
 			__fire()
 
@@ -30,10 +30,10 @@ func __fire():
 	var speed = player.settings.projectile_speed
 	
 	var projectile: Projectile
-	if player.is_firing():
+	if not __special_enabled:
 		projectile = N.create_scene(player.settings.projectile)
 		projectile.from_player()
-	elif player.holding_special():
+	else:
 		projectile = N.create_scene(__special_projectile)
 		projectile.collision_layer = CollisionLayer.Projectiles
 		projectile.collision_mask = CollisionLayer.Enemies | CollisionLayer.FloatingEnemies | CollisionLayer.EnemyProjectiles

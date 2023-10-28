@@ -1,8 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1y3xdx3sh1x2"]
+[gd_scene load_steps=13 format=3 uid="uid://b1y3xdx3sh1x2"]
 
 [ext_resource type="Script" path="res://0_scripts/environment/area_loader.gd" id="1_e6fc5"]
 [ext_resource type="Texture2D" uid="uid://cgwfansloibai" path="res://game_objects/particles/star.png" id="1_vsqnq"]
+[ext_resource type="Texture2D" uid="uid://dd3hj8thhiuqe" path="res://game_objects/particles/nebula1.png" id="2_jqxgc"]
 [ext_resource type="PackedScene" uid="uid://b7essepu63y2x" path="res://areas/main_menu.tscn" id="3_6avc1"]
+[ext_resource type="Texture2D" uid="uid://tbbykkcm68ah" path="res://game_objects/particles/nebula2.png" id="3_nvqkx"]
+[ext_resource type="Texture2D" uid="uid://tw2xarkly0mr" path="res://game_objects/particles/nebula3.png" id="4_crxde"]
+[ext_resource type="Texture2D" uid="uid://0m2ymhtnucru" path="res://game_objects/particles/nebula4.png" id="5_1rxat"]
 [ext_resource type="PackedScene" uid="uid://bj1nienf5yofq" path="res://game_objects/environment/kill_line.tscn" id="6_dbvj0"]
 [ext_resource type="Texture2D" uid="uid://b6q8ccwoi5b02" path="res://shared_art/temp-square.png" id="7_rsmcp"]
 [ext_resource type="Script" path="res://0_scripts/environment/screen_transition.gd" id="8_u84n5"]
@@ -11,12 +15,16 @@
 offsets = PackedFloat32Array(0.00429185, 1)
 colors = PackedColorArray(0.66, 0.66, 1, 1, 1, 0.75, 0.75, 1)
 
+[sub_resource type="Gradient" id="Gradient_7pjig"]
+offsets = PackedFloat32Array(0, 0.373391)
+colors = PackedColorArray(1, 0, 0, 1, 0, 0, 1, 1)
+
 [node name="root_scene" type="Node2D"]
 
 [node name="canvas_layer" type="CanvasLayer" parent="."]
-layer = -1
+layer = -3
 
-[node name="cpu_particles_2d" type="CPUParticles2D" parent="canvas_layer"]
+[node name="stars" type="CPUParticles2D" parent="canvas_layer"]
 z_index = -2
 position = Vector2(1053, 230)
 amount = 800
@@ -35,6 +43,154 @@ scale_amount_min = 0.1
 scale_amount_max = 1.25
 color_initial_ramp = SubResource("Gradient_w4x6t")
 
+[node name="nebula" type="CPUParticles2D" parent="canvas_layer"]
+position = Vector2(1134, 248)
+amount = 400
+lifetime = 120.0
+preprocess = 120.0
+texture = ExtResource("2_jqxgc")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1000)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+angle_max = 360.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+color = Color(1, 1, 1, 0.0627451)
+color_initial_ramp = SubResource("Gradient_7pjig")
+
+[node name="nebula_2" type="CPUParticles2D" parent="canvas_layer"]
+position = Vector2(1134, 248)
+amount = 400
+lifetime = 120.0
+preprocess = 120.0
+texture = ExtResource("3_nvqkx")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1000)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+angle_max = 360.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+color = Color(1, 1, 1, 0.0627451)
+color_initial_ramp = SubResource("Gradient_7pjig")
+
+[node name="nebula_3" type="CPUParticles2D" parent="canvas_layer"]
+position = Vector2(1134, 248)
+amount = 200
+lifetime = 120.0
+preprocess = 120.0
+texture = ExtResource("4_crxde")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1000)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+angle_max = 360.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+color = Color(1, 1, 1, 0.0313726)
+color_initial_ramp = SubResource("Gradient_7pjig")
+
+[node name="nebula_4" type="CPUParticles2D" parent="canvas_layer"]
+position = Vector2(1134, 248)
+amount = 400
+lifetime = 120.0
+preprocess = 120.0
+texture = ExtResource("5_1rxat")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1000)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+angle_max = 360.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+color = Color(1, 1, 1, 0.0627451)
+color_initial_ramp = SubResource("Gradient_7pjig")
+
+[node name="nebula_5" type="CPUParticles2D" parent="canvas_layer"]
+position = Vector2(1134, 248)
+amount = 400
+lifetime = 120.0
+preprocess = 120.0
+texture = ExtResource("2_jqxgc")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1000)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+angle_max = 360.0
+scale_amount_min = 0.25
+scale_amount_max = 0.5
+color = Color(1, 1, 1, 0.0156863)
+
+[node name="nebula_6" type="CPUParticles2D" parent="canvas_layer"]
+position = Vector2(1134, 248)
+amount = 400
+lifetime = 120.0
+preprocess = 120.0
+texture = ExtResource("3_nvqkx")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1000)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+angle_max = 360.0
+scale_amount_min = 0.25
+scale_amount_max = 0.5
+color = Color(1, 1, 1, 0.0156863)
+
+[node name="nebula_7" type="CPUParticles2D" parent="canvas_layer"]
+position = Vector2(1134, 248)
+amount = 100
+lifetime = 120.0
+preprocess = 120.0
+texture = ExtResource("4_crxde")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1000)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+angle_max = 360.0
+scale_amount_min = 0.25
+scale_amount_max = 0.5
+color = Color(1, 1, 1, 0.0156863)
+
+[node name="nebula_8" type="CPUParticles2D" parent="canvas_layer"]
+position = Vector2(1134, 248)
+amount = 100
+lifetime = 120.0
+preprocess = 120.0
+texture = ExtResource("5_1rxat")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1000)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 50.0
+angle_max = 360.0
+scale_amount_min = 0.25
+scale_amount_max = 0.5
+color = Color(1, 1, 1, 0.0156863)
+
 [node name="area_loader" type="Node2D" parent="." node_paths=PackedStringArray("transition") groups=["area_loader"]]
 script = ExtResource("1_e6fc5")
 transition = NodePath("../load_screen/whiteout")
@@ -46,6 +202,7 @@ default_area = ExtResource("3_6avc1")
 position = Vector2(0, 1000)
 
 [node name="load_screen" type="CanvasLayer" parent="."]
+layer = 128
 
 [node name="whiteout" type="TextureRect" parent="load_screen"]
 anchors_preset = 15

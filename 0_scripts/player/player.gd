@@ -238,22 +238,28 @@ func get_active_character() -> Character:
 
 func die():
 	__dead = true
+	velocity = Vector2.ZERO
 	fsm.on_state_transition(DeathState)
 
 func respawn():
-	reset_jared_health()
-	reset_ephraim_health()
-	stop_invincibility()
+	for c in N.get_all_children(self, CollisionShape2D, false):
+		c.disabled = true
+
 	var area_loader: AreaLoader = get_tree().get_first_node_in_group('area_loader')
 	area_loader.on_finished_load.connect(__after_respawn)
 	area_loader.reload()
 	on_player_died.emit()
-	__dead = false
 
 func __after_respawn():
+	for c in N.get_all_children(self, CollisionShape2D, false):
+		c.disabled = false
+	stop_invincibility()
+	reset_jared_health()
+	reset_ephraim_health()
 	__last_grounded_position = respawn_position
 	global_position = respawn_position
-	velocity = Vector2.ZERO
+	__dead = false
+
 
 	if get_active_character() == Character.Jared:
 		fsm.on_state_transition(JaredIdleState)

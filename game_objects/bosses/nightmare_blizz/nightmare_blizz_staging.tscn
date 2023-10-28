@@ -103,7 +103,7 @@ script = ExtResource("20_cqjci")
 [node name="load_level_trigger" type="Node2D" parent="trigger_group"]
 position = Vector2(464, 304)
 script = ExtResource("18_7i6ji")
-level_to_load = "res://areas/credits/credits_game_by.tscn"
+level_to_load = "res://areas/credits/credits_level_music.tscn"
 player_load_setting = 1
 delay = 3.0
 

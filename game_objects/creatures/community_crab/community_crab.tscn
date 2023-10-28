@@ -138,6 +138,7 @@ theme_override_constants/margin_right = 2
 theme_override_constants/margin_bottom = 2
 
 [node name="rich_text_label" type="Label" parent="text_ui/panel_container/margin_container"]
+texture_filter = 5
 layout_mode = 2
 theme = ExtResource("9_n37vl")
 text = "I am completely useless.
