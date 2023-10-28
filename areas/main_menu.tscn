@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7essepu63y2x"]
+[gd_scene load_steps=9 format=3 uid="uid://b7essepu63y2x"]
 
 [ext_resource type="Script" path="res://0_scripts/triggerables/load_level_trigger.gd" id="1_5skmn"]
+[ext_resource type="Script" path="res://0_scripts/ui/focus_start.gd" id="1_8b2g2"]
 [ext_resource type="Script" path="res://0_scripts/triggerables/quit_game_trigger.gd" id="2_avxpt"]
 [ext_resource type="Theme" uid="uid://bxghltfgjmsvf" path="res://game_objects/ui/title_font.tres" id="2_l1vnc"]
 [ext_resource type="Script" path="res://0_scripts/sound/music_with_intro.gd" id="4_0m87n"]
@@ -13,6 +14,7 @@
 [node name="menu" type="CanvasLayer" parent="."]
 
 [node name="panel_container" type="PanelContainer" parent="menu"]
+texture_filter = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -38,6 +40,7 @@ layout_mode = 2
 [node name="start" type="Button" parent="menu/panel_container/margin_container/v_box_container"]
 layout_mode = 2
 text = "Start Game"
+script = ExtResource("1_8b2g2")
 
 [node name="load_level_trigger" type="Node2D" parent="menu/panel_container/margin_container/v_box_container/start"]
 script = ExtResource("1_5skmn")
@@ -62,6 +65,7 @@ position = Vector2(-40, -474)
 script = ExtResource("2_avxpt")
 
 [node name="rich_text_label" type="RichTextLabel" parent="menu"]
+texture_filter = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -80,6 +84,7 @@ fit_content = true
 autowrap_mode = 0
 
 [node name="rich_text_label_2" type="RichTextLabel" parent="menu"]
+texture_filter = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
