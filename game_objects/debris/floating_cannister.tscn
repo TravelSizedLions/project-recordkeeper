@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://q7bofpfgcqd6"]
+
+[ext_resource type="PackedScene" uid="uid://bbx5xpypejyxi" path="res://game_objects/debris/floating_debris.tscn" id="1_sty7c"]
+[ext_resource type="Texture2D" uid="uid://bneygwrk1p638" path="res://game_objects/environment/ship_decorations.png" id="2_dlhy2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr4sg"]
+resource_local_to_scene = true
+atlas = ExtResource("2_dlhy2")
+region = Rect2(288, 144, 32, 64)
+
+[node name="floating_cannister" instance=ExtResource("1_sty7c")]
+
+[node name="sprite_2d" parent="floats_up_and_down" index="0"]
+texture = SubResource("AtlasTexture_jr4sg")

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuwjc3h2fm2cv"]
+
+[ext_resource type="PackedScene" uid="uid://bbx5xpypejyxi" path="res://game_objects/debris/floating_debris.tscn" id="1_u6bn1"]
+[ext_resource type="Texture2D" uid="uid://bneygwrk1p638" path="res://game_objects/environment/ship_decorations.png" id="2_4h4tk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_duwi7"]
+resource_local_to_scene = true
+atlas = ExtResource("2_4h4tk")
+region = Rect2(96, 64, 56, 24)
+
+[node name="floating_bed" instance=ExtResource("1_u6bn1")]
+
+[node name="sprite_2d" parent="floats_up_and_down" index="0"]
+texture = SubResource("AtlasTexture_duwi7")

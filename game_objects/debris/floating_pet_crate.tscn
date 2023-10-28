@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://brux4ori7422u"]
+
+[ext_resource type="PackedScene" uid="uid://bbx5xpypejyxi" path="res://game_objects/debris/floating_debris.tscn" id="1_c10mo"]
+[ext_resource type="Texture2D" uid="uid://bneygwrk1p638" path="res://game_objects/environment/ship_decorations.png" id="2_c7l16"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6japc"]
+resource_local_to_scene = true
+atlas = ExtResource("2_c7l16")
+region = Rect2(0, 160, 64, 32)
+
+[node name="floating_pet_crate" instance=ExtResource("1_c10mo")]
+
+[node name="sprite_2d" parent="floats_up_and_down" index="0"]
+texture = SubResource("AtlasTexture_6japc")

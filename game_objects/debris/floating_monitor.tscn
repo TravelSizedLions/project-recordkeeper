@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bajxnwuwdkgc2"]
+
+[ext_resource type="PackedScene" uid="uid://bbx5xpypejyxi" path="res://game_objects/debris/floating_debris.tscn" id="1_scfvd"]
+[ext_resource type="Texture2D" uid="uid://bneygwrk1p638" path="res://game_objects/environment/ship_decorations.png" id="2_vinvs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5anf"]
+resource_local_to_scene = true
+atlas = ExtResource("2_vinvs")
+region = Rect2(152, 64, 48, 48)
+
+[node name="floating_monitor" instance=ExtResource("1_scfvd")]
+
+[node name="sprite_2d" parent="floats_up_and_down" index="0"]
+modulate = Color(0.5, 0.5, 0.5, 1)
+texture = SubResource("AtlasTexture_e5anf")
