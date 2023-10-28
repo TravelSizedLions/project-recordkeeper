@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://fgte42sp4f3y"]
+[gd_scene load_steps=15 format=3 uid="uid://fgte42sp4f3y"]
 
 [ext_resource type="Texture2D" uid="uid://dut1xcsyvpugb" path="res://game_objects/bosses/nightmare_blizz/blizz_idle_ui1.png" id="1_ayfyp"]
 [ext_resource type="Texture2D" uid="uid://dl4sdh67rjtwu" path="res://game_objects/bosses/nightmare_blizz/blizz_idle_ui2.png" id="2_2eeoe"]
@@ -7,9 +7,10 @@
 [ext_resource type="Theme" uid="uid://bxghltfgjmsvf" path="res://game_objects/ui/title_font.tres" id="5_csgcr"]
 [ext_resource type="Texture2D" uid="uid://1neh6mbtb3xe" path="res://game_objects/ui/main_menu_btn1.png" id="5_li37j"]
 [ext_resource type="Texture2D" uid="uid://bh4h32jgve3qc" path="res://game_objects/ui/main_menu_btn3.png" id="6_vxqbf"]
-[ext_resource type="Texture2D" uid="uid://1enpi5b5p7e3" path="res://game_objects/ui/main_menu_btn2.png" id="7_18dih"]
 [ext_resource type="Script" path="res://0_scripts/triggerables/load_level_trigger.gd" id="8_gyx04"]
+[ext_resource type="Texture2D" uid="uid://b2qb3heqpyu7c" path="res://game_objects/ui/main_menu_btn_focus.png" id="9_2e3ui"]
 [ext_resource type="Script" path="res://0_scripts/sound/music_with_intro.gd" id="9_88o4t"]
+[ext_resource type="Script" path="res://0_scripts/ui/focus_start.gd" id="9_o1xrj"]
 [ext_resource type="AudioStream" uid="uid://bcqspcf6ikmnl" path="res://music/galaxy-tones_ascension_intro.wav" id="10_m0aj5"]
 [ext_resource type="AudioStream" uid="uid://dkk2php45sam4" path="res://music/galaxy-tones_ascension_loop.wav" id="11_dj7qe"]
 
@@ -82,9 +83,10 @@ layout_mode = 2
 size_flags_horizontal = 4
 texture_normal = ExtResource("5_li37j")
 texture_pressed = ExtResource("6_vxqbf")
-texture_hover = ExtResource("7_18dih")
-texture_focused = ExtResource("5_li37j")
+texture_hover = ExtResource("9_2e3ui")
+texture_focused = ExtResource("9_2e3ui")
 stretch_mode = 4
+script = ExtResource("9_o1xrj")
 
 [node name="load_level_trigger" type="Node2D" parent="control/margin_container/texture_button"]
 script = ExtResource("8_gyx04")
