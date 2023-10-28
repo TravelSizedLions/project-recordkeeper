@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbx5xpypejyxi"]
+
+[ext_resource type="Script" path="res://0_scripts/creatures/enemy_attributes/rotates_thing.gd" id="1_nemkq"]
+[ext_resource type="Script" path="res://0_scripts/environment/floats_up_and_down.gd" id="2_4q84a"]
+[ext_resource type="Texture2D" uid="uid://bneygwrk1p638" path="res://game_objects/environment/ship_decorations.png" id="2_mwxid"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_obna3"]
+resource_local_to_scene = true
+atlas = ExtResource("2_mwxid")
+region = Rect2(256, 0, 64, 48)
+
+[node name="floating_trash_crate" type="Node2D" node_paths=PackedStringArray("thing_to_rotate")]
+script = ExtResource("1_nemkq")
+min_rotation_speed = -10.0
+max_rotation_speed = 10.0
+thing_to_rotate = NodePath("floats_up_and_down/sprite_2d")
+
+[node name="floats_up_and_down" type="Node2D" parent="."]
+script = ExtResource("2_4q84a")
+frequency = 10.0
+amplitude = 10.0
+
+[node name="sprite_2d" type="Sprite2D" parent="floats_up_and_down"]
+texture = SubResource("AtlasTexture_obna3")

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtl1bac8h4csl"]
+
+[ext_resource type="PackedScene" uid="uid://bbx5xpypejyxi" path="res://game_objects/debris/floating_debris.tscn" id="1_wejs5"]
+[ext_resource type="Texture2D" uid="uid://bneygwrk1p638" path="res://game_objects/environment/ship_decorations.png" id="2_8c06s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gqlg"]
+resource_local_to_scene = true
+atlas = ExtResource("2_8c06s")
+region = Rect2(48, 192, 48, 32)
+
+[node name="floating_dark_crate_2" instance=ExtResource("1_wejs5")]
+
+[node name="sprite_2d" parent="floats_up_and_down" index="0"]
+texture = SubResource("AtlasTexture_5gqlg")

@@ -112,6 +112,7 @@ script = ExtResource("6_60vqb")
 script = ExtResource("7_prcqq")
 
 [node name="text_ui" type="Control" parent="."]
+z_index = 80
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
