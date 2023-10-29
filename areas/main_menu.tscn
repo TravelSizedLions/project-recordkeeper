@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7essepu63y2x"]
+[gd_scene load_steps=8 format=3 uid="uid://b7essepu63y2x"]
 
 [ext_resource type="Script" path="res://0_scripts/triggerables/load_level_trigger.gd" id="1_5skmn"]
 [ext_resource type="Script" path="res://0_scripts/ui/focus_start.gd" id="1_8b2g2"]
-[ext_resource type="Script" path="res://0_scripts/triggerables/quit_game_trigger.gd" id="2_avxpt"]
 [ext_resource type="Theme" uid="uid://bxghltfgjmsvf" path="res://game_objects/ui/title_font.tres" id="2_l1vnc"]
 [ext_resource type="Script" path="res://0_scripts/sound/music_with_intro.gd" id="4_0m87n"]
 [ext_resource type="AudioStream" uid="uid://bcqspcf6ikmnl" path="res://music/galaxy-tones_ascension_intro.wav" id="5_rkydo"]
@@ -58,11 +57,12 @@ player_load_setting = 1
 
 [node name="quit" type="Button" parent="menu/panel_container/margin_container/v_box_container"]
 layout_mode = 2
-text = "Quit"
+text = "Credits"
 
-[node name="quit_game_trigger" type="Node2D" parent="menu/panel_container/margin_container/v_box_container/quit"]
-position = Vector2(-40, -474)
-script = ExtResource("2_avxpt")
+[node name="load_level_trigger" type="Node2D" parent="menu/panel_container/margin_container/v_box_container/quit"]
+script = ExtResource("1_5skmn")
+level_to_load = "res://areas/credits/credits_main_menu_music.tscn"
+player_load_setting = 1
 
 [node name="rich_text_label" type="RichTextLabel" parent="menu"]
 texture_filter = 2
@@ -113,4 +113,4 @@ volume = 0.33
 [connection signal="tree_entered" from="." to="sound_volume_trigger" method="trigger"]
 [connection signal="button_up" from="menu/panel_container/margin_container/v_box_container/start" to="menu/panel_container/margin_container/v_box_container/start/load_level_trigger" method="trigger"]
 [connection signal="button_up" from="menu/panel_container/margin_container/v_box_container/controls" to="menu/panel_container/margin_container/v_box_container/controls/load_level_trigger" method="trigger"]
-[connection signal="button_up" from="menu/panel_container/margin_container/v_box_container/quit" to="menu/panel_container/margin_container/v_box_container/quit/quit_game_trigger" method="trigger"]
+[connection signal="button_up" from="menu/panel_container/margin_container/v_box_container/quit" to="menu/panel_container/margin_container/v_box_container/quit/load_level_trigger" method="trigger"]

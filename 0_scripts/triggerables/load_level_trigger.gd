@@ -38,4 +38,3 @@ func __try_load_player():
 	
 	var area_loader: AreaLoader = TreeAccess.tree.get_first_node_in_group('area_loader')
 	area_loader.on_finished_load.disconnect(__try_load_player)
-

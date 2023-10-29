@@ -7,7 +7,7 @@
 
 [resource]
 script = ExtResource("2_720rq")
-max_health = 9.0
+max_health = 8.0
 regen_speed = 0.5
 speed = 300.0
 jump_force = -440.0
