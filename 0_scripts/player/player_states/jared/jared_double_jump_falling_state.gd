@@ -7,6 +7,9 @@ func __on_physics_process(_delta: float):
 	player.handle_run()
 	if player.is_on_floor():
 		transitioner.emit(JaredLandingState)
+	
+	# test for jump buffering
+	player.pressed_jump()
 
 func __on_enter():
 	player.animator.play('falling')

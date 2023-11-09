@@ -61,7 +61,7 @@ text = "Credits"
 
 [node name="load_level_trigger" type="Node2D" parent="menu/panel_container/margin_container/v_box_container/quit"]
 script = ExtResource("1_5skmn")
-level_to_load = "res://areas/credits/credits_main_menu_music.tscn"
+level_to_load = "res://areas/credits/credits_level_music.tscn"
 player_load_setting = 1
 
 [node name="rich_text_label" type="RichTextLabel" parent="menu"]

@@ -8,8 +8,10 @@ func __on_physics_process(_delta: float):
 	if not player.is_moving():
 		transitioner.emit(EphraimIdleState)
 	elif player.pressed_jump():
+		player.set_new_fall_spawnpoint()
 		transitioner.emit(EphraimStartJumpState)
 	elif player.is_falling():
+		player.start_coyote_time()
 		player.set_new_fall_spawnpoint()
 		transitioner.emit(EphraimFallingState)
 	elif player.pressed_swap():

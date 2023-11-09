@@ -199,10 +199,10 @@ animations = [{
 "speed": 24.0
 }, {
 "frames": [{
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_vie0l")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_0f6a3")
 }],
 "loop": false,

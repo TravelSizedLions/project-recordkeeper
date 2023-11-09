@@ -8,8 +8,10 @@ func __on_physics_process(_delta: float):
 	if not player.is_moving():
 		transitioner.emit(JaredIdleState)
 	elif player.pressed_jump():
+		player.set_new_fall_spawnpoint()
 		transitioner.emit(JaredStartJumpState)
 	elif player.is_falling():
+		player.start_coyote_time()
 		player.set_new_fall_spawnpoint()
 		transitioner.emit(JaredFallingState)
 	elif player.pressed_swap():

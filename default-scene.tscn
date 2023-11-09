@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://b1y3xdx3sh1x2"]
+[gd_scene load_steps=14 format=3 uid="uid://b1y3xdx3sh1x2"]
 
 [ext_resource type="Script" path="res://0_scripts/environment/area_loader.gd" id="1_e6fc5"]
 [ext_resource type="Texture2D" uid="uid://cgwfansloibai" path="res://game_objects/particles/star.png" id="1_vsqnq"]
+[ext_resource type="Texture2D" uid="uid://bg42v843ky8kh" path="res://game_objects/particles/star2.png" id="2_57pdw"]
 [ext_resource type="Texture2D" uid="uid://dd3hj8thhiuqe" path="res://game_objects/particles/nebula1.png" id="2_jqxgc"]
 [ext_resource type="PackedScene" uid="uid://b7essepu63y2x" path="res://areas/main_menu.tscn" id="3_6avc1"]
 [ext_resource type="Texture2D" uid="uid://tbbykkcm68ah" path="res://game_objects/particles/nebula2.png" id="3_nvqkx"]
@@ -27,11 +28,30 @@ layer = -3
 [node name="stars" type="CPUParticles2D" parent="canvas_layer"]
 z_index = -2
 position = Vector2(1053, 230)
-amount = 800
+amount = 400
 lifetime = 120.0
 preprocess = 30.0
 draw_order = 1
 texture = ExtResource("1_vsqnq")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1000)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 25.0
+initial_velocity_max = 80.0
+scale_amount_min = 0.1
+scale_amount_max = 1.25
+color_initial_ramp = SubResource("Gradient_w4x6t")
+
+[node name="stars_2" type="CPUParticles2D" parent="canvas_layer"]
+z_index = -2
+position = Vector2(1053, 230)
+amount = 400
+lifetime = 120.0
+preprocess = 30.0
+draw_order = 1
+texture = ExtResource("2_57pdw")
 emission_shape = 3
 emission_rect_extents = Vector2(1, 1000)
 direction = Vector2(-1, 0)

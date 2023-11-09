@@ -25,6 +25,7 @@ script = ExtResource("1_5e45p")
 fall_damage = 1.0
 jared_settings = ExtResource("2_m85vd")
 ephraim_settings = ExtResource("3_mx0id")
+coyote_time = 0.063
 invincibility_time = 1.0
 flicker_frequency = 6.0
 

@@ -1,6 +1,5 @@
 class_name UnlockSpecials extends Triggerable
 
-
 func _on_trigger():
 	var ui: CanvasItem = TreeAccess.tree.get_first_node_in_group('ammo_tracker')
 	var player = Player.retrieve()

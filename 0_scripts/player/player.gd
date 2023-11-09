@@ -6,6 +6,8 @@ enum Character {Jared, Ephraim}
 static func retrieve():
 	return TreeAccess.tree.get_first_node_in_group('player')
 
+var physicsDelta = 1.0/ProjectSettings.get_setting("physics/common/physics_ticks_per_second")
+
 ## Which character to start as on game start.
 @export var starting_character: Character
 
@@ -16,6 +18,10 @@ static func retrieve():
 
 ## Ephraim's specific player character settings for things like movment, health, etc.
 @export var ephraim_settings: PlayerSettings
+
+@export var jump_buffer_time: float = .125
+
+@export var coyote_time: float = 1.0
 
 @export_group('Invicibility Frames')
 ## Number of seconds the player is invincible after taking damage
@@ -42,6 +48,11 @@ var __invincible_timer: float
 var __flicker_timer: float
 
 var __dead: bool = false
+
+var __jump_buffering: bool = false
+var __jump_buffer_timer: float = -1
+
+var __coyote_timer: float = 0
 
 ## The last place the player was standing before a jump.
 var __last_grounded_position: Vector2
@@ -88,9 +99,22 @@ func _process(frameDelta):
 func _physics_process(fixedDelta):
 	process_invincibility(fixedDelta)
 	process_health_regen(fixedDelta)
+	process_jump_buffer_timer(fixedDelta)
+	process_coyote_timer(fixedDelta)
 	if not __dead:
 		CharUtils.apply_gravity(self, fixedDelta)
 		move_and_slide()
+
+func process_coyote_timer(fixedDelta):
+	if __coyote_timer >= 0:
+		__coyote_timer -= fixedDelta
+	
+func process_jump_buffer_timer(fixedDelta):
+	if __jump_buffer_timer >= 0:
+		__jump_buffer_timer -= fixedDelta
+		
+	if __jump_buffering and __jump_buffer_timer < 0:
+		__jump_buffering = false
 
 func process_health_regen(fixedDelta):
 	if get_active_character() == Character.Jared:
@@ -114,8 +138,24 @@ func process_invincibility(fixedDelta):
 func pressed_move():
 	return bool(__get_movement_axis())
 
-func pressed_jump():
-	return Input.is_action_just_pressed('jump')
+func start_coyote_time():
+	__coyote_timer = coyote_time
+
+func in_coyote_time():
+	return __coyote_timer > 0
+
+func pressed_jump(double_jumping=false):
+	if double_jumping:
+		return Input.is_action_just_pressed('jump')
+
+	if Input.is_action_just_pressed('jump'):
+		__jump_buffering = true
+		__jump_buffer_timer = jump_buffer_time
+
+	return __jump_buffering
+	
+func __reset_jump_buffer():
+	__jump_buffering = false
 
 func pressed_swap():
 	return Input.is_action_just_pressed('swap')
@@ -333,4 +373,5 @@ func set_new_fall_spawnpoint():
 		# shifts the position to prevent accidental repeat falls
 		var dir = -velocity.sign().x
 		var width = player_capsule.get_rect().size.x
-		__last_grounded_position = Vector2(global_position.x + dir*width, global_position.y)
+		var framesBackInTime = 2
+		__last_grounded_position = Vector2(global_position.x + dir*width - velocity.x*physicsDelta*framesBackInTime, global_position.y)
