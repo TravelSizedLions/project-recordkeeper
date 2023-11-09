@@ -315,6 +315,7 @@ func handle_fall():
 	if not died:
 		global_position = __last_grounded_position
 		velocity = Vector2.ZERO
+		__coyote_timer = coyote_time*2
 
 func take_damage(amount: float):
 	var died = false

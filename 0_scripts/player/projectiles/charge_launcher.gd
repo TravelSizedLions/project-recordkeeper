@@ -88,7 +88,8 @@ func burst_fire():
 	main_charger.reset_charge()
 
 	var burst_fire_fn = func():
-		fire(percent_charged, main_projectile)
+		var projectile = N.create_scene(main_projectile)
+		fire(percent_charged, projectile)
 		__burst_fire_left -= 1
 
 	for i in range(__burst_fire_left):
@@ -101,7 +102,9 @@ func handle_special(physicsDelta):
 		else:
 			special_charger.start_charge(physicsDelta)
 	elif special_charger.is_charging() && player.released_special():
-		fire(special_charger.percent_charged(), special_projectile)
+		var projectile = N.create_scene(special_projectile)
+		projectile.mark_special()
+		fire(special_charger.percent_charged(), projectile)
 		__remaining_special_ammo -= 1
 		on_update_capacity.emit(__remaining_special_ammo, max_special_ammo)
 		special_charger.reset_charge()
@@ -119,11 +122,10 @@ func update_aim(charger: Charger):
 			__last_known_direction*max_lob_force*charger.percent_charged()
 		)
 
-func fire(percent_charged: float, projectile: PackedScene):
-	var p = N.create_scene(projectile)
+func fire(percent_charged: float, projectile):
 	var force = max_lob_force*percent_charged
-	p.set_initial_position(global_position + __last_known_direction*buffer_radius)
-	p.set_initial_velocity(__last_known_direction, force)
+	projectile.set_initial_position(global_position + __last_known_direction*buffer_radius)
+	projectile.set_initial_velocity(__last_known_direction, force)
 	arcdrawer.clear_arc()
 
 func __connect_to_ui():

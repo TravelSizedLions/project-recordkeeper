@@ -48,5 +48,9 @@ func from_enemy():
 	collision_layer = CollisionLayer.EnemyProjectiles
 	collision_mask = CollisionLayer.Projectiles | CollisionLayer.PlayerCharacter
 
+func mark_special():
+	collision_layer = CollisionLayer.SpecialProjectiles
+	collision_mask = CollisionLayer.Default | CollisionLayer.Enemies | CollisionLayer.FloatingEnemies
+
 func get_initial_position():
 	return __initial_position
